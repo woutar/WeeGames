@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>WeeGames webshop</title>
+    <script type="text/javascript" src="javascript/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="javascript/interface.js"></script>
+    <script type="text/javascript" src="javascript/easing.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <!--Add bootstrap-->
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+
+</head>
+<body>
+
+<div id="header-container" class="menu">
+    <ul>
+        <li class="search"><input type="text" /><input type="submit" value="Search" /></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+        <li class="shoppingcart"><a href="shopping-cart.html">Shopping cart</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="col-lg-4">
+        <h1>Login</h1>
+        <form action="checkout.html">
+            <div class="form-group">
+                <h4>Emailaddress: </h4>
+                <input class="form-control" type="email" name="email" placeholder="Emailaddress" required
+                       oninvalid="this.setCustomValidity('Enter your Email')" oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group">
+                <h4>Password: </h4>
+                <input class="form-control" type="password" name="password" placeholder="*****" required
+                       oninvalid="this.setCustomValidity('Enter your Password Here')" oninput="setCustomValidity('')">
+            </div>
+            <br>
+            <input class="btn btn-primary" type="submit" name="submit" value="Login">
+        </form>
+    </div>
+    <div class="col-lg-3"></div>
+    <div class="col-lg-5">
+        <h1>Enter contact information</h1>
+
+        <div class="col-lg-5">
+            <div class="input-text">
+                <h4>Email address:</h4>
+                <h4>Firstname:</h4>
+                <h4>Lastname:</h4>
+                <h4>Address:</h4>
+                <h4>Zipcode:</h4>
+                <h4>City:</h4>
+                <h4>Country:</h4>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <form action="checkout.html">
+
+            <input class="form-control form-input" type="email" name="emailaddress" placeholder="Email" required
+                   oninvalid="this.setCustomValidity('Enter your Email Here')" oninput="setCustomValidity('')">
+            <input class="form-control form-input" type="text" name="firstname" placeholder="Firstname" required
+                   oninvalid="this.setCustomValidity('Enter your Firstname')" oninput="setCustomValidity('')">
+            <input class="form-control form-input" type="text" name="lastname" placeholder="Lastname" required
+                   oninvalid="this.setCustomValidity('Enter your Lastname')" oninput="setCustomValidity('')">
+            <input class="form-control form-input" type="text" name="address" placeholder="Address" required
+                   oninvalid="this.setCustomValidity('Enter your Address')" oninput="setCustomValidity('')">
+            <input class="form-control form-input" type="text" name="zipcode" placeholder="Zipcode" required
+                   oninvalid="this.setCustomValidity('Enter your Zipcode')" oninput="setCustomValidity('')">
+            <input class="form-control form-input" type="text" name="city" placeholder="City" required
+                   oninvalid="this.setCustomValidity('Enter your City')" oninput="setCustomValidity('')">
+
+            <select class="form-control form-input">
+                <option value="netherlands">Netherlands</option>
+                <option value="uk">United Kingdom</option>
+                <option value="belgium">Belgium</option>
+                <option value="germany">Germany</option>
+                <option value="france">France</option>
+            </select>
+
+        </div>
+    </div>
+    <button type="submit" id="order-products-button" class="btn btn-primary btn-lg img-responsive center-block">Order products</button>
+    </form>
+</div>
+</body>
+</html>
+

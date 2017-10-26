@@ -1,0 +1,125 @@
+<html>
+<head>
+    <title>WeeGames webshop</title>
+    <script type="text/javascript" src="javascript/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="javascript/interface.js"></script>
+    <script type="text/javascript" src="javascript/easing.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <!--Add bootstrap-->
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+
+</head>
+<body>
+
+<div id="header-container" class="menu">
+    <ul>
+        <li class="search"><input type="text" /><input type="submit" value="Search" /></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+        <li class="shoppingcart"><a href="shopping-cart.html">Shopping cart</a></li>
+
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h2>Order review</h2>
+            <!--Product 1-->
+            <div class="product product-001 product-info-checkout">
+                <a href="product_info_1.html">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="product-image-small"></div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="checkout-text">
+                                <ul>
+                                    <li class="title">Battlefield 1</li>
+                                    <li class="genre">Genre: Shooter</li>
+                                    <li class="platform">Platform: Playstation 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <h2>€60,00</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <h2>Delivery address</h2>
+            <p>Email: Nickyw@gmail.com</p>
+            <p>Name: Nicky van der Weerden</p>
+            <p>Address: Jamboreepad 192</p>
+            <p>City: Heerlen</p>
+            <p>Zip Code: 6415JN</p>
+            <p>Country: Netherlands</p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-8">
+            <!--Product 2-->
+            <div class="product product-002 product-info-checkout productbox-checkout">
+                <a href="product_info_2.html">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="product-image-small"></div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="checkout-text">
+                                <ul>
+                                    <li class="title">Player Unknown's Battlegrounds</li>
+                                    <li class="genre">Genre: Shooter</li>
+                                    <li class="platform">Platform: PC</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <h2>€29,95</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-3">
+            <h1>Total Price: </h1>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <h1 class="text-right">€89,95</h1>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+
+    <!--Buttons on the page-->
+    <div class="pay_buttons">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <a href="thanks.html"><input class="btn btn-primary" type="submit" value="Pay with Ideal"></a>
+        </div>
+
+        <div class="col-lg-2">
+            <a href="thanks.html"><input class="btn btn-danger" type="submit" value="Pay with Paypal"></a>
+        </div>
+
+        <div class="col-lg-2">
+            <a href="thanks.html"><input class="btn btn-info" type="submit" value="Pay with Creditcard"></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

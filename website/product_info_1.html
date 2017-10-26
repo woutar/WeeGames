@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>WeeGames webshop</title>
+    <script type="text/javascript" src="javascript/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="javascript/interface.js"></script>
+    <script type="text/javascript" src="javascript/easing.js"></script>
+    <script type="text/javascript" src="javascript/amount.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <!--Add bootstrap-->
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+
+</head>
+<body>
+
+<div id="header-container" class="menu">
+    <ul>
+        <li class="search"><input type="text" /><input type="submit" value="Search" /></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+        <li class="shoppingcart"><a href="shopping-cart.html">Shopping cart</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <!--Sidebar menu-->
+    <div class="col-lg-2">
+        <div id="platform" class="sidebar">
+            <h3>Platform</h3>
+            <ul>
+                <li><a href="pcgames.html">PC Games</a></li>
+                <li><a href="#">PSP Games</a></li>
+                <li><a href="#">Playstation 1</a></li>
+                <li><a href="#">Playstation 2</a></li>
+                <li><a href="#">Playstation 3</a></li>
+                <li><a href="ps4games.html">Playstation 4</a></li>
+                <li><a href="#">NES Games</a></li>
+                <li><a href="#">Nintendo Wii</a></li>
+                <li><a href="#">XBOX 360</a></li>
+                <li><a href="#">Nintendo DS</a></li>
+                <li><a href="#">Nintendo 64</a></li>
+                <li><a href="#">Gameboy</a></li>
+                <li><a href="#">Consoles</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+
+    <!--Product Image-->
+    <h2>Battlefield 1 - Playstation 4</h2>
+    <div class="col-lg-3">
+        <img src="css/images/placeholder400x200.png">
+    </div>
+    <div class="col-lg-1"></div>
+    <!--System requirements-->
+    <div class="col-lg-4 info-right">
+        <h4>System Requirements</h4>
+        <div class="reqs">
+            <p>Operating System: 64-bit Windows 7, Windows 8.1, Windows 10
+                Processor: Intel Core i3-4340 / AMD FX-6300
+                Memory: 6 GB RAM
+                Graphics card: nVidia GeForce GTX 660 2GB / AMD Radeon HD 7850 2GB
+                DirectX: Version 11
+                Netwerk: Broadband internet connection
+                Storage requirement: 30 GB available space</p>
+        </div>
+        <div class="rating-wrapper">
+            <h5>Rating</h5>
+            <div class="rating">
+                <p>8.2</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Product description-->
+    <div class="col-lg-1"></div>
+    <div class="col-lg-5">
+
+        <h3>Description</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <div class="info-price">
+            <div class="price">€ 59,99</div>
+            <span class="amount">
+                Aantal
+                <img src="css/images/minus_2.png" class="ch-am minus" />
+                <input type="text" maxlength="3" value="0"/>
+                <img src="css/images/plus_2.png" class="ch-am plus" />
+            </span>
+            <div class="cart-button" id="cart-button">Add to cart</div>
+        </div>
+    </div>
+</div>
+
+<!-- Buy confirmation screen -->
+<div class="buy-window" id="buy-window">
+    <div class="title">Item added to shopping cart.</div>
+    <img class="img" src="css/images/placeholder150x150.png">
+    <div class="button-wrapper">
+        <a href="index.html"><div class="button" id="return-button">Continue shopping</div></a>
+        <a href="shopping-cart.html" class="button button-right" id="to-cart-button">Go to shopping cart</a>
+    </div>
+</div>
+
+<!--Footer-->
+<div id="footer-container">
+    <div class="sitemap">
+
+    </div>
+    <div class="copyright">
+        <p>All prices include tax and are excluding shipping fee's.</p>
+    </div>
+</div>
+
+</body>
+</html>
