@@ -199,7 +199,6 @@ a{
 }
 
 .product-image-small {
-    align: left;
     width: 90px;
     height: 88px;
     background: #e9e9e9 url("../css/images/90x90.png") center no-repeat;
