@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { GamesTest } from './GamesTest';
 
-export class IndexTest extends React.Component<{}, {}> {
+
+export interface LayoutProps {
+    children?: React.ReactNode;
+}
+
+export class IndexTest extends React.Component<LayoutProps, {}> {
     public render() {
         return <div className="main">
                     <div id="header-container" className="menu">
@@ -35,71 +41,9 @@ export class IndexTest extends React.Component<{}, {}> {
                         </div>
                         <div className="col-lg-1"></div>
                         <div className="col-lg-8">
-                            <h2>Bestsellers</h2>
-                            <div className="product product-001">
-                                <a href="product_info_1.html">
-                                    <div className="col-lg-3">
-                                        <div className="product-image"></div>
-                                    </div>
-                                    <div className="col-lg-9">
-                                        <div className="product-info">
-                                            <ul>
-                                                <li className="title">Shadow of war</li>
-                                                <li className="prijs">Price: &euro;60,-</li>
-                                                <li className="genre">Genre: RPG</li>
-                                                <li className="platform">Platform: Playstation 4</li>
-                                                <li className="description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta justo id erat bibendum,
-                                                    a convallis justo elementum. Sed at magna sem. Nullam sed ultrices est. Aliquam luctus pretium quam et scelerisque.
-                                                    Nullam in est tristique, facilisis enim vel, sodales lectus. In a vulputate lectus, et scelerisque tellus. Vivamus
-                                                    non nisi accumsan, volutpat urna quis, pretium lacus. Fusce sagittis suscipit sapien, et porttitor ipsum fermentum et.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="product product-002">
-                                <a href="product_info_2.html">
-                                    <div className="col-lg-3">
-                                        <div className="product-image"></div>
-                                    </div>
-                                    <div className="col-lg-9">
-                                        <div className="product-info">
-                                            <ul>
-                                                <li className="title">Overwatch</li>
-                                                <li className="prijs">Price: &euro;19,95</li>
-                                                <li className="genre">Genre: Shooter</li>
-                                                <li className="platform">Platform: PC</li>
-                                                <li className="description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta justo id erat bibendum,
-                                                    a convallis justo elementum. Sed at magna sem. Nullam sed ultrices est. Aliquam luctus pretium quam et scelerisque.
-                                                    Nullam in est tristique, facilisis enim vel, sodales lectus. In a vulputate lectus, et scelerisque tellus. Vivamus
-                                                    non nisi accumsan, volutpat urna quis, pretium lacus. Fusce sagittis suscipit sapien, et porttitor ipsum fermentum et.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="product product-003">
-                                <a href="product_info_3.html">
-                                    <div className="col-lg-3">
-                                        <div className="product-image"></div>
-                                    </div>
-                                    <div className="col-lg-9">
-                                        <div className="product-info">
-                                            <ul>
-                                                <li className="title">South Park: The Fractured but Whole</li>
-                                                <li className="prijs">Price: &euro;39,95</li>
-                                                <li className="genre">Genre: RPG</li>
-                                                <li className="platform">Platform: PC</li>
-                                                <li className="description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta justo id erat bibendum,
-                                                    a convallis justo elementum. Sed at magna sem. Nullam sed ultrices est. Aliquam luctus pretium quam et scelerisque.
-                                                    Nullam in est tristique, facilisis enim vel, sodales lectus. In a vulputate lectus, et scelerisque tellus. Vivamus
-                                                    non nisi accumsan, volutpat urna quis, pretium lacus. Fusce sagittis suscipit sapien, et porttitor ipsum fermentum et.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            { this.props.children }
                         </div>
+                        
                     </div>
                 </div>;
     }

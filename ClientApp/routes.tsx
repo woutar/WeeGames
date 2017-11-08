@@ -4,9 +4,12 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
+import { GamesTest } from './components/GamesTest';
+import { IndexTest } from './components/IndexTest';
 
-export const routes = <Layout>
+export const routes = <IndexTest>
     {/* <Route exact path='/' component={ Home } />
     <Route path='/counter' component={ Counter } />
     <Route path='/fetchdata' component={ FetchData } /> */}
-</Layout>;
+    <Route exact path='/' component={ GamesTest } />
+</IndexTest>;
