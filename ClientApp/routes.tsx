@@ -12,4 +12,7 @@ export const routes = <IndexTest>
     <Route path='/counter' component={ Counter } />
     <Route path='/fetchdata' component={ FetchData } /> */}
     <Route exact path='/' component={ GamesTest } />
+    <Route exact path='/' component={ FetchData } />
+
 </IndexTest>;
+

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { GamesTest } from './GamesTest';
+import { Layout } from './Layout';
+
 
 
 export interface LayoutProps {
@@ -21,6 +23,7 @@ export class IndexTest extends React.Component<LayoutProps, {}> {
                     <div className="container">
                         <div className="col-lg-2">
                             <div id="platform" className="sidebar">
+                                
                                 <h3>Platform</h3>
                                 <ul>
                                     <li><a href="pcgames.html">PC Games</a></li>

@@ -18,6 +18,7 @@ public class GameContext : DbContext {
         public string Genre {get;set;}
         public int Price {get;set;}
         public string Platform {get;set;}
+        public string Description {get;set;}
     }
 }
 

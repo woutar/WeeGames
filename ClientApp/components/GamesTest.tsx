@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
+import { Route, NavLink, Link } from 'react-router-dom';
 import 'isomorphic-fetch';
 
 interface GameTestExampleState {
@@ -9,10 +10,12 @@ interface GameTestExampleState {
 
 // TSX model games - Needs own file
 interface GameList {
+    id : number;
     game: string;
     genre: string;
     price: number;
     platform : string;
+    description : string;
 }
 
 export class GamesTest extends React.Component<RouteComponentProps<{}>, GameTestExampleState> {
@@ -20,7 +23,7 @@ export class GamesTest extends React.Component<RouteComponentProps<{}>, GameTest
         super();
         this.state = { gamelist: [], loading: true };
 
-        fetch('api/TestGame/GameList')
+        fetch('api/TestGame/GetAll')
             .then(response => response.json() as Promise<GameList[]>)
             .then(data => {
                 this.setState({ gamelist: data, loading: false });
@@ -42,6 +45,7 @@ export class GamesTest extends React.Component<RouteComponentProps<{}>, GameTest
         return <div>
         {gamelist.map(gamelistitem =>
             <div className="product" key={ gamelistitem.game }>
+            <Link to={"/game/" + gamelistitem.id}>
                 <a href="/">
                         <div className="col-lg-3">
                             <div className="product-image"></div>
@@ -50,20 +54,18 @@ export class GamesTest extends React.Component<RouteComponentProps<{}>, GameTest
                         <div className="product-info">
                         
                             { /*  Key must change to ID later*/}
-                            <ul  key={ gamelistitem.price }>
+                            <ul  key={ gamelistitem.id }>
                                 <li className="title">{ gamelistitem.game }</li>
                                 <li className="prijs">Price: &euro; { gamelistitem.price },-</li>
                                 <li className="genre">{ gamelistitem.genre }</li>
                                 <li className="platform">{ gamelistitem.platform }</li>
-                                <li className="description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta justo id erat bibendum,
-                                                            a convallis justo elementum. Sed at magna sem. Nullam sed ultrices est. Aliquam luctus pretium quam et scelerisque.
-                                                            Nullam in est tristique, facilisis enim vel, sodales lectus. In a vulputate lectus, et scelerisque tellus. Vivamus
-                                                            non nisi accumsan, volutpat urna quis, pretium lacus. Fusce sagittis suscipit sapien, et porttitor ipsum fermentum et.</li>
+                                <li className="description">{ gamelistitem.description }</li>
                             </ul>
                         
                         </div>
                     </div>
                 </a>
+            </Link>
             </div>
         )}
         </div>;

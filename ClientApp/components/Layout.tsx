@@ -9,7 +9,7 @@ export class Layout extends React.Component<LayoutProps, {}> {
     public render() {
         return <div className='container-fluid'>
             <div className='row'>
-                    <IndexTest />
+                    
                 <div className='col-sm-9'>
                     { this.props.children }
                 </div>
