@@ -10,22 +10,6 @@ namespace WeeGames.Controllers
     [Route("api/[controller]")]
     public class TestGameController : Controller
     {
-        // TEST DATA
-        // private static string[] Game = new[]
-        // {
-        //     "Diddy Kong", "Call of Duty", "Battlefield", "Destiny", "World of Warcraft", "Chicken Invaders"
-        // };
-
-        // private static string[] Genre = new[]
-        // {
-        //     "Action", "Adventure", "MMO", "RPG", "Strategy", "Dungeon Crawler"
-        // };
-
-        // private static string[] Platform = new[]
-        // {
-        //     "PC", "Playstation", "Xbox", "Nintendo Wii", "Nintendo Switch"
-        // };
-
         private GameContext _context;
 
         public TestGameController(GameContext context)
@@ -36,23 +20,29 @@ namespace WeeGames.Controllers
                 
                 Game g1 = new Game{
                     Title = "Call of Duty",
-                    Genre = "Action",
+                    Category = 
+                    new Category{Name = "Actie"},
                     Price = 40,
-                    Platform = "PC",   
+                    Platform =
+                    new Platform{Name = "Playstation 2"},
                     Description = "Geweldig schietspel blablabla...." 
                 };
                 Game g2 = new Game{
                     Title = "Destiny",
-                    Genre = "Adventure",
+                    Category = 
+                    new Category{Name = "Avontuur"},
                     Price = 60,
-                    Platform = "Playstation",   
+                    Platform =
+                    new Platform{Name = "Playstation 4"},
                     Description = "Destiny is een erg cool spel etc..." 
                 };
                 Game g3 = new Game{
                     Title = "World of Warcraft",
-                    Genre = "RPG",
+                    Category = 
+                    new Category{Name = "RPG"},
                     Price = 20,
-                    Platform = "PC",   
+                    Platform =
+                    new Platform{Name = "PC"},
                     Description = "Online rollenspel met stierenmannen etc..." 
                 };
                 _context.Games.Add(g1);

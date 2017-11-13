@@ -11,9 +11,10 @@ using WeeGames.Models;
 namespace WeeGames.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20171113182434_ThirdCreateWeeGamesDb")]
+    partial class ThirdCreateWeeGamesDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

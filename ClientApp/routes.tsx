@@ -4,15 +4,12 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
-import { GamesTest } from './components/GamesTest';
-import { IndexTest } from './components/IndexTest';
+import { FetchAllGames } from './components/FetchAllGames';
 
-export const routes = <IndexTest>
+export const routes = <Layout>
     {/* <Route exact path='/' component={ Home } />
     <Route path='/counter' component={ Counter } />
     <Route path='/fetchdata' component={ FetchData } /> */}
-    <Route exact path='/' component={ GamesTest } />
-    <Route exact path='/' component={ FetchData } />
-
-</IndexTest>;
+    <Route exact path='/' component={ FetchAllGames } />
+</Layout>;
 
