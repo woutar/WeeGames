@@ -14,8 +14,8 @@ export class Layout extends React.Component<LayoutProps, {}> {
                     <div id="header-container" className="menu">
                         <ul>
                             <li className="search"><input type="text" /><input type="submit" value="Search" /></li>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="wishlist.html">My Wishlist</a></li>
+                            <li><a href="">Home</a></li>
+                            <li><a href="#">My Wishlist</a></li>
                             <li className="shoppingcart"><a href="shopping-cart.html">Shopping cart</a></li>
                         </ul>
                     </div>
