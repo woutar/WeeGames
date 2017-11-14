@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FetchAllGames } from './FetchAllGames';
+import { Shoppingcart } from './Shoppingcart';
 
 
 
@@ -15,8 +16,8 @@ export class Layout extends React.Component<LayoutProps, {}> {
                         <ul>
                             <li className="search"><input type="text" /><input type="submit" value="Search" /></li>
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="wishlist.html">My Wishlist</a></li>
-                            <li className="shoppingcart"><a href="shopping-cart.html">Shopping cart</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li className="shoppingcart"><a href="Shoppingcart">Shopping cart</a></li>
                         </ul>
                     </div>
                     <div className="container">
