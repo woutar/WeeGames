@@ -39,7 +39,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
         return <div>
             {games.map(game =>
                 <div className="product"  key={ game.id }>
-                <Link to={"/game/" + game.id}>
+                <Link to={"/product/" + game.id}>
 
                             <div className="col-lg-3">
                                 <Imaget/>

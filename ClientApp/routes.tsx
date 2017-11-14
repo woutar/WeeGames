@@ -14,7 +14,7 @@ export const routes = <Layout>
     <Route path='/counter' component={ Counter } />
     <Route path='/fetchdata' component={ FetchData } /> */}
     <Route exact path='/' component={ FetchAllGames } />
-    <Route path='/productpage/:id' component={ Product } />
+    <Route path='/product/:id' component={ Product } />
     <Route path='/Shoppingcart/' component={ Shoppingcart } />
 </Layout>;
 
