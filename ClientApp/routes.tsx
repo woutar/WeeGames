@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { FetchAllGames } from './components/FetchAllGames';
+import { Imaget } from './components/Imaget';
 
 export const routes = <Layout>
     {/* <Route exact path='/' component={ Home } />
