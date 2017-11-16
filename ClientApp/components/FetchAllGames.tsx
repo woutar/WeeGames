@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
 import * as Models from "../Model"
+import {Platform} from "./FetchPlatform"
 import 'isomorphic-fetch';
 
 interface FetchAllGamesState {
@@ -48,9 +49,9 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
 
                                 <ul>
                                     <li className="title">{ game.title }</li>
-                                    <li className="genre">{ game.category.name }</li>
+                                    <li className="genre">{ game.category }</li>     
                                     <li className="prijs">Price: &euro; { game.price },-</li>                                   
-                                    <li className="platform">{ game.platform }</li>
+                                    {<Platform platform={game.platform} />}
                                     <li className="description">{ game.description }</li>
                                 </ul>
                             
