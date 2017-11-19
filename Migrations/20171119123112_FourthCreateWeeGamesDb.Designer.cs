@@ -11,9 +11,10 @@ using WeeGames.Models;
 namespace WeeGames.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20171119123112_FourthCreateWeeGamesDb")]
+    partial class FourthCreateWeeGamesDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,12 +72,12 @@ namespace WeeGames.Migrations
             modelBuilder.Entity("WeeGames.Models.Game", b =>
                 {
                     b.HasOne("WeeGames.Models.Category", "Category")
-                        .WithMany("Games")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WeeGames.Models.Platform", "Platform")
-                        .WithMany("Games")
+                        .WithMany()
                         .HasForeignKey("PlatformId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

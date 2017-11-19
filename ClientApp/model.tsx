@@ -9,10 +9,12 @@ export type Game ={
 
 export type Category ={
     id:number,
-    name:string
+    name:string,
+    games:Game[]
 }
 
 export type Platform ={
     id:number,
-    name:string
+    name:string,
+    games:Game[]
 }

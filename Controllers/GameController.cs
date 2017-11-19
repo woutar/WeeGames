@@ -7,12 +7,12 @@ using WeeGames.Models;
 
 namespace WeeGames.Controllers
 {
-    [Route("api/[controller]")]
-    public class TestGameController : Controller
+    [Route("[controller]")]
+    public class GameController : Controller
     {
         private GameContext _context;
 
-        public TestGameController(GameContext context)
+        public GameController(GameContext context)
         {
             _context = context;
 
@@ -54,15 +54,20 @@ namespace WeeGames.Controllers
 
         [HttpGet("GetAll")]
         public Game[] GetAll(){
-            return _context.Games.ToArray();
+            var games = from g in _context.Games
+                let category = _context.Categories.Where(c => c.Id == g.Category.Id)
+                let platform = _context.Platforms.Where(p => p.Id == g.PlatformId)
+                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description};
+                return games.ToArray();
         }
 
-        [HttpGet("GetGame{id}")]
+        [HttpGet("GetGame/{id}")]
         public IActionResult GetGame(int id){
-            var games = from g in _context.Games
+            var game = (from g in _context.Games
                 where g.Id == id
-                select g;
-            var game = games.FirstOrDefault();
+                let category = _context.Categories.Where(c => c.Id == g.Category.Id).FirstOrDefault()
+                let platform = _context.Platforms.Where(p => p.Id == g.PlatformId).FirstOrDefault()
+                select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description}).FirstOrDefault();
             if(game == null) return NotFound();
             return Ok(game);
         }

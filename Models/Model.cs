@@ -17,20 +17,24 @@ public class GameContext : DbContext {
     public class Game{
         public int Id {get;set;}
         public string Title {get;set;}
-        public Category Category {get;set;}
         public int Price {get;set;}
-        public Platform Platform {get;set;}
         public string Description {get;set;}
+        public int CategoryId {get;set;}   
+        public Category Category {get;set;}
+        public int PlatformId {get;set;}
+        public Platform Platform {get;set;}
     }
 
     public class Category{
         public int Id {get;set;}
         public string Name {get;set;}
+        public List<Game> Games {get;set;}
     }
 
     public class Platform{
         public int Id {get;set;}
         public string Name {get;set;}
+        public List<Game> Games {get;set;}
     }
 }
 

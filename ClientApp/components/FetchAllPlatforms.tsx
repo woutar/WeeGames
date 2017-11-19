@@ -38,7 +38,7 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
         return <div>
             {platforms.map(platform =>
                 <ul key={ platform.id }>
-                    <li><a href={platform.name}>{ platform.name }</a></li>
+                    <li>{ platform.name }</li>
                 </ul>
             )}
         </div>;
