@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FetchAllGames } from './FetchAllGames';
 import { Shoppingcart } from './Shoppingcart';
+import { Search } from './Search';
 
 
 
@@ -14,7 +15,7 @@ export class Layout extends React.Component<LayoutProps, {}> {
         return <div className="main">
                     <div id="header-container" className="menu">
                         <ul>
-                            <li className="search"><input type="text" /><input type="submit" value="Search" /></li>
+                            <Search/>
                             <li><a href="">Home</a></li>
                             <li><a href="#">My Wishlist</a></li>
                             <li className="shoppingcart"><a href="Shoppingcart">Shopping cart</a></li>

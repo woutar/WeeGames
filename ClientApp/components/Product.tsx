@@ -15,7 +15,7 @@ export class Product extends React.Component<RouteComponentProps<{}>, ProductInf
         
         
                 
-                fetch('api/TestGame/GetGame1')
+                fetch('api/TestGame/GetAll')
                     .then(response => response.json() as Promise<Models.Game[]>)
                     .then(data => {
                         this.setState({ games: data, loading: false });

@@ -13,7 +13,7 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
 
     public render() {
         return <div>
-            <h1>Counter</h1>
+            <h1>Counter</h1>vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvbfcfccccccccccccccccccccccccccccccccccccccccccccccccccbc                                                                                        v                                                                                                                                                                      vvvvvbc
 
             <p>This is a simple example of a React component.</p>
 
