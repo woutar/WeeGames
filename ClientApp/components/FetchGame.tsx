@@ -33,7 +33,16 @@ export class Game extends React.Component<GameProps, {}> {
     constructor(props:GameProps){
       super(props)
       this.state = {}
+
+      this.AddToCart = this.AddToCart.bind(this);
     }
+
+    AddToCart(): void{
+        let item = JSON.stringify(this.props.game);
+        localStorage.ShoppingCart += (item);
+        console.log("werkt");
+    }
+
     public render(){
         return <div className="col-lg-10">
                     <h2>{this.props.game.title} - {this.props.game.platform.name}</h2>
@@ -50,13 +59,7 @@ export class Game extends React.Component<GameProps, {}> {
                 
                         <div className="info-price">
                             <div className="price">€ {this.props.game.price}</div>
-                            <span className="amount">
-                                Amount
-                                <img src="/images/minus_2.png" className="ch-am minus" />
-                                <input type="text" defaultValue="0" />
-                                <img src="/images/plus_2.png" className="ch-am plus" />
-                            </span>
-                            <div className="cart-button" id="cart-button">Add to cart</div>
+                            <button className="cart-button" onClick={ this.AddToCart }>Add to Cart</button>
                         </div>
                     </div>
                 </div>;
