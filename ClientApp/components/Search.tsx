@@ -29,7 +29,6 @@ interface SearchState{searchString: string, finalString: string}
                     <input type="text" value={this.state.searchString} onChange={this.handleChange}  />
                     <input type="submit" value="Submit" />
                 </li>
-                {this.state.finalString}
             </form>
         )
     }
