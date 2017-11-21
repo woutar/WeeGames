@@ -38,9 +38,18 @@ export class Game extends React.Component<GameProps, {}> {
     }
 
     AddToCart(): void{
-        let item = JSON.stringify(this.props.game);
-        localStorage.ShoppingCart += (item);
-        console.log("werkt");
+        var arr = [];
+        var OldCart = localStorage.getItem("ShoppingCart");
+        if(OldCart === null){
+            arr.push(this.props.game)
+            localStorage.setItem("ShoppingCart", JSON.stringify(arr));
+        }else{
+            arr = JSON.parse(OldCart);
+            arr.push(this.props.game);
+            localStorage.setItem("ShoppingCart", JSON.stringify(arr));
+            console.log(JSON.parse(arr));
+        }
+        
     }
 
     public render(){
