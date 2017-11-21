@@ -16,7 +16,7 @@ export class Layout extends React.Component<LayoutProps, {}> {
                             <Search/>
                             <li><a href="">Home</a></li>
                             <li><a href="#">My Wishlist</a></li>
-                            <li className="shoppingcart"><a href="shoppingcart">Shopping cart</a></li>
+                            <li className="shoppingcart"><a href="/shoppingcart">Shopping cart</a></li>
                         </ul>
                     </div>
                     <div className="container">

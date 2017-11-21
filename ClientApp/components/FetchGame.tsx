@@ -47,7 +47,7 @@ export class Game extends React.Component<GameProps, {}> {
             arr = JSON.parse(OldCart);
             arr.push(this.props.game);
             localStorage.setItem("ShoppingCart", JSON.stringify(arr));
-            console.log(JSON.parse(arr));
+            console.log(arr);
         }
         
     }
