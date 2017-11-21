@@ -42,7 +42,7 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
         return <div>
             {games.map(game =>
                 <div className="product"  key={ game.id }>
-                <Link to={"/product/" + game.id}>
+                <Link to={"/game/" + game.id}>
 
                             <div className="col-lg-3">
                                 <Imaget/>

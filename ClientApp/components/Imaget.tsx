@@ -8,7 +8,7 @@ import { render } from 'react-dom'
         return (
           <div>
             <div className="spongebob">
-            {/* <img className="sponge" src={require('./img/sponge.png')} /> */}
+            { <img className="sponge" src={require('./images/placeholder150x150.png')} /> }
             </div>
           </div>
         )
