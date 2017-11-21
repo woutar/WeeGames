@@ -21,9 +21,11 @@ namespace WeeGames.Controllers
         //Case sensitive (needs to be fixed)
         [HttpGet("SearchGame/{searchString}")]
         public Game[] GetGames(string searchString){
+            
             var games = from g in _context.Games
-                where g.Title.Contains(@searchString)
+                where g.Title.ToLower().Contains(searchString.ToLower())
                 select g;
+                
             var games_result = games.ToArray();
             return games_result;
         }
