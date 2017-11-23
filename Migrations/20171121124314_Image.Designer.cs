@@ -11,9 +11,10 @@ using WeeGames.Models;
 namespace WeeGames.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20171121124314_Image")]
+    partial class Image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,15 +42,9 @@ namespace WeeGames.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Image");
-
                     b.Property<int>("PlatformId");
 
                     b.Property<int>("Price");
-
-                    b.Property<string>("Publisher");
-
-                    b.Property<int>("Releasedate");
 
                     b.Property<string>("Title");
 

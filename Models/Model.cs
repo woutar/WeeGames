@@ -25,6 +25,7 @@ public class GameContext : DbContext {
         public Category Category {get;set;}
         public int PlatformId {get;set;}
         public Platform Platform {get;set;}
+        public string Image{get;set;}
     }
 
     public class Category{
