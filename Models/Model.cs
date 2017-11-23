@@ -29,7 +29,6 @@ public class GameContext : DbContext {
         public string Image{get;set;}
         public int Release {get;set;}
         public string Publisher {get;set;}
-        public string Tester {get;set;}
     }
 
     public class Category{
