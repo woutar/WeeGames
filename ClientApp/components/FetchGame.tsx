@@ -56,7 +56,7 @@ export class Game extends React.Component<GameProps, {}> {
         return <div className="col-lg-10">
                     <h2>{this.props.game.title} - {this.props.game.platform.name}</h2>
                     <div className="col-lg-6">
-                        <img src="/images/placeholder400x200.png"/>
+                        <img height="300" width="300" src={this.props.game.image}/>
                     </div>
                     <div className="col-lg-6">
                         <h4>Category: {this.props.game.category.name}</h4>

@@ -57,7 +57,7 @@ namespace WeeGames.Controllers
             var games = from g in _context.Games
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id)
                 let platform = _context.Platforms.Where(p => p.Id == g.PlatformId)
-                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description, Image=g.Image};
+                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description, Image = g.Image};
                 return games.ToArray();
         }
 
@@ -67,7 +67,7 @@ namespace WeeGames.Controllers
                 where g.Id == id
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id).FirstOrDefault()
                 let platform = _context.Platforms.Where(p => p.Id == g.PlatformId).FirstOrDefault()
-                select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description}).FirstOrDefault();
+                select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description, Image = g.Image}).FirstOrDefault();
             if(game == null) return NotFound();
             return Ok(game);
         }

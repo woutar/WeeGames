@@ -30,7 +30,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
             var i;
             for(i = 0; i < inventory_games.length; i++){
                 var amount = inventory_games[i]['amount'] = amounts[inventory_games[i].id];
-                total += (amount * inventory_games[i].price;
+                total += (amount * inventory_games[i].price);
             }
 
             //set the state equal to the collection of games
@@ -44,9 +44,9 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
         {this.state.games.map(game =>
         <div className="product" key= { game.id }>
             <Link to={"/game/" + game.id}>
-                <div className="col-lg-3">
-                    <div className="product-image"></div>
-                </div>
+            <div className="col-lg-3">
+                <img height="150" width="150" src={game.image} /> 
+            </div>
                 <div className="col-lg-9">
                     <div className="product-info">
                         <ul>
