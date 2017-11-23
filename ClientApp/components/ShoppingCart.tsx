@@ -65,7 +65,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
 
         <div className="checkout-wrapper">
             <div className="total">Grandtotal: &euro; {this.state.total}</div>
-            <a href="contactdetails.html"><div className="cart-button checkout-button" id="cart-button">Checkout</div></a>
+            <a href="shoppingcart/#"><div className="cart-button checkout-button" id="cart-button">Checkout</div></a>
         </div>
     </div>
     }

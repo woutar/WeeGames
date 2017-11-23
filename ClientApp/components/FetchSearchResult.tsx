@@ -57,7 +57,6 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
                             </ul>
                         </div>
                     </div>
->>>>>>> Develop
                 </Link>
                 </div>
             )}
