@@ -27,9 +27,8 @@ public class GameContext : DbContext {
         public int PlatformId {get;set;}
         public Platform Platform {get;set;}
         public string Image{get;set;}
-        public int Release {get;set;}
+        public int Releasedate {get;set;}
         public string Publisher {get;set;}
-        public string Tester {get;set;}
     }
 
     public class Category{

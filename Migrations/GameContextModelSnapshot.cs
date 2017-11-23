@@ -62,6 +62,38 @@ namespace WeeGames.Migrations
                     b.ToTable("Games");
                 });
 
+            modelBuilder.Entity("WeeGames.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("OrderDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("WeeGames.Models.OrderGames", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("GameId");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderGames");
+                });
+
             modelBuilder.Entity("WeeGames.Models.Platform", b =>
                 {
                     b.Property<int>("Id")
@@ -84,6 +116,19 @@ namespace WeeGames.Migrations
                     b.HasOne("WeeGames.Models.Platform", "Platform")
                         .WithMany("Games")
                         .HasForeignKey("PlatformId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WeeGames.Models.OrderGames", b =>
+                {
+                    b.HasOne("WeeGames.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WeeGames.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
