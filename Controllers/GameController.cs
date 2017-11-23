@@ -25,7 +25,10 @@ namespace WeeGames.Controllers
                     Price = 40,
                     Platform =
                     new Platform{Name = "Playstation 2"},
-                    Description = "Geweldig schietspel blablabla...." 
+                    Description = "Geweldig schietspel blablabla...." ,
+                    Releasedate = 2010,
+                    Publisher = "Activision",
+                    Image = "./images/game_images/cod.png"
                 };
                 Game g2 = new Game{
                     Title = "Destiny",
@@ -34,7 +37,10 @@ namespace WeeGames.Controllers
                     Price = 60,
                     Platform =
                     new Platform{Name = "Playstation 4"},
-                    Description = "Destiny is een erg cool spel etc..." 
+                    Description = "Destiny is een erg cool spel etc...",
+                    Releasedate = 2015,
+                    Publisher = "DICE",
+                    Image = "./images/game_images/destiny.png"
                 };
                 Game g3 = new Game{
                     Title = "World of Warcraft",
@@ -43,7 +49,10 @@ namespace WeeGames.Controllers
                     Price = 20,
                     Platform =
                     new Platform{Name = "PC"},
-                    Description = "Online rollenspel met stierenmannen etc..." 
+                    Description = "Online rollenspel met stierenmannen etc...",
+                    Releasedate = 2005,
+                    Publisher = "Blizzard",
+                    Image = "./images/game_images/wow.png" 
                 };
                 _context.Games.Add(g1);
                 _context.Games.Add(g2);
@@ -67,7 +76,8 @@ namespace WeeGames.Controllers
                 where g.Id == id
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id).FirstOrDefault()
                 let platform = _context.Platforms.Where(p => p.Id == g.PlatformId).FirstOrDefault()
-                select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description, Image = g.Image}).FirstOrDefault();
+
+                select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description, Releasedate = g.Releasedate, Publisher = g.Publisher, Image = g.Image}).FirstOrDefault();
             if(game == null) return NotFound();
             return Ok(game);
         }

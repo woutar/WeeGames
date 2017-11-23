@@ -41,9 +41,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                 <div className="product" key={ game.id }>
                 <Link to={"/game/" + game.id}>
                             <div className="col-lg-3">
-                                <div className="">
-                                     <img height="150" width="150"  src={game.image} /> 
-                                </div>
+                                <img height="150" width="150"  src={game.image} /> 
                             </div>
                         <div className="col-lg-9">
                             <div className="product-info">

@@ -47,6 +47,10 @@ namespace WeeGames.Migrations
 
                     b.Property<int>("Price");
 
+                    b.Property<string>("Publisher");
+
+                    b.Property<int>("Releasedate");
+
                     b.Property<string>("Title");
 
                     b.HasKey("Id");

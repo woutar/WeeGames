@@ -19,3 +19,8 @@ export type Platform ={
     name:string,
     games:Game[]
 }
+
+export type Order ={
+    id:number,
+    games:Game[]
+}
