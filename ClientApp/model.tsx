@@ -4,15 +4,25 @@ export type Game ={
     category:Category,
     price:number,
     platform:Platform,
-    description:string
+    description:string,
+    releasdate:number,
+    publisher:string,
+    image:string
 }
 
 export type Category ={
     id:number,
-    name:string
+    name:string,
+    games:Game[]
 }
 
 export type Platform ={
     id:number,
-    name:string
+    name:string,
+    games:Game[]
+}
+
+export type Order ={
+    id:number,
+    games:Game[]
 }

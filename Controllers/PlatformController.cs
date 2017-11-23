@@ -16,31 +16,31 @@ namespace WeeGames.Controllers
         {
             _context = context;
 
-            if(_context.Platforms.Count() == 0 ){
+            // if(_context.Platforms.Count() == 0 ){
                 
-                Platform p1 = new Platform{
-                    Name = "PC",
-                };
-                Platform p2 = new Platform{
-                    Name = "Playstation",
-                };
-                Platform p3 = new Platform{
-                    Name = "Xbox One",
-                };
-                Platform p4 = new Platform{
-                    Name = "Nintendo Switch",
-                };
-                Platform p5 = new Platform{
-                    Name = "Nintendo 3DS",
-                };
+            //     Platform p1 = new Platform{
+            //         Name = "PC",
+            //     };
+            //     Platform p2 = new Platform{
+            //         Name = "Playstation",
+            //     };
+            //     Platform p3 = new Platform{
+            //         Name = "Xbox One",
+            //     };
+            //     Platform p4 = new Platform{
+            //         Name = "Nintendo Switch",
+            //     };
+            //     Platform p5 = new Platform{
+            //         Name = "Nintendo 3DS",
+            //     };
 
-                _context.Platforms.Add(p1);
-                _context.Platforms.Add(p2);
-                _context.Platforms.Add(p3);
-                _context.Platforms.Add(p4);
-                _context.Platforms.Add(p5);
-                _context.SaveChanges();
-            }  
+            //     _context.Platforms.Add(p1);
+            //     _context.Platforms.Add(p2);
+            //     _context.Platforms.Add(p3);
+            //     _context.Platforms.Add(p4);
+            //     _context.Platforms.Add(p5);
+            //     _context.SaveChanges();
+            // }  
         }
 
         [HttpGet("GetAll")]
@@ -48,7 +48,7 @@ namespace WeeGames.Controllers
             return _context.Platforms.ToArray();
         }
 
-        [HttpGet("GetPlatform{id}")]
+        [HttpGet("GetPlatform/{id}")]
         public IActionResult GetPlatform(int id){
             var platforms = from p in _context.Platforms
                 where p.Id == id

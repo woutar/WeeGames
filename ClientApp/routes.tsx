@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { FetchAllGames } from './components/FetchAllGames';
-import { Product } from './components/Product';
-import { Imaget } from './components/Imaget';
-import { Shoppingcart } from './components/Shoppingcart';
-import { FetchSearchResult } from './components/FetchSearchResult';
+import { FetchAllPlatforms } from './components/FetchAllPlatforms';
+import { FetchGame } from './components/FetchGame';
+import { ShoppingCart } from './components/Shoppingcart';
+import { FetchSearchResult} from './components/FetchSearchResult';
 
 export const routes = <Layout>
-    {/* <Route exact path='/' component={ Home } />
-    <Route path='/counter' component={ Counter } />
-    <Route path='/fetchdata' component={ FetchData } /> */}
+    <Route exact path='/' component={ FetchAllPlatforms } />
     <Route exact path='/' component={ FetchAllGames } />
-    <Route path='/product/:id' component={ Product } />
+    <Route path='/game/:id' component={ FetchAllPlatforms } />
+    <Route path='/game/:id' component={ FetchGame } />
+    <Route path='/shoppingcart' component={ FetchAllPlatforms } />
+    <Route path='/shoppingcart' component={ ShoppingCart } />
+    <Route path='/search/:searchquery' component={ FetchAllPlatforms } />
     <Route path='/search/:searchquery' component={ FetchSearchResult } />
-    <Route path='/Shoppingcart/' component={ Shoppingcart } />
 </Layout>;
 

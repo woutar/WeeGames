@@ -15,7 +15,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
         super();
         this.state = { games: [], loading: true };
 
-        fetch('api/TestGame/GetAll')
+        fetch('Game/GetAll')
             .then(response => response.json() as Promise<Models.Game[]>)
             .then(data => {
                 this.setState({ games: data, loading: false });
@@ -40,22 +40,20 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
             {games.map(game =>
                 <div className="product"  key={ game.id }>
                 <Link to={"/product/" + game.id}>
-
-                            <div className="col-lg-3">
-                                <Imaget/>
-                            </div>
-                        <div className="col-lg-9">
-                            <div className="product-info">
-                                <ul>
-                                    <li className="title">{ game.title }</li>
-                                    <li className="genre">{ game.category }</li>
-                                    <li className="prijs">Price: &euro; { game.price },-</li>                                   
-                                    <li className="platform">{ game.platform }</li>
-                                    <li className="description">{ game.description }</li>
-                                </ul>
-                            
-                            </div>
+                    <div className="col-lg-3">
+                        <img height="150" width="150"  src={game.image} /> 
+                    </div>
+                    <div className="col-lg-9">
+                        <div className="product-info">
+                            <ul>
+                                <li className="title">{ game.title }</li>
+                                <li className="category">Categorie : { game.category.name }</li>     
+                                <li className="prijs">Price: &euro; { game.price },-</li>                                   
+                                <li className="platform">Platform : { game.platform.name }</li>
+                                <li className="description">{ game.description }</li>
+                            </ul>
                         </div>
+                    </div>
                 </Link>
                 </div>
             )}

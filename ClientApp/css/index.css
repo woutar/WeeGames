@@ -1,5 +1,3 @@
-
-
 html {
     height: 100%;
 }
@@ -13,6 +11,7 @@ body {
     font-size:12pt;
     color:#909090;
 }
+
 .clear {clear:both;}
 
 h1, h2, h3, h4 {
@@ -22,14 +21,12 @@ h1, h2, h3, h4 {
 h1 {
     font-size: 30pt;
 }
-a{
+
+a {
     text-decoration: none;
-}
+  }
 
 .info-price input {width: 30px;}
-.amount {padding: 2px; margin: 2px;}
-
-.minus, .plus {width:12px; height:12px;}
 
 #site-container {
     position: relative;
@@ -86,7 +83,7 @@ a{
     float: left;
     width: 150px;
     height: 150px;
-    background: #e9e9e9 url("../css/images/placeholder150x150.png") center no-repeat;
+    /* background: #e9e9e9 url("../css/images/placeholder150x150.png") center no-repeat; */
 }
 .product-info ul{
     margin: 0px 0px 0px -20px;
@@ -109,6 +106,7 @@ a{
 }
 .product-info .title{
     font-weight: bold;
+    color: green;
 }
 
 #footer-container {
@@ -247,22 +245,6 @@ a{
 .productbox-checkout{
     margin-top:-40px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
