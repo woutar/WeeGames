@@ -57,7 +57,7 @@ namespace WeeGames.Controllers
             var games = from g in _context.Games
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id)
                 let platform = _context.Platforms.Where(p => p.Id == g.PlatformId)
-                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description};
+                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description, Image=g.Image};
                 return games.ToArray();
         }
 

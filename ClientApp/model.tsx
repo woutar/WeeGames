@@ -4,7 +4,8 @@ export type Game ={
     category:Category,
     price:number,
     platform:Platform,
-    description:string
+    description:string,
+    image:string
 }
 
 export type Category ={

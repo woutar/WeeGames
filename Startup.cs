@@ -25,7 +25,7 @@ namespace WeeGames
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GameContext> (
-                 opt => opt.UseNpgsql(@"Host=localhost;Database=WeeGamesDb2;Username=postgres;Password=kees1111"));
+                 opt => opt.UseNpgsql(@"Host=localhost;Database=WeeGamesDb;Username=postgres;Password=master710"));
             services.AddMvc();
         }
 
