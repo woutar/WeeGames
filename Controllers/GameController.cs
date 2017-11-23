@@ -25,7 +25,9 @@ namespace WeeGames.Controllers
                     Price = 40,
                     Platform =
                     new Platform{Name = "Playstation 2"},
-                    Description = "Geweldig schietspel blablabla...." 
+                    Description = "Geweldig schietspel blablabla...." ,
+                    Releasedate = 2010,
+                    Publisher = "Activision"
                 };
                 Game g2 = new Game{
                     Title = "Destiny",
@@ -34,7 +36,9 @@ namespace WeeGames.Controllers
                     Price = 60,
                     Platform =
                     new Platform{Name = "Playstation 4"},
-                    Description = "Destiny is een erg cool spel etc..." 
+                    Description = "Destiny is een erg cool spel etc...",
+                    Releasedate = 2015,
+                    Publisher = "DICE"
                 };
                 Game g3 = new Game{
                     Title = "World of Warcraft",
@@ -43,7 +47,9 @@ namespace WeeGames.Controllers
                     Price = 20,
                     Platform =
                     new Platform{Name = "PC"},
-                    Description = "Online rollenspel met stierenmannen etc..." 
+                    Description = "Online rollenspel met stierenmannen etc...",
+                    Releasedate = 2005,
+                    Publisher = "Blizzard"
                 };
                 _context.Games.Add(g1);
                 _context.Games.Add(g2);
@@ -57,7 +63,7 @@ namespace WeeGames.Controllers
             var games = from g in _context.Games
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id)
                 let platform = _context.Platforms.Where(p => p.Id == g.PlatformId)
-                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description};
+                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description, Releasedate = g.Releasedate, Publisher = g.Publisher};
                 return games.ToArray();
         }
 
@@ -67,7 +73,7 @@ namespace WeeGames.Controllers
                 where g.Id == id
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id).FirstOrDefault()
                 let platform = _context.Platforms.Where(p => p.Id == g.PlatformId).FirstOrDefault()
-                select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description}).FirstOrDefault();
+                select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description, Releasedate = g.Releasedate, Publisher = g.Publisher}).FirstOrDefault();
             if(game == null) return NotFound();
             return Ok(game);
         }
