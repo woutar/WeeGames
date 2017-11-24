@@ -9,8 +9,9 @@ public class GameContext : DbContext {
         public DbSet<Category> Categories {get; set;}
         public DbSet<Platform> Platforms {get; set;}
         public DbSet<Order> Orders {get; set;}
-        public DbSet<OrderGames> OrderGames {get; set;}
-
+        public DbSet<OrderItem> OrderItem {get; set;}
+        public DbSet<Wishlist> Wishlist {get; set;}
+        public DbSet<WishlistItem> WishlistItem {get; set;}
 
         public GameContext(DbContextOptions<GameContext> options)
         :base(options)
@@ -20,7 +21,7 @@ public class GameContext : DbContext {
     public class Game{
         public int Id {get;set;}
         public string Title {get;set;}
-        public int Price {get;set;}
+        public double Price {get;set;}
         public string Description {get;set;}
         public int CategoryId {get;set;}   
         public Category Category {get;set;}
@@ -45,17 +46,49 @@ public class GameContext : DbContext {
 
     public class Order{
         public int Id {get;set;}
+        public int UserId {get;set;}
+        public User User {get;set;}
         public DateTime OrderDate {get;set;}
 
     }
 
-    public class OrderGames{
+    public class OrderItem{
         public int Id {get;set;}
         public int GameId {get;set;}
         public Game Game {get;set;}
         public int OrderId {get;set;}
         public Order Order {get;set;}
         public int Quantity {get;set;}
+    }
+
+    public class Wishlist{
+        public int Id {get;set;}
+        public int UserId {get;set;}
+        public User User {get;set;}
+        
+
+    }
+
+    public class WishlistItem{
+        public int Id {get;set;}
+        public int GameId {get;set;}
+        public Game Game {get;set;}
+        public int WishlistId {get;set;}
+        public Wishlist Wishlist {get;set;}
+    }
+
+
+    public class User{
+        public int Id {get;set;}
+        public string Email {get;set;}
+        public string Password {get;set;}
+        public string Firstname {get;set;}
+        public string Lastname {get;set;}
+        public DateTime Birthday {get;set;}
+        public string Address {get;set;}
+        public string zipcode {get;set;}
+        public string Country {get;set;}
+        public int Role {get;set;}
     }
 }
 

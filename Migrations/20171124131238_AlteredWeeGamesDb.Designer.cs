@@ -11,9 +11,10 @@ using WeeGames.Models;
 namespace WeeGames.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20171124131238_AlteredWeeGamesDb")]
+    partial class AlteredWeeGamesDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,13 +160,9 @@ namespace WeeGames.Migrations
 
                     b.Property<int>("GameId");
 
-                    b.Property<int>("WishlistId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
-
-                    b.HasIndex("WishlistId");
 
                     b.ToTable("WishlistItem");
                 });
@@ -217,11 +214,6 @@ namespace WeeGames.Migrations
                     b.HasOne("WeeGames.Models.Game", "Game")
                         .WithMany()
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WeeGames.Models.Wishlist", "Wishlist")
-                        .WithMany()
-                        .HasForeignKey("WishlistId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
