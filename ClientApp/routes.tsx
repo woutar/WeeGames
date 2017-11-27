@@ -8,9 +8,11 @@ import { FetchAllPlatforms } from './components/FetchAllPlatforms';
 import { FetchGame } from './components/FetchGame';
 import { ShoppingCart } from './components/Shoppingcart';
 import { FetchSearchResult} from './components/FetchSearchResult';
-// import { Login} from './components/Login';
 import Login from './components/Login';
 // import {Login}
+
+
+
 
 export const routes = <Layout>
     <Route exact path='/' component={ FetchAllPlatforms } />
@@ -21,7 +23,7 @@ export const routes = <Layout>
     <Route path='/shoppingcart' component={ ShoppingCart } />
     <Route path='/search/:searchquery' component={ FetchAllPlatforms } />
     <Route path='/search/:searchquery' component={ FetchSearchResult } />
-    <Route path='/' component={ Login } />
+    <Route path='/login' component={ Login } />
 
 </Layout>;
 

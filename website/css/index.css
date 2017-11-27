@@ -61,6 +61,8 @@ a {
 #header-container {
     height: 125px;
     width: 100%;
+    display: flex;
+    justify-content: center;
     background: transparent url("../css/images/gradient.png") bottom repeat-x;
 }
 
@@ -164,6 +166,7 @@ a {
     right: 0px;
     list-style-type: none;
     margin-right: 20%;
+    padding: 0
 }
 
 .menu li {
