@@ -34,11 +34,10 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                 </div>
         </div>;
     }
-
     private static renderGame(games: Models.Game[]) {
         return <div>
             {games.map(game =>
-                <div className="product" key={ game.id }>
+                <div className="product"  key={ game.id }>
                 <Link to={"/game/" + game.id}>
                             <div className="col-lg-3">
                                 <img height="150" width="150"  src={game.image} /> 
@@ -55,7 +54,8 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                                 </ul>
                             
                             </div>
-                        </div>
+                        
+                    </div>
                 </Link>
                 </div>
             )}

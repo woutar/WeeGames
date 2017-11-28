@@ -14,33 +14,7 @@ namespace WeeGames.Controllers
 
         public PlatformController(GameContext context)
         {
-            _context = context;
-
-            // if(_context.Platforms.Count() == 0 ){
-                
-            //     Platform p1 = new Platform{
-            //         Name = "PC",
-            //     };
-            //     Platform p2 = new Platform{
-            //         Name = "Playstation",
-            //     };
-            //     Platform p3 = new Platform{
-            //         Name = "Xbox One",
-            //     };
-            //     Platform p4 = new Platform{
-            //         Name = "Nintendo Switch",
-            //     };
-            //     Platform p5 = new Platform{
-            //         Name = "Nintendo 3DS",
-            //     };
-
-            //     _context.Platforms.Add(p1);
-            //     _context.Platforms.Add(p2);
-            //     _context.Platforms.Add(p3);
-            //     _context.Platforms.Add(p4);
-            //     _context.Platforms.Add(p5);
-            //     _context.SaveChanges();
-            // }  
+            _context = context; 
         }
 
         [HttpGet("GetAll")]
@@ -58,5 +32,16 @@ namespace WeeGames.Controllers
             return Ok(platform);
         }
 
+        [HttpGet("GetGames/{PlatformName}")]
+        public Game[] GetGames(string PlatformName){
+            
+            var games = from g in _context.Games
+                let platform = _context.Platforms.Where(p => p.Name == PlatformName).FirstOrDefault()
+                where g.PlatformId == platform.Id
+                select g;
+
+            var games_result = games.ToArray();
+            return games_result;
+        }
     }
 }

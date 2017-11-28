@@ -15,32 +15,7 @@ namespace WeeGames.Controllers
         public CategoryController(GameContext context)
         {
             _context = context;
-
-            if(_context.Categories.Count() == 0 ){
-                
-                Category c1 = new Category{
-                    Name = "Avontuur",
-                };
-                Category c2 = new Category{
-                    Name = "RPG",
-                };
-                Category c3 = new Category{
-                    Name = "Actie",
-                };
-                Category c4 = new Category{
-                    Name = "Behendigheid",
-                };
-                Category c5 = new Category{
-                    Name = "Puzzle",
-                };
-
-                _context.Categories.Add(c1);
-                _context.Categories.Add(c2);
-                _context.Categories.Add(c3);
-                _context.Categories.Add(c4);
-                _context.Categories.Add(c5);
-                _context.SaveChanges();
-            }  
+ 
         }
 
         [HttpGet("GetAll")]
