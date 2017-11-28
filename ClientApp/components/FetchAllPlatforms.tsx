@@ -37,9 +37,11 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
     private static renderPlatform(platforms: Models.Platform[]) {
         return <div>
             {platforms.map(platform =>
-                <ul key={ platform.id }>
+                 <Link to={"/games/" + platform.name} key={ platform.name }>
+                 <ul>
                     <li>{ platform.name }</li>
-                </ul>
+                </ul> 
+                </Link>
             )}
         </div>;
     }

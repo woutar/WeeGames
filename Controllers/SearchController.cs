@@ -18,7 +18,6 @@ namespace WeeGames.Controllers
 
         }
 
-        //Case sensitive (needs to be fixed)
         [HttpGet("SearchGame/{searchString}")]
         public Game[] GetGames(string searchString){
             

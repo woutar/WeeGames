@@ -1,44 +1,59 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
-import { Imaget } from './Imaget';
 import * as Models from "../Model"
 import 'isomorphic-fetch';
 
-interface FetchAllGamesState {
+interface FetchPlatformGamesState{
     games: Models.Game[];
     loading: boolean;
+    platformname: string;
 }
 
-export class FetchAllGames extends React.Component<RouteComponentProps<{}>, FetchAllGamesState> {
-    constructor() {
-        super();
-        this.state = { games: [], loading: true };
+export class FetchPlatformGames extends React.Component<RouteComponentProps<{platform : string}>, FetchPlatformGamesState>{
+    constructor(props:RouteComponentProps<{platform:string}>){
+        super(props);
+        this.state = {games: [], loading: true, platformname: this.props.match.params.platform}
 
-        fetch('Game/GetAll')
-            .then(response => response.json() as Promise<Models.Game[]>)
-            .then(data => {
+        let searchquery = this.props.match.params.platform;
+
+        fetch('api/platform/GetGames/' + searchquery)
+            .then (response => response.json() as Promise<Models.Game[]>)
+            .then(data=> {
                 this.setState({ games: data, loading: false });
             });
+
     }
 
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchAllGames.renderGame(this.state.games);
+            : FetchPlatformGames.renderGame(this.state.games);
 
         return <div>
                 <div className="col-lg-1"></div>
                 <div className="col-lg-8">
-                <h2>Bestsellers</h2>
+                <h2>{this.state.platformname}</h2>
                 { contents }
                 </div>
         </div>;
     }
+
+    componentDidUpdate(){
+        let searchquery = this.props.match.params.platform;
+
+        fetch('api/platform/GetGames/' + searchquery)
+            .then (response => response.json() as Promise<Models.Game[]>)
+            .then(data=> {
+                this.setState({ games: data, loading: false, platformname: this.props.match.params.platform });
+            });
+            
+    }
+
     private static renderGame(games: Models.Game[]) {
         return <div>
             {games.map(game =>
-                <div className="product"  key={ game.id }>
+                <div className="product"  key={ game.title }>
                 <Link to={"/game/" + game.id}>
                     <div className="col-lg-3">
                         <img height="150" width="150"  src={game.image} /> 
@@ -47,9 +62,9 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                         <div className="product-info">
                             <ul>
                                 <li className="title">{ game.title }</li>
-                                <li className="category">Categorie : { game.category.name }</li>     
+                                <li className="genre">{ game.category }</li>
                                 <li className="prijs">Price: &euro; { game.price },-</li>                                   
-                                <li className="platform">Platform : { game.platform.name }</li>
+                                <li className="platform">{ game.platform }</li>
                                 <li className="description">{ game.description }</li>
                             </ul>
                         </div>
@@ -60,4 +75,3 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
         </div>;
     }
 }
-

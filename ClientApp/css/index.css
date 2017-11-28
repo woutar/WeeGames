@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: #fff;
+    background-color: rgba(255, 255, 255, 0.6);
     cursor:default;
     margin:0;
     padding:0;
@@ -57,6 +57,7 @@ a {
     margin-left:-25px;
 }
 #main {
+    background-color: #ff9900;
     position: absolute;
     width: 820px;
     left: 160px; top:0;
@@ -69,7 +70,10 @@ a {
     height: 150px;
     width: 100%;
     margin: 5px;
-	margin-top:20px;
+    margin-top:20px;
+}
+.product:hover{
+    background: rgb(228, 223, 223)
 }
 .product a{
     color:#909090;
