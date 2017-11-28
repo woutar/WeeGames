@@ -117,7 +117,7 @@ namespace WeeGames.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<DateTime>("Birthday");
+                    b.Property<DateTime>("Birthdate");
 
                     b.Property<string>("Country");
 
@@ -131,11 +131,11 @@ namespace WeeGames.Migrations
 
                     b.Property<int>("Role");
 
-                    b.Property<string>("zipcode");
+                    b.Property<string>("Zipcode");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("WeeGames.Models.Wishlist", b =>

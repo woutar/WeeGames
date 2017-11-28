@@ -12,6 +12,7 @@ public class GameContext : DbContext {
         public DbSet<OrderItem> OrderItem {get; set;}
         public DbSet<Wishlist> Wishlist {get; set;}
         public DbSet<WishlistItem> WishlistItem {get; set;}
+        public DbSet<User> Users {get; set;}
 
         public GameContext(DbContextOptions<GameContext> options)
         :base(options)
@@ -84,9 +85,9 @@ public class GameContext : DbContext {
         public string Password {get;set;}
         public string Firstname {get;set;}
         public string Lastname {get;set;}
-        public DateTime Birthday {get;set;}
+        public DateTime Birthdate {get;set;}
         public string Address {get;set;}
-        public string zipcode {get;set;}
+        public string Zipcode {get;set;}
         public string Country {get;set;}
         public int Role {get;set;}
     }

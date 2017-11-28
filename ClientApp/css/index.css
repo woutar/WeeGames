@@ -66,10 +66,10 @@ a {
     padding: 0 10px;
 }
 .product {
-    height: 150px;
     width: 100%;
     margin: 5px;
-	margin-top:20px;
+    margin-top:20px;
+    display: table;
 }
 .product a{
     color:#909090;
@@ -96,13 +96,13 @@ a {
 
 .product-info {
     float: left;
-    height: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .product-info .title{
     font-weight: bold;
     color: green;
+    line-height: 1;
 }
 
 #footer-container {

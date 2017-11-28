@@ -49,9 +49,9 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                                 <ul>
                                     <li className="title">{ game.title }</li>
                                     <li className="category">Categorie : { game.category.name }</li>     
-                                    <li className="prijs">Price: &euro; { game.price },-</li>                                   
+                                    <li className="prijs">Price: &euro; { game.price }</li>                                   
                                     <li className="platform">Platform : { game.platform.name }</li>
-                                    <li className="description">{ game.description }</li>
+                                    <li className="description">{ game.description.substring(0, 200) }</li>
                                 </ul>
                             
                             </div>
