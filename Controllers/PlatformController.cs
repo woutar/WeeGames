@@ -14,7 +14,7 @@ namespace WeeGames.Controllers
 
         public PlatformController(GameContext context)
         {
-            _context = context;
+            _context = context; 
         }
 
         [HttpGet("GetAll")]

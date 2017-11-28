@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
-import { Imaget } from './Imaget';
 import * as Models from "../Model"
 import 'isomorphic-fetch';
 
