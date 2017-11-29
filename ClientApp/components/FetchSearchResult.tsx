@@ -3,7 +3,6 @@ import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
 import * as Models from "../Model"
 import 'isomorphic-fetch';
-import { Imaget } from './Imaget';
 
 interface FetchSearchResultState{
     games: Models.Game[];

@@ -59,7 +59,7 @@ import { Route, NavLink, Link } from 'react-router-dom';
                             <option value="Belgium">Belgium</option>
                         </select>
                     </div>
-                    <input type="submit" className="btn btn-default"/>
+                    <input type="submit" className="btn btn-default" value="Submit details"/>
                 </div>
             </form>
             </div>
