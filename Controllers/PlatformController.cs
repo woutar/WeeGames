@@ -35,6 +35,7 @@ namespace WeeGames.Controllers
         [HttpGet("GetGames/{PlatformName}")]
         public Game[] GetGames(string PlatformName){
             
+            
             var games = from g in _context.Games
                 let platform = _context.Platforms.Where(p => p.Name == PlatformName).FirstOrDefault()
                 where g.PlatformId == platform.Id

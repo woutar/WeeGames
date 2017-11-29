@@ -10,6 +10,7 @@ interface FetchPlatformGamesState{
     platformname: string;
 }
 
+
 export class FetchPlatformGames extends React.Component<RouteComponentProps<{platform : string}>, FetchPlatformGamesState>{
     constructor(props:RouteComponentProps<{platform:string}>){
         super(props);

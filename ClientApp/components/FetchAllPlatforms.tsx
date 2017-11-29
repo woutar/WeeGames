@@ -21,6 +21,7 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
             });
     }
 
+    
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
