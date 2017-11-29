@@ -13,6 +13,7 @@ namespace WeeGames.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
+        
         private GameContext _context;
 
         public UserController(GameContext context)
