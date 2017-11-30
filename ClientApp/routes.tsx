@@ -10,6 +10,7 @@ import { ShoppingCart } from './components/Shoppingcart';
 import { FetchSearchResult } from './components/FetchSearchResult';
 import { FetchPlatformGames } from './components/FetchPlatformGames';
 import { Register } from './components/Register'; 
+import { Login } from './components/Login';
 
 export const routes = <Layout>
     <Route exact path='/' component={ FetchAllPlatforms } />
@@ -23,5 +24,6 @@ export const routes = <Layout>
     <Route path='/games' component={ FetchAllPlatforms} />
     <Route path='/games/:platform' component={ FetchPlatformGames} />
     <Route path='/register/' component= { Register } />
+    <Route path='/login' component = { Login } />
 </Layout>;
 
