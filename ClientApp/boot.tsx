@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import * as RoutesModule from './routes';
 let routes = RoutesModule.routes;
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
 function renderApp() {
     // This code starts up the React app when it runs in a browser. It sets up the routing
     // configuration and injects the app into a DOM element.
