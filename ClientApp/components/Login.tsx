@@ -25,13 +25,13 @@ function loggedIn() {
 
 
   
-// function requireAuth(nextState, replace) {
-//     if (!loggedIn()) {
-//       replace({
-//         pathname: '/login'
-//       })
-//     }
-//   }
+function requireAuth(nextState, replace) {
+    if (!loggedIn()) {
+      replace({
+        pathname: '/login'
+      })
+    }
+  }
   
 //   function routes() {
 //     return (

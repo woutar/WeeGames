@@ -1,20 +1,12 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using WeeGames.Controllers;
+using WeeGames.Models;
 
 namespace WeeGames.Models
 {
-    public class User
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Username { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
-
-
-
     public interface IUserService
     {
         User Authenticate(string username, string password);
@@ -24,6 +16,24 @@ namespace WeeGames.Models
         void Update(User user, string password = null);
         void Delete(int id);
     }
+
+    // public class User
+    // {
+    //     public int Id { get; set; }
+    //     public string FirstName { get; set; }
+    //     public string LastName { get; set; }
+    //     public string Username { get; set; }
+    //     public byte[] PasswordHash { get; set; }
+    //     public byte[] PasswordSalt { get; set; }
+
+    // public class UserDto
+    // {
+    //     public int Id { get; set; }
+    //     public string FirstName { get; set; }
+    //     public string LastName { get; set; }
+    //     public string Username { get; set; }
+    //     public string Password { get; set; }
+    // }
 
     public class UserService : IUserService
     {
@@ -89,13 +99,13 @@ namespace WeeGames.Models
             var user = _context.Users.Find(userParam.Id);
 
             if (user == null)
-                throw new AppException("User not found");
+                throw new ApplicationException("User not found");
 
             if (userParam.Username != user.Username)
             {
                 // username has changed so check if the new username is already taken
                 if (_context.Users.Any(x => x.Username == userParam.Username))
-                    throw new AppException("Username " + userParam.Username + " is already taken");
+                    throw new ApplicationException("Username " + userParam.Username + " is already taken");
             }
 
             // update user properties
@@ -160,6 +170,7 @@ namespace WeeGames.Models
             return true;
         }
     }
-}
+
     }
 }
+    

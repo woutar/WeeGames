@@ -11,11 +11,23 @@ using Microsoft.Extensions.Options;
 // using SendGrid;
 // using SendGrid.Helpers.Mail;
 using WeeGames.Models;
+using WeeGames.Controllers;
 using System.IO;
-
+using AutoMapper;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WeeGames.Controllers
 {
+    public class AppSettings
+    {
+        public string Secret { get; set; }
+    }
+
+
     [Authorize]
     [Route("[controller]")]
     public class UsersController : Controller
