@@ -2,17 +2,19 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
 import * as CryptoJS from 'crypto-js';
+import * as Models from "../Model";
 
     interface userState{
         userEmail: string;
         userPassword: string;
+        user : Models.User | '';
     }
 
     export class Login extends React.Component<RouteComponentProps<{}>, userState> {
         constructor(){
             super();
 
-            this.state = {userEmail: '', userPassword:  '' };
+            this.state = {userEmail: '', userPassword:  '', user : ''};
 
             this.handleEmailChange = this.handleEmailChange.bind(this);
             this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -33,9 +35,27 @@ import * as CryptoJS from 'crypto-js';
 
         }
         handleSubmit(event: any){
-            alert(this.state.userEmail);
-            alert(this.state.userPassword);
-            alert(CryptoJS.SHA256(this.state.userPassword));
+            event.preventDefault();
+            fetch('api/User/Login',{
+                method : 'POST',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Email : this.state.userEmail,
+                    Password : CryptoJS.SHA256(this.state.userPassword).toString(),
+                })
+            }).then(response => response.json() as Promise<Models.User>)
+            .then(data => {
+                this.setState({ user: data });
+            });
+            if(this.state.user != '')
+            {
+                alert("You are logged in");
+            }else{
+                alert("Something went wrong ");
+            }
         }
 
         render() {

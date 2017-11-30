@@ -27,31 +27,17 @@ namespace WeeGames.Controllers
             return _context.Users.ToArray();
         }
 
-        [HttpGet("GetUser/{email, password}")]
-        public IActionResult GetUser(string email, string password){
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody]JObject value)
+        {
+            User posted = value.ToObject<User>(); 
             var user = from u in _context.Users
-                where u.Email == email && u.Password == password
+                where (u.Email == posted.Email) && (u.Password == posted.Password)
                 select u;
             var correct_user = user.FirstOrDefault();
             if(correct_user == null) return NotFound();
             return Ok(correct_user);
         }
-
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create(
-        // [Bind("Email,Password,Firstname,Lastname,Birthdate,Address,Zipcode,Country,Role")] User user)
-        // {
-
-        //     if (ModelState.IsValid)
-        //         {
-        //             _context.Add(user);
-        //             await _context.SaveChangesAsync();
-        //             return Ok(user);
-        //         }
-        //     return null;
-            
-        // }
         
         [HttpPost("Post")]
         public User Post([FromBody]JObject value)
@@ -61,6 +47,12 @@ namespace WeeGames.Controllers
             _context.SaveChanges();
 
             return posted;
-        }        
+        }      
+
+
+        // [ValidateAntiForgeryToken]
+        // [Bind("Email,Password,Firstname,Lastname,Birthdate,Address,Zipcode,Country,Role")] User user)
+        //if (ModelState.IsValid)
+
     }
 }
