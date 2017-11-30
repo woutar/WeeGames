@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
-import * as Models from "../Model"
+import * as Models from "../Model";
+import * as CryptoJS from 'crypto-js';
 
 interface PostUserState {
     Email : string,
-    Password : string,
+    Password : any,
     Firstname : string,
     Lastname : string,
     Birthdate : Date,
@@ -54,7 +55,7 @@ interface PostUserState {
                 },
                 body: JSON.stringify({
                     Email : this.state.Email,
-                    Password : this.state.Password,
+                    Password : CryptoJS.SHA256(this.state.Password).toString(),
                     Firstname : this.state.Firstname,
                     Lastname : this.state.Lastname,
                     Birthdate : this.state.Birthdate,
