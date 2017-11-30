@@ -56,14 +56,11 @@ namespace WeeGames.Controllers
         [HttpPost("Post")]
         public User Post([FromBody]JObject value)
         {
-            User posted = value.ToObject<User>();
-            // using (TomatoDb db = new TomatoDb())
-            
+            User posted = value.ToObject<User>(); 
             _context.Users.Add(posted);
             _context.SaveChanges();
 
             return posted;
-            
         }        
 
     }

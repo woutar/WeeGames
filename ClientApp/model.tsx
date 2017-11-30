@@ -22,7 +22,25 @@ export type Platform ={
     games:Game[]
 }
 
-export type Order ={
+export type User ={
     id:number,
-    games:Game[]
+    email:string,
+    password:string,
+    firstname:string,
+    lastname:string,
+    birthdate:Date,
+    address:string,
+    zipcode:string,
+    country:string,
+    role:number
 }
+
+// export type Order ={
+//     id:number,
+//     games:Game[]
+// }
+
+// export type Wishlist ={
+//     id:number,
+//     user:User[],
+// }
