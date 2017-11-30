@@ -125,12 +125,7 @@ a {
 }
 
 .menu ul {
-    position: absolute;
-    top: 25px;
-    right: 0px;
     list-style-type: none;
-    margin-right:20%;
-
 }
 .menu li {
     float: left;
