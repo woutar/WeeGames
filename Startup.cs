@@ -25,7 +25,7 @@ namespace WeeGames
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GameContext> (
-                 opt => opt.UseNpgsql(@"Host=localhost;Database=WeeGamesDb;Username=postgres;Password=63331fe9"));
+                 opt => opt.UseNpgsql(@"Host=localhost;Database=WeeGamesDb2;Username=postgres;Password=4dhfihyo"));
             services.AddMvc();
         }
 
@@ -38,6 +38,7 @@ namespace WeeGames
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true,
+                    HotModuleReplacementEndpoint = "/dist/__webpack_hmr",
                     ReactHotModuleReplacement = true
                 });
             }
