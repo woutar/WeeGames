@@ -9,6 +9,8 @@ import { FetchGame } from './components/FetchGame';
 import { ShoppingCart } from './components/Shoppingcart';
 import { FetchSearchResult} from './components/FetchSearchResult';
 import Login from './components/Login';
+import PieChart from './components/barchart';
+import Main from './components/main';
 // import {Login}
 
 
@@ -22,7 +24,7 @@ export const routes = <Layout>
     <Route path='/shoppingcart' component={ FetchAllPlatforms } />
     <Route path='/shoppingcart' component={ ShoppingCart } />
     <Route path='/search/:searchquery' component={ FetchAllPlatforms } />
-    <Route path='/search/:searchquery' component={ FetchSearchResult } />
+    <Route path='/main' component={ Main } />
     <Route path='/login' component={ Login } />
 
 </Layout>;

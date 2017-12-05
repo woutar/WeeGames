@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
 using AutoMapper;
+using WeeGames.Models;
+using WeeGames.Controllers;
 
 
 namespace WeeGames.Models
