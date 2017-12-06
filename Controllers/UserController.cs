@@ -32,7 +32,7 @@ namespace WeeGames.Controllers
         {
             User posted = value.ToObject<User>(); 
             var user = from u in _context.Users
-                where (u.Email == posted.Email) && (u.Password == posted.Password)
+                where (u.Email.ToLower() == posted.Email.ToLower()) && (u.Password == posted.Password)
                 select u;
             var correct_user = user.FirstOrDefault();
             if(correct_user == null) return NotFound();
