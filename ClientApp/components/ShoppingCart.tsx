@@ -77,7 +77,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Subtotal: </span><span className="price">Subtotal: &euro; { game.amount * game.price }</span>
+                                    <span className="tag">Subtotal: </span><span className="price"> &euro; { game.amount * game.price }</span>
                                 </div>
                             </div>
                             <div className="row">
@@ -95,10 +95,12 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
 
         <div className="checkout-wrapper">
             <div className="row">
-                <div className="col-sm-9"></div>
                 <div className="col-sm-3">
-                        <span className="total">Grandtotal: &euro; {this.state.total}</span>
-                        <a href="shoppingcart/#" className="checkout-btn">Checkout</a>
+                    <span className="total">Grandtotal: &euro; {this.state.total}</span>
+                </div>
+                <div className="col-sm-6"></div>
+                <div className="col-sm-3">
+                    <a href="shoppingcart/#" className="checkout-btn">Checkout</a>
                 </div>
             </div>
         </div>
