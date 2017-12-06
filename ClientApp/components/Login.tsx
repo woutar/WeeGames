@@ -63,7 +63,6 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
         }else{
             alert("User could not be found");
         }
-
     }
 
     render() {
@@ -74,18 +73,20 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
                 <h2>Login</h2>
                 <div className="form-group">
                     <label>Email address</label>
-                    <input name="userEmail" type="email" className="form-control" value={this.state.userEmail}
-                        onChange={this.handleEmailChange}  placeholder="Enter email" />
+                    <input name="userEmail" type="email" className="form-control" value={this.state.userEmail } minLength={10} maxLength={64}
+                        onChange={this.handleEmailChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"  placeholder="Example@example.com" required />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
                     <input name="userPassword" type="password" className="form-control" value={this.state.userPassword} 
-                    onChange={this.handlePasswordChange}  placeholder="******" />
+                    onChange={this.handlePasswordChange} minLength={4} maxLength={30}  placeholder="******" required/>
                 </div>
             
                 <input type="submit" className="btn btn-default"  value="Submit"/>
             </div>
+        
+            <input type="submit" className="btn btn-default"  value="Submit"/>
         </form>
         </div>
         )

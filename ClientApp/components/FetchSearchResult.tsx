@@ -29,36 +29,54 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
             ? <p><em>Loading...</em></p>
             : FetchSearchResult.renderGame(this.state.games);
 
-        return <div>
-                <div className="col-lg-1"></div>
-                <div className="col-lg-8">
+        return <div className="col-md-10 content">
                 <h2>Search results</h2>
                 { contents }
-                </div>
-        </div>;
+                </div>;
     }
+    
     private static renderGame(games: Models.Game[]) {
         return <div>
             {games.map(game =>
-                <div className="product"  key={ game.id }>
+                <div className="row product" key={ game.id }>
                 <Link to={"/game/" + game.id}>
-                    <div className="col-lg-3">
-                        <img height="150" width="150"  src={game.image} /> 
-                    </div>
-                    <div className="col-lg-9">
-                        <div className="product-info">
-                            <ul>
-                                <li className="title">{ game.title }</li>
-                                <li className="genre">{ game.category }</li>
-                                <li className="prijs">Price: &euro; { game.price },-</li>                                   
-                                <li className="platform">{ game.platform }</li>
-                                <li className="description">{ game.description }</li>
-                            </ul>
+                    <div className="row">
+                        <div className="col-sm-3">
+                            <img src={game.image} />
+                        </div>
+                        <div className="col-sm-9">
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <span className="title">{ game.title }</span>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <span className="tag">Categorie: </span><span className="category">{ game.category }</span>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <span className="tag">Price: </span><span className="price">{ game.price }</span>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <span className="tag">Platform: </span><span className="platform">{ game.platform }</span>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <span className="description">
+                                        { game.description.substring(0, 250) }...
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Link>
                 </div>
-            )}
-        </div>;
+                )}
+            </div>;
     }
 }

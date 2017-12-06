@@ -27,24 +27,21 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
             ? <p><em>Loading...</em></p>
             : FetchAllPlatforms.renderPlatform(this.state.platforms);
 
-        return <div className="col-lg-2">
-                <div id="platform" className="sidebar">  
-                    <h3>Platform</h3>
+        return <div className="col-md-2 sidebar">
                     { contents }
-                </div>
-        </div>;
+                </div>;
     }
 
     private static renderPlatform(platforms: Models.Platform[]) {
-        return <div>
+        return <ul className="nav nav-pills nav-stacked">
             {platforms.map(platform =>
-                 <Link to={"/games/" + platform.name} key={ platform.name }>
-                 <ul>
-                    <li>{ platform.name }</li>
-                </ul> 
-                </Link>
+                <li>
+                    <Link to={"/games/" + platform.name} key={ platform.name }>
+                        { platform.name }
+                    </Link>
+                </li>
             )}
-        </div>;
+            </ul>;
     }
 }
 
