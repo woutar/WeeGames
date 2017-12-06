@@ -346,7 +346,6 @@ a {
 .checkout-wrapper{
     position: relative;
     float: right;
-    margin-top: 30px;
 }
 .checkout-wrapper .total{
     font-size: 30px;
@@ -354,5 +353,5 @@ a {
 }
 .checkout-wrapper .checkout-button{
     float: right;
-    margin-top: 25px;
+    margin-top: 40px;
 }

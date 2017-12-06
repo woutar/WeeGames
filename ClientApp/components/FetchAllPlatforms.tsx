@@ -34,7 +34,7 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
                 </div>;
     }
     
-    testFunc(){
+    reRender(){
        return {FetchPlatformGames}
     }
 
@@ -42,7 +42,7 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
         return <ul className="nav nav-pills nav-stacked">
             {platforms.map(platform =>
                 <li>
-                    <Link to={"/games/" + platform.name} key={ platform.name } onClick={self.testFunc()}>
+                    <Link to={"/games/" + platform.name} key={ platform.name } onClick={self.reRender()}>
                         { platform.name }
                     </Link>
                 </li>
