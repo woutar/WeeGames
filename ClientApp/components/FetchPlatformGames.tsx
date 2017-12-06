@@ -16,12 +16,13 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
         super(props);
         this.state = {games: [], loading: true, platformname: this.props.match.params.platform}
 
-        let searchquery = this.props.match.params.platform;
+        let searchquery = this.state.platformname;
 
         fetch('api/platform/GetGames/' + searchquery)
             .then (response => response.json() as Promise<Models.Game[]>)
             .then(data=> {
-                this.setState({ games: data, loading: false });
+                this.setState({ games: data, loading: false, platformname : this.props.match.params.platform });
+                console.log(this.state.platformname)
             });
 
     }
@@ -37,16 +38,16 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                 </div>;
     }
 
-    componentDidUpdate(){
-        let searchquery = this.props.match.params.platform;
+    // componentDidUpdate(){
+    //     let searchquery = this.props.match.params.platform;
 
-        fetch('api/platform/GetGames/' + searchquery)
-            .then (response => response.json() as Promise<Models.Game[]>)
-            .then(data=> {
-                this.setState({ games: data, loading: false, platformname: this.props.match.params.platform });
-            });
-            
-    }
+    //     fetch('api/platform/GetGames/' + searchquery)
+    //         .then (response => response.json() as Promise<Models.Game[]>)
+    //         .then(data=> {
+    //             this.setState({ games: data, loading: false, platformname: this.props.match.params.platform });
+    //         });
+        
+    // }
 
     private static renderGame(games: Models.Game[]) {
         return <div>
