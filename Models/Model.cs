@@ -1,6 +1,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeeGames.Models
 {
@@ -81,13 +83,24 @@ public class GameContext : DbContext {
 
     public class User{
         public int Id {get;set;}
+        [Required]
+        [Key]
         public string Email {get;set;}
+        [Required]
         public string Password {get;set;}
+        [Required]
         public string Firstname {get;set;}
+        [Required]
         public string Lastname {get;set;}
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime Birthdate {get;set;}
+        [Required]
         public string Address {get;set;}
+        [Required]
         public string Zipcode {get;set;}
+        [Required]
         public string Country {get;set;}
         public int Role {get;set;}
     }
