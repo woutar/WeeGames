@@ -25,5 +25,5 @@ export const routes = <Layout>
     <Route path='/games/:platform' component={ FetchPlatformGames} />
     <Route path='/register/' component= { Register } />
     <Route path='/login' component = { Login } />
-</Layout>;
+</Layout>; 
 
