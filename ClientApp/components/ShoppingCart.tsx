@@ -24,6 +24,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                 }
             });
 
+            
             // Add the duplicate amount of games to the games collection
             // Also add the total price
             var total = 0;
