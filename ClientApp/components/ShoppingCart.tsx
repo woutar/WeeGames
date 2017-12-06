@@ -95,10 +95,12 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
 
         <div className="checkout-wrapper">
             <div className="row">
-                <div className="col-sm-9"></div>
-                <div className="col-sm-3">
-                        <span className="total">Grandtotal: &euro; {this.state.total}</span>
-                        <a href="shoppingcart/#" className="checkout-btn">Checkout</a>
+                <div className="col-sm-push-3 col-sm-push-3"></div>
+                <div className="col-sm-6">
+                    <span className="total">Grandtotal: &euro; {this.state.total}</span>
+                </div>
+                <div className="col-sm-push-3 col-sm-3">
+                    <a href="shoppingcart/#" className="checkout-btn">Checkout</a>
                 </div>
             </div>
         </div>
