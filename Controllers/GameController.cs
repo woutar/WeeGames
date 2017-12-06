@@ -16,49 +16,6 @@ namespace WeeGames.Controllers
         {
             _context = context;
 
-            if(_context.Games.Count() == 0 ){
-                
-                Game g1 = new Game{
-                    Title = "Call of Duty",
-                    Category = 
-                    new Category{Name = "Actie"},
-                    Price = 40,
-                    Platform =
-                    new Platform{Name = "Playstation 2"},
-                    Description = "Geweldig schietspel blablabla...." ,
-                    Releasedate = 2010,
-                    Publisher = "Activision",
-                    Image = "./images/game_images/cod.png"
-                };
-                Game g2 = new Game{
-                    Title = "Destiny",
-                    Category = 
-                    new Category{Name = "Avontuur"},
-                    Price = 60,
-                    Platform =
-                    new Platform{Name = "Playstation 4"},
-                    Description = "Destiny is een erg cool spel etc...",
-                    Releasedate = 2015,
-                    Publisher = "DICE",
-                    Image = "./images/game_images/destiny.png"
-                };
-                Game g3 = new Game{
-                    Title = "World of Warcraft",
-                    Category = 
-                    new Category{Name = "RPG"},
-                    Price = 20,
-                    Platform =
-                    new Platform{Name = "PC"},
-                    Description = "Online rollenspel met stierenmannen etc...",
-                    Releasedate = 2005,
-                    Publisher = "Blizzard",
-                    Image = "./images/game_images/wow.png" 
-                };
-                _context.Games.Add(g1);
-                _context.Games.Add(g2);
-                _context.Games.Add(g3);
-                _context.SaveChanges();
-            }  
         }
 
         [HttpGet("GetAll")]

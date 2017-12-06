@@ -65,7 +65,7 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Categorie: </span><span className="category">{ game.category }</span>
+                                    <span className="tag">Categorie: </span><span className="category">{ game.category.name }</span>
                                 </div>
                             </div>
                             <div className="row">
@@ -75,7 +75,7 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Platform: </span><span className="platform">{ game.platform }</span>
+                                    <span className="tag">Platform: </span><span className="platform">{ game.platform.name }</span>
                                 </div>
                             </div>
                             <div className="row">
