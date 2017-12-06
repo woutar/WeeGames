@@ -61,6 +61,22 @@ ul.nav.nav-pills.nav-stacked {
     margin-top: 1px;
 }
 
+/* Shopping cart */
+.checkout-wrapper li {
+    float: left;
+}
+
+.checkout-btn {
+    height: 34px;
+    padding: 0px 20px;
+    line-height: 34px;
+    display: block;
+    background-color: #E58300;
+    border-radius: 4px;
+    border-bottom: 1px solid #6a6a6a; 
+    border-right: 1px solid #6a6a6a;
+}
+
 /* products */
 .product.img {
     height: 200px;
