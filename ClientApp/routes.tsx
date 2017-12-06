@@ -12,10 +12,19 @@ import {Login} from './components/Login';
 // import {PieChart} from './components/barchart';
 import {Main} from './components/main';
 // import {Login}
+import {Router} from 'react-router';
+
+import { Redirect } from 'react-router';
+
+import requireAuth from '../Authentication/require_authentication';
+
 
 
 
 export const routes = <Layout>
+  <Route component={requireAuth()} />
+  <Route path="dashboard" component={requireAuth()} /> 
+
     <Route exact path='/' component={ FetchAllPlatforms } />
     <Route exact path='/' component={ FetchAllGames } />
     <Route path='/game/:id' component={ FetchAllPlatforms } />

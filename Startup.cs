@@ -38,7 +38,7 @@ namespace WeeGames
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true,
-                    HotModuleReplacementEndpoint = "/dist/__webpack_hmr",
+                    // HotModuleReplacementEndpoint = "/dist/__webpack_hmr",
                     ReactHotModuleReplacement = true
                 });
             }
