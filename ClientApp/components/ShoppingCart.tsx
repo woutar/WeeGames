@@ -83,7 +83,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                             <div className="row">
                                 <div className="col-sm-12">
                                     <span className="description">
-                                        { game.description }
+                                        { game.description.substring(0, 250) }...
                                     </span>
                                 </div>
                             </div>
