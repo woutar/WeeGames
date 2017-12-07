@@ -22,7 +22,6 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
             .then (response => response.json() as Promise<Models.Game[]>)
             .then(data=> {
                 this.setState({ games: data, loading: false, platformname : this.props.match.params.platform });
-                console.log(this.state.platformname)
             });
 
     }

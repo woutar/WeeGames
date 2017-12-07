@@ -13,7 +13,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
     constructor() {
         super();
         this.state = { games: [], loading: true };
-
+        
         fetch('Game/GetAll')
             .then(response => response.json() as Promise<Models.Game[]>)
             .then(data => {

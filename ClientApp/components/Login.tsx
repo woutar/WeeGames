@@ -61,7 +61,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
         if(response.status == 200){
             return response;
         }else{
-            alert("User could not be found");
+            alert("User/Password combination could not be found");
         }
     }
 
@@ -85,8 +85,6 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
             
                 <input type="submit" className="btn btn-default"  value="Submit"/>
             </div>
-        
-            <input type="submit" className="btn btn-default"  value="Submit"/>
         </form>
         </div>
         )
