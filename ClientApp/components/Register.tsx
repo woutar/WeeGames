@@ -148,28 +148,6 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
                 </div>
                 <input type="submit" className="btn btn-default" value="Register"/>
             </div>
-            <div className="form-group">
-                <label>Address</label>
-                <input name="Address" id="Address" type="text" className="form-control"  placeholder="Enter Address"
-                onChange ={this.handleInputChange}/>
-            </div>
-            <div className="form-group">
-                <label>Zipcode</label>
-                <input name="Zipcode" id="Zipcode" type="text" className="form-control"  placeholder="Enter Zipcode"
-                onChange ={this.handleInputChange}/>
-            </div>
-            <div className="form-group">
-                <label>Country</label>
-                <br/>
-                <select name="Country" id="Country" className="form-control" value={this.state.Country} onChange ={this.handleInputChange}>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="France">France</option>
-                    <option value="UK">United Kingdom</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Belgium">Belgium</option>
-                </select>
-            </div>
-            <input type="submit" className="btn btn-default" value="Submit"/>
             </form>
         </div>
         )
