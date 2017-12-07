@@ -35,6 +35,7 @@ export class Layout extends React.Component<LayoutProps, {}> {
                                         <li className=""><a href="#">Wishlist</a></li>
                                         <li className=""><a href="#">Account settings</a></li>
                                         <li className=""><a href="#">Order history</a></li>
+                                        <li className=""><a href="admin">Adminpanel</a></li>
                                         <li className="divider"></li>
                                         <li><a href="#">Logout</a></li>
                                     </ul>
