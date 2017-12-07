@@ -71,7 +71,7 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                         <li className=""><a href="#">Account settings</a></li>
                         <li className=""><a href="#">Order history</a></li>
                         <li className="divider"></li>
-                        <li><a href="#" onClick={self.logOut()}>Logout</a></li>
+                        <li><a href="" onClick={() => self.logOut()}>Logout</a></li>
                     </ul>
             </li>
             <li>
