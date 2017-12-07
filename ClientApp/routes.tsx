@@ -11,6 +11,7 @@ import { FetchSearchResult } from './components/FetchSearchResult';
 import { FetchPlatformGames } from './components/FetchPlatformGames';
 import { Register } from './components/Register'; 
 import { Login } from './components/Login';
+import { AdminFetchGames } from './components/Admin/AdminFetchGames'
 
 export const routes = <Layout>
     <Route exact path='/' component={ FetchAllPlatforms } />
@@ -25,5 +26,7 @@ export const routes = <Layout>
     <Route path='/games/:platform' component={ FetchPlatformGames} />
     <Route path='/register/' component= { Register } />
     <Route path='/login' component = { Login } />
+
+    <Route path='/admin' component={ AdminFetchGames } />
 </Layout>; 
 
