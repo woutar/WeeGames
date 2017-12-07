@@ -33,22 +33,17 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
                     
                 </div>;
     }
-    
-    reRender(){
-       return {FetchPlatformGames}
-    }
 
     private static renderPlatforms(self:any, platforms: Models.Platform[]) {
         return <ul className="nav nav-pills nav-stacked">
             {platforms.map(platform =>
-                <li onClick={self.reRender()}>
-                    <Link to={"/games/" + platform.name} key={ platform.name } >
+                <li  key={ platform.name }>
+                    <a href={"/games/" + platform.name}>
                         { platform.name }
-                    </Link>
+                    </a>
                 </li>
             )}
             </ul>;
-        
     }
 }
 
