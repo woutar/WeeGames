@@ -5,7 +5,7 @@ export type Game ={
     price:number,
     platform:Platform,
     description:string,
-    releasdate:number,
+    releasedate:number,
     publisher:string,
     image:string
 }

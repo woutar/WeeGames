@@ -60,11 +60,13 @@ export class Game extends React.Component<GameProps, {}> {
                     </div>
                     <div className="col-lg-6">
                         <h4>Category: {this.props.game.category.name}</h4>
+                        <h4>Publisher: {this.props.game.publisher}</h4>
+                        <h4>Release year: {this.props.game.releasedate}</h4>
                     </div>
                     <div className="col-lg-12">
                 
-                        <h3>Description</h3>
-                        <p>{this.props.game.description}</p>
+                    <h3>Description</h3>
+                    <p>{this.props.game.description}</p>
                 
                         <div className="info-price">
                             <div className="price">€ {this.props.game.price}</div>

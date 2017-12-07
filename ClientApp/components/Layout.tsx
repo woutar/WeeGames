@@ -41,7 +41,7 @@ export class Layout extends React.Component<LayoutProps, {}> {
                                     </ul>
                                 </li>
                                 <li>
-                                    <a className="wishlist-btn" href="#" target="_blank"></a>
+                                    <a className="wishlist-btn" href="/wishlist"></a>
                                 </li>
                                 <li>
                                     <a className="cart-btn" href="/shoppingcart"></a>

@@ -67,7 +67,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Price: </span><span className="price">{ game.price },-</span>
+                                    <span className="tag">Price: </span><span className="price">{ game.price.toFixed(2)}</span>
                                 </div>
                             </div>
                             <div className="row">
@@ -77,13 +77,13 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Subtotal: </span><span className="price">Subtotal: &euro; { game.amount * game.price }</span>
+                                    <span className="tag">Subtotal: </span><span className="price">&euro; { (game.amount * game.price).toFixed(2) }</span>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
                                     <span className="description">
-                                        { game.description }
+                                        { game.description.substring(0, 250) }...
                                     </span>
                                 </div>
                             </div>
@@ -95,10 +95,12 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
 
         <div className="checkout-wrapper">
             <div className="row">
-                <div className="col-sm-9"></div>
-                <div className="col-sm-3">
-                        <span className="total">Grandtotal: &euro; {this.state.total}</span>
-                        <a href="shoppingcart/#" className="checkout-btn">Checkout</a>
+                <div className="col-sm-push-3 col-sm-push-3"></div>
+                <div className="col-sm-6">
+                    <span className="total">Grandtotal: &euro; {Math.round(this.state.total * 100) / 100}</span>
+                </div> 
+                <div className="col-sm-push-3 col-sm-3">
+                    <a href="shoppingcart/#" className="checkout-btn">Checkout</a>
                 </div>
             </div>
         </div>
