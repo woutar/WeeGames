@@ -11,8 +11,7 @@ interface FetchAllGamesState {
     loading: boolean;
     sortName: undefined;
     sortOrder: undefined;
-
-
+    mode: any;
 }
 
 export class AdminFetchGames extends React.Component<RouteComponentProps<any>, FetchAllGamesState>{
@@ -21,7 +20,8 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
         this.state = { games: [], 
                     loading: true, 
                     sortName: undefined,  
-                    sortOrder: undefined
+                    sortOrder: undefined,
+                    mode: 'checkbox',
                 };
 
 
@@ -39,6 +39,7 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
         });
         
     }
+    
 
     public render() {
         const options = {
@@ -46,20 +47,25 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
             sortOrder: this.state.sortOrder,
           };
 
+          const selectRowProp = {
+            mode: this.state.mode
+          };
+
+
         return <div>
             
-        <BootstrapTable data={ this.state.games }  options={ options} hover condensed height='800' scrollTop={ 'Bottom' }>
+        <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } search={true}  options={ options} hover condensed height='800' scrollTop={ 'Bottom' }>
             <TableHeaderColumn dataField='id' dataSort isKey width="125">Product ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='title' dataSort filter={ { type: 'TextFilter', delay: 500 } }>Product Name</TableHeaderColumn>
+            <TableHeaderColumn dataField='title' dataSort>Product Name</TableHeaderColumn>
             <TableHeaderColumn dataField='platform' dataSort width="140">Platform</TableHeaderColumn>
             <TableHeaderColumn dataField='price' dataSort width="155"
              filter={ { 
                 type: 'NumberFilter', 
                 delay: 1000, 
-                numberComparators: [ '=', '>', '<=' ]
+                numberComparators: ['<=', '>']
               } }
             >Product Price</TableHeaderColumn>
-            <TableHeaderColumn dataField='publisher' dataSort filter={ { type: 'TextFilter', delay: 500 } }>Publisher</TableHeaderColumn>
+            <TableHeaderColumn dataField='publisher' dataSort>Publisher</TableHeaderColumn>
 
         </BootstrapTable>
 

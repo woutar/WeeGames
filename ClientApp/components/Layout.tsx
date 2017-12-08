@@ -70,6 +70,7 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                         <li className=""><a href="#">Wishlist</a></li>
                         <li className=""><a href="#">Account settings</a></li>
                         <li className=""><a href="#">Order history</a></li>
+                        <li className=""><a href="admin">Adminpanel</a></li>
                         <li className="divider"></li>
                         <li><a href="#" onClick={self.logOut()}>Logout</a></li>
                     </ul>
