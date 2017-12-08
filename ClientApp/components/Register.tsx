@@ -88,6 +88,9 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
 
 
     render() {
+        if(sessionStorage.getItem("user")){
+            window.location.href = "/";
+        }
         return (
         <div className="row">
         <h2>Register</h2>

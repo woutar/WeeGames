@@ -40,6 +40,9 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
     }
 
     public render() {
+        if(localStorage.getItem("ShoppingCart") == null){
+            return <h2>Your shoppingcart is empty!</h2>
+        }
         return <div className="col-md-10 content">
         <h2>Shoppingcart</h2>
         {this.state.games.map(game =>
@@ -67,12 +70,12 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Price: </span><span className="price">{ game.price.toFixed(2)}</span>
+                                    <span className="tag">Price: </span><span className="price">&euro; { game.price.toFixed(2)}</span>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Amount: </span><span className="price">Amount: { game.amount }</span>
+                                    <span className="tag">Amount: </span><span className="price">{ game.amount }</span>
                                 </div>
                             </div>
                             <div className="row">
@@ -80,13 +83,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                                     <span className="tag">Subtotal: </span><span className="price">&euro; { (game.amount * game.price).toFixed(2) }</span>
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <span className="description">
-                                        { game.description.substring(0, 250) }...
-                                    </span>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </Link>
