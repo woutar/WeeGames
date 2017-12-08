@@ -37,17 +37,6 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                 </div>;
     }
 
-    // componentDidUpdate(){
-    //     let searchquery = this.props.match.params.platform;
-
-    //     fetch('api/platform/GetGames/' + searchquery)
-    //         .then (response => response.json() as Promise<Models.Game[]>)
-    //         .then(data=> {
-    //             this.setState({ games: data, loading: false, platformname: this.props.match.params.platform });
-    //         });
-        
-    // }
-
     private static renderGame(games: Models.Game[]) {
         return <div>
             {games.map(game =>

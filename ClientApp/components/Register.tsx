@@ -81,9 +81,8 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
     
     userCreated(){
         if(this.state.userCreated && this.state.createdUser != ''){
-            sessionStorage.user = JSON.stringify(this.state.createdUser)
             alert("User created");
-            window.location.href = "/user";
+            window.location.href = "/login";
         }
     }
 

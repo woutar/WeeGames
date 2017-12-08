@@ -84,7 +84,6 @@ public class GameContext : DbContext {
     public class User{
         public int Id {get;set;}
         [Required]
-        [Key]
         public string Email {get;set;}
         [Required]
         public string Password {get;set;}
@@ -92,8 +91,6 @@ public class GameContext : DbContext {
         public string Firstname {get;set;}
         [Required]
         public string Lastname {get;set;}
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
         public DateTime Birthdate {get;set;}
         [Required]
