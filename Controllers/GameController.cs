@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WeeGames.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WeeGames.Controllers
 {
@@ -38,6 +40,15 @@ namespace WeeGames.Controllers
             if(game == null) return NotFound();
             return Ok(game);
         }
+
+        [HttpPost("DeleteGame")]
+        public void Register([FromBody]JObject value)
+        {
+            User posted = value.ToObject<User>(); 
+            _context.Users.Add(posted);
+            _context.SaveChanges();
+
+        }     
 
     }
 }

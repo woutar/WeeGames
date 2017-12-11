@@ -121,3 +121,7 @@ span.tag {
     max-height: 200px;
     max-width:200px;
 }
+/* adminpanel table css fix */
+.react-bs-table {
+     height: auto !important;
+    }

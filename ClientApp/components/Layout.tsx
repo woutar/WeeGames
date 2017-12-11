@@ -56,7 +56,7 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
         sessionStorage.removeItem("user");
     }
 
-    private static renderLoggedIn(self : any,user : Models.User){
+    private static renderLoggedIn(self : any, user : Models.User){
         return <ul className="nav navbar-nav navbar-right">
             <li>
                 <Search/>
@@ -86,17 +86,25 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
 
     private static renderNotLoggedIn(){
         return <ul className="nav navbar-nav navbar-right">
-            <li>
-                <Search/>
-            </li>    
-            <li><a href="/login">Login</a></li>
-            <li><a href="/Register">Register</a></li>    
-            <li>
-                <a className="wishlist-btn" href="/wishlist"></a>
-            </li>
-            <li>
-                <a className="cart-btn" href="/shoppingcart"></a>
-            </li>
-        </ul>
+        <li>
+            <Search/>
+        </li>   
+        <li className="dropdown">
+            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                My account
+                <span className="caret"></span></a>
+                <ul className="dropdown-menu" role="menu">
+                    <li className="dropdown-header">Niet Ingelogd</li>
+                    <li className=""><a href="admin">Adminpanel</a></li>
+                    <li className="divider"></li>
+                    <li><a href="Register" >Register</a></li>
+                    <li><a href="Login" >Login</a></li>
+                </ul>
+        </li>
+        <li>
+            <a className="cart-btn" href="/shoppingcart"></a>
+        </li>
+    </ul>
+
     }
 }
