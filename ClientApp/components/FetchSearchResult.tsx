@@ -57,7 +57,7 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Price: </span><span className="price">{ game.price }</span>
+                                    <span className="tag">Price: </span><span className="price">&euro; { game.price }</span>
                                 </div>
                             </div>
                             <div className="row">

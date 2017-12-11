@@ -76,9 +76,6 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                     </ul>
             </li>
             <li>
-                <a className="wishlist-btn" href="/wishlist"></a>
-            </li>
-            <li>
                 <a className="cart-btn" href="/shoppingcart"></a>
             </li>
         </ul>

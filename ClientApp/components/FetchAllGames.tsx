@@ -53,7 +53,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Price: </span><span className="price">&euro;{ game.price },-</span>
+                                    <span className="tag">Price: </span><span className="price">&euro; { game.price.toFixed(2) }</span>
                                 </div>
                             </div>
                             <div className="row">

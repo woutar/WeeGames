@@ -29,25 +29,53 @@ export class FetchGame extends React.Component<RouteComponentProps<{id:number}>,
 }
 
 type GameProps = {game:Models.Game}
-export class Game extends React.Component<GameProps, {}> {
+export class Game extends React.Component<GameProps, {amount : number}> {
     constructor(props:GameProps){
       super(props)
-      this.state = {}
+      this.state = {amount : 1}
 
       this.AddToCart = this.AddToCart.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.addAmount = this.addAmount.bind(this);
+      this.removeAmount = this.removeAmount.bind(this);
+    }
+
+    handleChange(event : any){
+        this.setState({
+            amount : event.target.value
+        })
+    }
+
+    addAmount(){
+        this.setState({
+            amount : + this.state.amount + 1
+        })
+    }
+
+    removeAmount(){
+        if(this.state.amount > 1){
+            this.setState({
+                amount : this.state.amount - 1
+            })
+        }
     }
 
     AddToCart(): void{
         var arr = [];
         var OldCart = localStorage.getItem("ShoppingCart");
         if(OldCart === null){
-            arr.push(this.props.game)
+            var i;
+            for(i=0; i < this.state.amount; i++){
+                arr.push(this.props.game)
+            }
             localStorage.setItem("ShoppingCart", JSON.stringify(arr));
         }else{
             arr = JSON.parse(OldCart);
-            arr.push(this.props.game);
+            var i;
+            for(i=0; i < this.state.amount; i++){  
+                arr.push(this.props.game);
+            }
             localStorage.setItem("ShoppingCart", JSON.stringify(arr));
-            console.log(arr);
         }
         
     }
@@ -69,8 +97,15 @@ export class Game extends React.Component<GameProps, {}> {
                     <p>{this.props.game.description}</p>
                 
                         <div className="info-price">
-                            <div className="price">€ {this.props.game.price}</div>
-                            <button className="cart-button" onClick={ this.AddToCart }>Add to Cart</button>
+                            <h4>€ {this.props.game.price.toFixed(2)}</h4>
+                            <br></br>
+                            <form onSubmit={this.AddToCart}>
+                                <button type="button" className="btn btn-danger" onClick={this.removeAmount}>-</button>
+                                <input type="number" max="999" min="1" className="amount" value={this.state.amount} onChange={this.handleChange}/>
+                                <button type="button" className="btn btn-success" onClick={this.addAmount}>+</button>
+                                <br></br>
+                                <input type="submit" className="btn btn-default buy-button"  value="Add to Cart"/>
+                            </form>
                         </div>
                     </div>
                 </div>;

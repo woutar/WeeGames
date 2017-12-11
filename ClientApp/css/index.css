@@ -95,6 +95,23 @@ ul.nav.nav-pills.nav-stacked {
     height: 200px;
     width: 200px;
 }
+.amount{
+    width: 35px;
+    height: 30px;
+    margin: 0 10px;
+    text-align: center;
+}
+/* Prevent spinners on input type number */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.buy-button{
+    margin-top: 15px;
+    width: 125px;
+}
 
 .product {
     padding: 15px 10px;

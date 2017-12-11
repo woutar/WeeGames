@@ -66,6 +66,9 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
     }
 
     render() {
+        if(sessionStorage.getItem("user")){
+            window.location.href = "/";
+        }
         return (
         <div className="row">
         <form onSubmit={this.handleSubmit}>
