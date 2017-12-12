@@ -11,14 +11,15 @@ import {PieChart} from "../Piechart";
             super(props);
         }
 
+        
       render() {
-        return (
-            <div className="col-sm-6">
+        return <div className="col-md-10 content">
+                <h2>Statistics</h2>
                 <BarChart/>
                     <div className="col-sm-12">  
                         <PieChart/>
                         <LineChart/>
                     </div>
-            </div>
-        )}
+            </div>;
+        }
 }

@@ -71,7 +71,7 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
           };
 
 
-        return <div>
+        return <div className="col-md-10 content">
             
         <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } search={true}  options={ options} height='auto' hover pagination>
             <TableHeaderColumn dataField='id' dataSort isKey width="125">Product ID</TableHeaderColumn>

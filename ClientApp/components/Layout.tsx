@@ -22,7 +22,7 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
 
         let contents;
         if(sessionStorage.getItem("user") && this.state.auth_user != null){
-            contents = Layout.renderLoggedIn(this, this.state.auth_user)
+            contents = Layout.renderLoggedIn(this, this.state.auth_user);
         }else{
             contents = Layout.renderNotLoggedIn();
         }
