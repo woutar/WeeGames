@@ -14,12 +14,23 @@ import {PieChart} from "../Piechart";
         
       render() {
         return <div className="col-md-10 content">
-                <h2>Statistics</h2>
-                <BarChart/>
-                    <div className="col-sm-12">  
+                <ul className="nav nav-tabs">
+                    <li className="active"><a data-toggle="tab" href="#home">Top 10 Genres</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Top 10 Visited</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Sales this month</a></li>
+                </ul>
+
+                <div className="tab-content">
+                    <div id="home" className="tab-pane fade in active">
+                        <BarChart/>
+                    </div>
+                    <div id="menu1" className="tab-pane fade">
                         <PieChart/>
+                    </div>
+                    <div id="menu2" className="tab-pane fade">
                         <LineChart/>
                     </div>
+                </div>
             </div>;
         }
 }
