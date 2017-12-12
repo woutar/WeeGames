@@ -33,6 +33,11 @@ export class AdminMenu extends React.Component<RouteComponentProps<{}>, AdminMen
                     Games
                 </a>
             </li>
+            <li>
+                <a href="/admin/addGame">
+                    Add game
+                </a>
+            </li>
         </ul>;
     }
 }

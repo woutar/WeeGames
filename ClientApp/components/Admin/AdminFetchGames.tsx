@@ -42,18 +42,18 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
     onAfterDeleteRow(rowKeys: any) {
         alert('The rowkey you drop: ' + rowKeys);
         
-        fetch('game/deletegame',{
-            method : 'POST',
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id : rowKeys
-            })
+        // fetch('game/deletegame',{
+        //     method : 'POST',
+        //     headers:{
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         // id : rowKeys
+        //     })
             
-        })
-        .then(response => response.json() as Promise<Models.Game>);
+        // })
+        // .then(response => response.json() as Promise<Models.Game>);
         
     }
   

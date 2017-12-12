@@ -14,6 +14,8 @@ import { Login } from './components/Login';
 import { AdminMenu } from './components/Admin/AdminMenu'
 import { AdminFetchGames } from './components/Admin/AdminFetchGames'
 import { Statistics } from './components/Admin/Statistics';
+import { InsertGame } from './components/Admin/InsertGame';
+
 
 export const routes = <Layout>
     <Route exact path='/' component={ FetchAllPlatforms } />
@@ -32,6 +34,6 @@ export const routes = <Layout>
     <Route path='/admin/' component={ AdminMenu } />
     <Route path='/admin/statistics' component={ Statistics } />
     <Route path='/admin/games' component={ AdminFetchGames } />
-
+    <Route path='/admin/addGame' component={ InsertGame } />
 </Layout>; 
 
