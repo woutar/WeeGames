@@ -66,12 +66,17 @@ ul.nav.nav-pills.nav-stacked {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.checkout-wrapper .total {
-    font-size: 25px;
-    height: 34px;
-    line-height: 34px;
+.checkout-wrapper .checkout-info {
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
 }
-.checkout-btn {
+
+.checkout-btn:hover {
+    text-decoration: none!important;
+}
+
+/* .checkout-btn {
     height: 34px;
     padding: 0 20px 0 50px;
     line-height: 34px;
@@ -88,7 +93,7 @@ ul.nav.nav-pills.nav-stacked {
     text-decoration: none;
     color: #000;
     background: #E58300 url("../css/images/cart-hover.png") 10px center no-repeat;
-}
+} */
 
 /* products */
 .product.img {
@@ -101,6 +106,13 @@ ul.nav.nav-pills.nav-stacked {
     margin: 0 10px;
     text-align: center;
 }
+
+.empty-cart-big {
+    height: 500px;
+    width: 100%;
+    background: transparent url("../css/images/shoppingcart-big.png") center no-repeat;
+}
+
 /* Prevent spinners on input type number */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

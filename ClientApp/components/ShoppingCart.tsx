@@ -41,7 +41,13 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
 
     public render() {
         if(localStorage.getItem("ShoppingCart") == null){
-            return <h2>Your shoppingcart is empty!</h2>
+            return <div className="col-md-10 content text-center">
+            <h2>Shopping cart</h2>
+                <div className="empty-cart-big"></div>
+                <span>You don't have any items in your cart</span>
+                <hr />
+                <a href="shoppingcart/#" className="pull-center"><button type="button" className="btn btn-warning btn-lg">Continue shopping</button></a>
+            </div>
         }
         return <div className="col-md-10 content">
         <h2>Shoppingcart</h2>
@@ -50,7 +56,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                 <Link to={"/game/" + game.id}>
                     <div className="row">
                         <div className="col-sm-3">
-                            <img src={game.image} />
+                            <img className="img-thumbnail" src={game.image} />
                         </div>
                         <div className="col-sm-9">
                             <div className="row">
@@ -92,12 +98,32 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
 
         <div className="checkout-wrapper">
             <div className="row">
-                <div className="col-sm-push-3 col-sm-push-3"></div>
-                <div className="col-sm-6">
-                    <span className="total">Grandtotal: &euro; {Math.round(this.state.total * 100) / 100}</span>
+                <div className="col-md-6">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="checkout-info"></div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <a href="/" className="checkout-btn"><button type="button" className="btn btn-warning btn-md btn-block">Continue shopping</button></a>
+                        </div>
+                    </div>
                 </div> 
-                <div className="col-sm-push-3 col-sm-3">
-                    <a href="shoppingcart/#" className="checkout-btn">Checkout</a>
+                <div className="col-md-6">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="checkout-info">
+                                <span className="pull-left">Grandtotal:</span>
+                                <span className="pull-right">&euro; {Math.round(this.state.total * 100) / 100} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <a href="/shoppingcart/#" className="checkout-btn"><button type="button" className="btn btn-warning btn-md btn-block">Checkout</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
