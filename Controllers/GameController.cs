@@ -41,14 +41,26 @@ namespace WeeGames.Controllers
             return Ok(game);
         }
 
-        [HttpPost("DeleteGame")]
-        public void Register([FromBody]JObject value)
+        // [HttpDelete("DeleteGame/:id")]
+        // public void DeleteGame([FromBody]JObject value)
+        // {
+        //     Game[] posted = value.ToObject<Game>(); 
+        //     _context.Users.Add(posted);
+        //     _context.SaveChanges();
+
+        // } 
+
+        [HttpPost("AddGame")]
+        public Game AddGame([FromBody]JObject value)
         {
-            User posted = value.ToObject<User>(); 
-            _context.Users.Add(posted);
+            var maxValue = _context.Games.Max(x => x.Id);
+            Game posted = value.ToObject<Game>(); 
+            posted.Id = maxValue + 1;
+            _context.Games.Add(posted);
             _context.SaveChanges();
 
-        }     
+            return posted;
+        }          
 
     }
 }
