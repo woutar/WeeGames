@@ -5,38 +5,98 @@ import * as Models from "../Model"
 
 
 
-export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {games : any[], total : number}> {
+export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {games : Models.ShoppingcartGame[], total : number}> {
     constructor(){
         super();
         let stored_games = localStorage.getItem("ShoppingCart")
         if(stored_games != null){
             let inventory_games = JSON.parse(stored_games);
-            let duplicates :any = {};
-            let amounts :any = {}; 
-            inventory_games = inventory_games.filter(function(currentObject : any){
-                if (currentObject.id in duplicates) {
-                    amounts[currentObject.id] += 1;
-                    return false;
-                } else {
-                    duplicates[currentObject.id] = true;
-                    amounts[currentObject.id] = 1;
-                    return true;
-                }
-            });
 
-            
-            // Add the duplicate amount of games to the games collection
-            // Also add the total price
             var total = 0;
             var i;
             for(i = 0; i < inventory_games.length; i++){
-                var amount = inventory_games[i]['amount'] = amounts[inventory_games[i].id];
-                total += (amount * inventory_games[i].price);
+                total += (inventory_games[i].amount * inventory_games[i].price);
             }
-
-            //set the state equal to the collection of games
+            
+            //set the state equal to the collection of games and total price
             this.state = {games: inventory_games, total : total};
         }    
+
+        //Bind functions
+        this.handleChange = this.handleChange.bind(this);
+        this.addAmount = this.addAmount.bind(this);
+        this.removeAmount = this.removeAmount.bind(this);
+        this.updateCart = this.updateCart.bind(this);
+    }
+
+    handleChange(event : any, id : number){
+        this.updateCart("handleChange", event.target.value, id);
+    }
+
+    addAmount(id : number){
+        this.updateCart("addAmount", 1, id);
+    }
+
+    removeAmount(id : number){
+        this.updateCart("removeAmount", 1, id);
+    }
+
+    removeFromCart(id: number){
+        this.updateCart("removeFromCart", 0, id);
+    }
+
+    updateCart(name:string, amount:number, id:number){
+        var oldcart = localStorage.getItem("ShoppingCart");
+        if(oldcart != null){
+            var shoppingcart = JSON.parse(oldcart);
+            if(name == "handleChange"){
+                shoppingcart = shoppingcart.filter(function(currentObject : any){
+                    if (currentObject.id == id && amount > 0 && amount < 100){
+                        return currentObject.amount = amount;
+                    }else{
+                        return true;
+                    }
+                });
+            }
+            if(name == "addAmount"){
+                shoppingcart = shoppingcart.filter(function(currentObject : any){
+                    if (currentObject.id == id && currentObject.amount + 1 < 100){
+                        return currentObject.amount = + currentObject.amount + 1;
+                    }else{
+                        return true;
+                    }
+                });
+            }
+            if(name == "removeAmount"){
+                shoppingcart = shoppingcart.filter(function(currentObject : any){
+                    if (currentObject.id == id && currentObject.amount > 1){
+                        return currentObject.amount -= amount;
+                    }else{
+                        return true;
+                    }
+                });
+            }
+            if(name == "removeFromCart"){
+                shoppingcart = shoppingcart.filter(function(currentObject : any){
+                    if (currentObject.id == id){
+                        return currentObject.id !== id;
+                    }else{
+                        return true;
+                    }
+                });
+            }
+            if(shoppingcart && shoppingcart.length){
+                localStorage.setItem("ShoppingCart", JSON.stringify(shoppingcart));
+            }else{
+                localStorage.removeItem("ShoppingCart");
+            }
+            var total = 0;
+            var i;
+            for(i = 0; i < shoppingcart.length; i++){
+                total += (shoppingcart[i].amount * shoppingcart[i].price);
+            }
+            this.setState({games : shoppingcart, total : total})
+        }
     }
 
     public render() {
@@ -47,8 +107,8 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
         <h2>Shoppingcart</h2>
         {this.state.games.map(game =>
             <div className="row product" key={ game.id }>
-                <Link to={"/game/" + game.id}>
                     <div className="row">
+                    <Link to={"/game/" + game.id}>
                         <div className="col-sm-3">
                             <img src={game.image} />
                         </div>
@@ -75,18 +135,20 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Amount: </span><span className="price">{ game.amount }</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-sm-12">
                                     <span className="tag">Subtotal: </span><span className="price">&euro; { (game.amount * game.price).toFixed(2) }</span>
                                 </div>
-                            </div>
+                            </div>    
                             
                         </div>
+                        </Link>
+                        <div className="col-sm-3 no-left-margin">
+                            <br></br>
+                            <button type="button" className="btn btn-danger" onClick={e => this.removeAmount(game.id)}>-</button>
+                            <input type="number" max="999" min="1" className="amount" value={game.amount} onChange={e => this.handleChange(e,game.id)}/>
+                            <button type="button" className="btn btn-success" onClick={e => this.addAmount(game.id)}>+</button>
+                            <button type="button" className="btn btn-default buy-button" onClick={e => this.removeFromCart(game.id)}>Remove</button>
+                        </div>    
                     </div>
-                </Link>
                 </div>
         )}
 
@@ -94,7 +156,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
             <div className="row">
                 <div className="col-sm-push-3 col-sm-push-3"></div>
                 <div className="col-sm-6">
-                    <span className="total">Grandtotal: &euro; {Math.round(this.state.total * 100) / 100}</span>
+                    <span className="total">Grandtotal: &euro; {this.state.total.toFixed(2)}</span>
                 </div> 
                 <div className="col-sm-push-3 col-sm-3">
                     <a href="shoppingcart/#" className="checkout-btn">Checkout</a>

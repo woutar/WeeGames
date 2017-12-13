@@ -107,6 +107,9 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+.no-left-margin{
+    margin-left: 0px;
+}
 
 .buy-button{
     margin-top: 15px;

@@ -10,6 +10,19 @@ export type Game ={
     image:string
 }
 
+export type ShoppingcartGame ={
+    id:number,
+    title:string,
+    category:Category,
+    price:number,
+    platform:Platform,
+    description:string,
+    releasedate:number,
+    publisher:string,
+    image:string,
+    amount:number
+}
+
 export type Category ={
     id:number,
     name:string,
