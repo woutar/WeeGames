@@ -37,14 +37,33 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
             sortName,
             sortOrder
         });
+    }
+
+    onAfterDeleteRow(rowKeys: any) {
+        alert('The rowkey you drop: ' + rowKeys);
+        
+        // fetch('game/deletegame',{
+        //     method : 'POST',
+        //     headers:{
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         // id : rowKeys
+        //     })
+            
+        // })
+        // .then(response => response.json() as Promise<Models.Game>);
         
     }
-    
+  
+
 
     public render() {
         const options = {
             sortName: this.state.sortName,
             sortOrder: this.state.sortOrder,
+            afterDeleteRow: this.onAfterDeleteRow,  // A hook for after dropping rows.
           };
 
           const selectRowProp = {
@@ -52,9 +71,9 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
           };
 
 
-        return <div>
+        return <div className="col-md-10 content">
             
-        <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } search={true}  options={ options} hover condensed height='800' scrollTop={ 'Bottom' }>
+        <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } search={true}  options={ options} height='auto' hover pagination>
             <TableHeaderColumn dataField='id' dataSort isKey width="125">Product ID</TableHeaderColumn>
             <TableHeaderColumn dataField='title' dataSort>Product Name</TableHeaderColumn>
             <TableHeaderColumn dataField='platform' dataSort width="140">Platform</TableHeaderColumn>
@@ -73,4 +92,3 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
     }
 
 }
-

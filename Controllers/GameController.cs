@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WeeGames.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WeeGames.Controllers
 {
@@ -38,6 +40,27 @@ namespace WeeGames.Controllers
             if(game == null) return NotFound();
             return Ok(game);
         }
+
+        // [HttpDelete("DeleteGame/:id")]
+        // public void DeleteGame([FromBody]JObject value)
+        // {
+        //     Game[] posted = value.ToObject<Game>(); 
+        //     _context.Users.Add(posted);
+        //     _context.SaveChanges();
+
+        // } 
+
+        [HttpPost("AddGame")]
+        public Game AddGame([FromBody]JObject value)
+        {
+            var maxValue = _context.Games.Max(x => x.Id);
+            Game posted = value.ToObject<Game>(); 
+            posted.Id = maxValue + 1;
+            _context.Games.Add(posted);
+            _context.SaveChanges();
+
+            return posted;
+        }          
 
     }
 }

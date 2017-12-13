@@ -44,7 +44,7 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                 <Link to={"/game/" + game.id}>
                     <div className="row">
                         <div className="col-sm-3">
-                            <img src={game.image} />
+                            <img className="img-thumbnail" src={game.image} />
                         </div>
                         <div className="col-sm-9">
                             <div className="row">
