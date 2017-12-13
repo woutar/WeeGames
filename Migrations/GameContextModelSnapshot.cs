@@ -150,31 +150,17 @@ namespace WeeGames.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Wishlist");
-                });
-
-            modelBuilder.Entity("WeeGames.Models.WishlistItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<int>("GameId");
 
-                    b.Property<int>("WishlistId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
 
-                    b.HasIndex("WishlistId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("WishlistItem");
+                    b.ToTable("Wishlist");
                 });
 
             modelBuilder.Entity("WeeGames.Models.Game", b =>
@@ -213,22 +199,14 @@ namespace WeeGames.Migrations
 
             modelBuilder.Entity("WeeGames.Models.Wishlist", b =>
                 {
-                    b.HasOne("WeeGames.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WeeGames.Models.WishlistItem", b =>
-                {
                     b.HasOne("WeeGames.Models.Game", "Game")
                         .WithMany()
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("WeeGames.Models.Wishlist", "Wishlist")
+                    b.HasOne("WeeGames.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("WishlistId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

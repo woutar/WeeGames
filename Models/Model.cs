@@ -13,7 +13,6 @@ public class GameContext : DbContext {
         public DbSet<Order> Orders {get; set;}
         public DbSet<OrderItem> OrderItem {get; set;}
         public DbSet<Wishlist> Wishlist {get; set;}
-        public DbSet<WishlistItem> WishlistItem {get; set;}
         public DbSet<User> Users {get; set;}
 
         public GameContext(DbContextOptions<GameContext> options)
@@ -68,18 +67,9 @@ public class GameContext : DbContext {
         public int Id {get;set;}
         public int UserId {get;set;}
         public User User {get;set;}
-        
-
-    }
-
-    public class WishlistItem{
-        public int Id {get;set;}
         public int GameId {get;set;}
         public Game Game {get;set;}
-        public int WishlistId {get;set;}
-        public Wishlist Wishlist {get;set;}
     }
-
 
     public class User{
         public int Id {get;set;}

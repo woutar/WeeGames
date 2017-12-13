@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace WeeGames.Migrations
 {
-    public partial class InitDB : Migration
+    public partial class WeegameDbUpdatedWishlist : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,11 +114,18 @@ namespace WeeGames.Migrations
                 {
                     Id = table.Column<int>(type: "int4", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    GameId = table.Column<int>(type: "int4", nullable: false),
                     UserId = table.Column<int>(type: "int4", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Wishlist", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Wishlist_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Wishlist_Users_UserId",
                         column: x => x.UserId,
@@ -154,32 +161,6 @@ namespace WeeGames.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "WishlistItem",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int4", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    GameId = table.Column<int>(type: "int4", nullable: false),
-                    WishlistId = table.Column<int>(type: "int4", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WishlistItem", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WishlistItem_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_WishlistItem_Wishlist_WishlistId",
-                        column: x => x.WishlistId,
-                        principalTable: "Wishlist",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Games_CategoryId",
                 table: "Games",
@@ -206,19 +187,14 @@ namespace WeeGames.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Wishlist_UserId",
+                name: "IX_Wishlist_GameId",
                 table: "Wishlist",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WishlistItem_GameId",
-                table: "WishlistItem",
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WishlistItem_WishlistId",
-                table: "WishlistItem",
-                column: "WishlistId");
+                name: "IX_Wishlist_UserId",
+                table: "Wishlist",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -227,7 +203,7 @@ namespace WeeGames.Migrations
                 name: "OrderItem");
 
             migrationBuilder.DropTable(
-                name: "WishlistItem");
+                name: "Wishlist");
 
             migrationBuilder.DropTable(
                 name: "Orders");
@@ -236,16 +212,13 @@ namespace WeeGames.Migrations
                 name: "Games");
 
             migrationBuilder.DropTable(
-                name: "Wishlist");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Platforms");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }
