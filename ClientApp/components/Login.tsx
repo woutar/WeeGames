@@ -10,7 +10,7 @@ interface userState{
     user : Models.User | '';
 }       
 
-export class Login extends React.Component<RouteComponentProps<{}>, userState> {
+export class Login extends React.Component<{}, userState> {
     constructor(){
         super();
 
@@ -70,9 +70,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
             window.location.href = "/";
         }
         return (
-        <div className="row">
-        <form onSubmit={this.handleSubmit}>
-            <div className="col-lg-4 col-lg-offset-4">
+            <form onSubmit={this.handleSubmit}>
                 <h2>Login</h2>
                 <div className="form-group">
                     <label>Email address</label>
@@ -87,9 +85,8 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
                 </div>
             
                 <input type="submit" className="btn btn-default"  value="Submit"/>
-            </div>
-        </form>
-        </div>
+            
+            </form>
         )
     }
 }
