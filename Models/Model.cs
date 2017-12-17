@@ -51,7 +51,8 @@ public class GameContext : DbContext {
         public int UserId {get;set;}
         public User User {get;set;}
         public DateTime OrderDate {get;set;}
-
+        //payment method
+        //payment method info (welke bank)(kaart nummer)
     }
 
     public class OrderItem{

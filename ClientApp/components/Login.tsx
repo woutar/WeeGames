@@ -10,7 +10,7 @@ interface userState{
     user : Models.User | '';
 }       
 
-export class Login extends React.Component<{}, userState> {
+export class Login extends React.Component<{location : string}, userState> {
     constructor(){
         super();
 
@@ -51,9 +51,8 @@ export class Login extends React.Component<{}, userState> {
             this.setState({ user: data });
             if(this.state.user != '')
             {
-                alert("You are logged in " + this.state.user.firstname);
                 sessionStorage.user = JSON.stringify(this.state.user)
-                window.location.href = "/user";
+                window.location.href = "/" + this.props.location;
             }
         });
     }
