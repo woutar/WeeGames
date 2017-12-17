@@ -12,6 +12,7 @@ interface FetchAllGamesState {
     sortName: undefined;
     sortOrder: undefined;
     mode: any;
+    cellEdit: any;
 }
 
 export class AdminFetchGames extends React.Component<RouteComponentProps<any>, FetchAllGamesState>{
@@ -22,6 +23,7 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
                     sortName: undefined,  
                     sortOrder: undefined,
                     mode: 'checkbox',
+                    cellEdit: 'click',
                 };
 
 
@@ -56,6 +58,23 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
         // .then(response => response.json() as Promise<Models.Game>);
         
     }
+
+    onAfterSaveCell(row: any, cellName: any, cellValue: any) {
+        alert(`Save cell ${cellName} with value ${cellValue}`);
+      
+        let rowStr = '';
+        for (const prop in row) {
+          rowStr += row[prop] + '\n';
+        }
+      
+        alert('The whole row :\n' + rowStr);
+      }
+      
+    onBeforeSaveCell(row: any, cellName: any, cellValue: any) {
+    // You can do any validation on here for editing value,
+    // return false for reject the editing
+    return true;
+    }
   
 
 
@@ -70,10 +89,17 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
             mode: this.state.mode
           };
 
+          const cellEditProp = {
+            mode: this.state.cellEdit,
+            blurToSave: true,
+            beforeSaveCell: this.onBeforeSaveCell, // a hook for before saving cell
+            afterSaveCell: this.onAfterSaveCell  // a hook for after saving cell
+          };
+
 
         return <div className="col-md-10 content">
             
-        <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } search={true}  options={ options} height='auto' hover pagination>
+        <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } cellEdit={ cellEditProp } search={true}  options={ options} height='auto' hover pagination>
             <TableHeaderColumn dataField='id' dataSort isKey width="125">Product ID</TableHeaderColumn>
             <TableHeaderColumn dataField='title' dataSort>Product Name</TableHeaderColumn>
             <TableHeaderColumn dataField='platform' dataSort width="140">Platform</TableHeaderColumn>

@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace WeeGames.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WishListController : Controller
     {
         private GameContext _context;
@@ -21,6 +21,8 @@ namespace WeeGames.Controllers
         }
 
         [HttpGet("GetAll")]
-        public WishlistGame[] GetAll(){}
-
-        
+        public Game[] GetAll(){
+            return _context.Games.ToArray();
+        }
+    }
+}
