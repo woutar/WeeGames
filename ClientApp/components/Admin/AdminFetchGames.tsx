@@ -101,8 +101,7 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
             
         <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } cellEdit={ cellEditProp } search={true}  options={ options} height='auto' hover pagination>
             <TableHeaderColumn dataField='id' dataSort isKey width="125">Product ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='title' dataSort>Product Name</TableHeaderColumn>
-            <TableHeaderColumn dataField='platform' dataSort width="140">Platform</TableHeaderColumn>
+            <TableHeaderColumn dataField='title' dataSort width="200">Product Name</TableHeaderColumn>
             <TableHeaderColumn dataField='price' dataSort width="155"
              filter={ { 
                 type: 'NumberFilter', 
@@ -110,8 +109,9 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
                 numberComparators: ['<=', '>']
               } }
             >Product Price</TableHeaderColumn>
-            <TableHeaderColumn dataField='publisher' dataSort>Publisher</TableHeaderColumn>
-
+            <TableHeaderColumn dataField='publisher' dataSort width="200">Publisher</TableHeaderColumn>
+            <TableHeaderColumn dataField='releasedate' dataSort width="140">Release Year</TableHeaderColumn>
+            <TableHeaderColumn dataField='description' dataSort width="600">Description</TableHeaderColumn>
         </BootstrapTable>
 
         </div>;
