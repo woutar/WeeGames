@@ -75,6 +75,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>,CheckoutIn
                         <h2 className="customer">
                             I'm an existing user
                         </h2>
+                        <br/>
                         <Login location={"checkout"}/>
                     </div>
                 </div>
@@ -89,7 +90,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>,CheckoutIn
 
                     <div className="row">
                         <div className="col-lg-12">
-                            <hr />
+                            <br/>
                             <span>I'd like to register and continue the order</span><br />
                             <span className="checkout-info">
                                 Registered users can save their delivery details and view their order history.
