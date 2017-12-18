@@ -83,7 +83,7 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
         return (
         <div className="row">
         <form method="post" onSubmit={this.handleSubmit}>
-            <div className="col-lg-3"/>
+            <div className="col-lg-1"/>
             <div className="col-lg-6">
                 <h2>Create game</h2>
                 <div className="form-group">
