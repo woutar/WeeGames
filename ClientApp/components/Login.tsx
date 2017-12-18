@@ -70,7 +70,6 @@ export class Login extends React.Component<{location : string}, userState> {
         }
         return (
             <form onSubmit={this.handleSubmit}>
-                <h2>Login</h2>
                 <div className="form-group">
                     <label>Email address</label>
                     <input name="userEmail" type="email" className="form-control" value={this.state.userEmail } minLength={10} maxLength={64}

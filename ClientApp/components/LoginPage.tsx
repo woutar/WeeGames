@@ -15,6 +15,7 @@ export class LoginPage extends React.Component<RouteComponentProps<{}>> {
 
         return <div className="row">
                 <div className="col-lg-4 col-lg-offset-4">
+                <h2>Login</h2>
                 <Login location={"user"}/>
                 </div>
         </div>
