@@ -28,18 +28,18 @@ namespace WeeGames.Controllers
         }
         
         [HttpPost("AddOrder")]
-        public Order AddOrder([FromBody]JObject value)
+        public Order AddOrder([FromBody]JObject order)
         {
-            Order order = value.ToObject<Order>(); 
-            // OrderItem[] orderItems = order.OrderItems.ToObject<OrderItem>();
-            foreach (OrderItem item in order.OrderItems){
-                _context.OrderItem.Add(item);
-                _context.SaveChanges();
-            }
-            _context.Orders.Add(order);
-            _context.SaveChanges();
+            Order posted = order.ToObject<Order>(); 
+            // // OrderItem[] orderItems = order.OrderItems.ToObject<OrderItem>();
+            // foreach (OrderItem item in order.OrderItems){
+            //     _context.OrderItem.Add(item);
+            //     _context.SaveChanges();
+            // }
+            // _context.Orders.Add(order);
+            // _context.SaveChanges();
 
-            return order;
+            return posted;
         }      
     }
 }
