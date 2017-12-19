@@ -164,6 +164,6 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
             </div>
             </form>
         </div>
-        )
+        );
     }
 }

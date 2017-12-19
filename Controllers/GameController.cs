@@ -25,6 +25,7 @@ namespace WeeGames.Controllers
             var games = from g in _context.Games
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id)
                 let platform = _context.Platforms.Where(p => p.Id == g.PlatformId)
+                orderby g.Id ascending
                 select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description, Publisher = g.Publisher, Releasedate = g.Releasedate, Image = g.Image};
                 return games.ToArray();
         }
@@ -41,14 +42,22 @@ namespace WeeGames.Controllers
             return Ok(game);
         }
 
-        // [HttpDelete("DeleteGame/:id")]
-        // public void DeleteGame([FromBody]JObject value)
-        // {
-        //     Game[] posted = value.ToObject<Game>(); 
-        //     _context.Users.Add(posted);
-        //     _context.SaveChanges();
+        [HttpPost("DeleteGame")]
+        public void DeleteGame([FromBody]JArray value)
+        {
+            JArray rows = value;
+            int length = rows.Count;
 
-        // } 
+            for(var i = 0; i < length; i++){
+                var itemToDelete = (from g in _context.Games
+                                    where g.Id == rows[i].ToObject<int>()
+                                    select g).FirstOrDefault();
+                if(itemToDelete != null){
+                    _context.Games.Remove(itemToDelete);
+                    _context.SaveChanges();    
+                }
+            }
+        } 
 
         [HttpPost("AddGame")]
         public Game AddGame([FromBody]JObject value)
@@ -60,7 +69,69 @@ namespace WeeGames.Controllers
             _context.SaveChanges();
 
             return posted;
-        }          
+        }  
 
+        [HttpPost("UpdateFullGame")]
+        public void UpdateFullGame([FromBody]JObject value)
+        {
+            Game posted = value.ToObject<Game>(); 
+
+            var query =
+                from g in _context.Games
+                where g.Id == posted.Id
+                select g;
+
+            foreach (Game g in query)
+            {
+                g.Title = posted.Title;
+                g.Price = posted.Price;
+                g.Description = posted.Description;
+                g.CategoryId = posted.CategoryId;
+                g.PlatformId = posted.PlatformId;
+                g.Image = posted.Image;
+                g.Publisher = posted.Publisher;
+                g.Releasedate = posted.Releasedate;
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+        }
+
+        [HttpPost("UpdateGame")]
+        public void UpdateGame([FromBody]JObject value)
+        {
+            Game posted = value.ToObject<Game>(); 
+
+            var query =
+                from g in _context.Games
+                where g.Id == posted.Id
+                select g;
+
+            foreach (Game g in query)
+            {
+                g.Title = posted.Title;
+                g.Price = posted.Price;
+                g.Description = posted.Description;
+                g.Publisher = posted.Publisher;
+                g.Releasedate = posted.Releasedate;
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+        }
     }
 }

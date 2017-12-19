@@ -14,6 +14,7 @@ import { AdminMenu } from './components/Admin/AdminMenu'
 import { AdminFetchGames } from './components/Admin/AdminFetchGames'
 import { Statistics } from './components/Admin/Statistics';
 import { InsertGame } from './components/Admin/InsertGame';
+import { UpdateGame } from './components/Admin/UpdateGame';
 
 
 export const routes = <Layout>
@@ -34,5 +35,6 @@ export const routes = <Layout>
     <Route path='/admin/statistics' component={ Statistics } />
     <Route path='/admin/games' component={ AdminFetchGames } />
     <Route path='/admin/addGame' component={ InsertGame } />
+    <Route path='/admin/updategame/:id' component={UpdateGame} />
 </Layout>; 
 
