@@ -80,10 +80,12 @@ export class Game extends React.Component<GameProps, {amount : number, cartgame 
             arr = arr.filter(function(currentObject : any){
                 if (currentObject.id == cartgame.id){
                     newgame = false;
-                    if(cartgame.amount + currentObject.amount < 100){
-                        return currentObject.amount += cartgame.amount;  
+                    let newamount = currentObject.amount = + currentObject.amount + cartgame.amount; 
+                    if(newamount < 100){
+                        return currentObject.amount = newamount;  
+                    }else{
+                        return currentObject.amount = 99;
                     }
-                    return  currentObject.amount = 99;
                 }else{
                     return true;
                 }

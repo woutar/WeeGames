@@ -60,7 +60,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
             }
             if(name == "addAmount"){
                 shoppingcart = shoppingcart.filter(function(currentObject : any){
-                    if (currentObject.id == id && currentObject.amount + 1 < 100){
+                    if (currentObject.id == id && currentObject.amount < 99){
                         return currentObject.amount = + currentObject.amount + 1;
                     }else{
                         return true;
@@ -183,7 +183,7 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <a href="/shoppingcart/#" className="checkout-btn"><button type="button" className="btn btn-warning btn-md btn-block">Checkout</button></a>
+                            <a href="/checkout" className="checkout-btn"><button type="button" className="btn btn-warning btn-md btn-block">Checkout</button></a>
                         </div>
                     </div>
                 </div>

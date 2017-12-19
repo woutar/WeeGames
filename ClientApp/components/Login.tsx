@@ -10,7 +10,7 @@ interface userState{
     user : Models.User | '';
 }       
 
-export class Login extends React.Component<RouteComponentProps<{}>, userState> {
+export class Login extends React.Component<{location : string}, userState> {
     constructor(){
         super();
 
@@ -51,9 +51,8 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
             this.setState({ user: data });
             if(this.state.user != '')
             {
-                alert("You are logged in " + this.state.user.firstname);
                 sessionStorage.user = JSON.stringify(this.state.user)
-                window.location.href = "/user";
+                window.location.href = "/" + this.props.location;
             }
         });
     }
@@ -70,10 +69,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
             window.location.href = "/";
         }
         return (
-        <div className="row">
-        <form onSubmit={this.handleSubmit}>
-            <div className="col-lg-4 col-lg-offset-4">
-                <h2>Login</h2>
+            <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label>Email address</label>
                     <input name="userEmail" type="email" className="form-control" value={this.state.userEmail } minLength={10} maxLength={64}
@@ -85,11 +81,8 @@ export class Login extends React.Component<RouteComponentProps<{}>, userState> {
                     <input name="userPassword" type="password" className="form-control" value={this.state.userPassword} 
                     onChange={this.handlePasswordChange} minLength={4} maxLength={30}  placeholder="******" required/>
                 </div>
-            
-                <input type="submit" className="btn btn-default"  value="Submit"/>
-            </div>
-        </form>
-        </div>
+                <input type="submit" className="btn btn-default"  value="Login" />
+            </form>
         )
     }
 }

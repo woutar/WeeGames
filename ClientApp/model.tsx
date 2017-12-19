@@ -23,6 +23,15 @@ export type ShoppingcartGame ={
     amount:number
 }
 
+export type ShippingInfo ={
+    email : string,
+    firstname : string,
+    lastname : string,
+    address : string,
+    zipcode : string,
+    country : string
+}
+
 export type Category ={
     id:number,
     name:string,

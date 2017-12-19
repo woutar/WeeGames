@@ -11,9 +11,10 @@ using WeeGames.Models;
 namespace WeeGames.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20171218102850_NewFieldsToOrders")]
+    partial class NewFieldsToOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,8 +73,6 @@ namespace WeeGames.Migrations
                     b.Property<DateTime>("OrderDate");
 
                     b.Property<string>("Paymentmethod");
-
-                    b.Property<string>("Status");
 
                     b.Property<int>("UserId");
 
@@ -198,7 +197,7 @@ namespace WeeGames.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WeeGames.Models.Order", "Order")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

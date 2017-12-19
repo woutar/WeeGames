@@ -51,7 +51,10 @@ public class GameContext : DbContext {
         public int UserId {get;set;}
         public User User {get;set;}
         public DateTime OrderDate {get;set;}
-
+        public string Paymentmethod {get; set;}
+        public string Methodinfo {get; set;}
+        public string Status {get; set;}
+        public List<OrderItem> OrderItems {get;set;}
     }
 
     public class OrderItem{
