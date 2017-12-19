@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WeeGames.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WeeGames
 {
@@ -22,6 +24,8 @@ namespace WeeGames
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<GameContext> (
+                 opt => opt.UseNpgsql(@"Host=localhost;Database=WeeGamesDb;Username=postgres;Password=user"));
             services.AddMvc();
         }
 
