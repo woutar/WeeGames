@@ -70,7 +70,6 @@ export class Login extends React.Component<{location : string}, userState> {
         }
         return (
             <form onSubmit={this.handleSubmit}>
-                <h2>Login</h2>
                 <div className="form-group">
                     <label>Email address</label>
                     <input name="userEmail" type="email" className="form-control" value={this.state.userEmail } minLength={10} maxLength={64}
@@ -82,9 +81,7 @@ export class Login extends React.Component<{location : string}, userState> {
                     <input name="userPassword" type="password" className="form-control" value={this.state.userPassword} 
                     onChange={this.handlePasswordChange} minLength={4} maxLength={30}  placeholder="******" required/>
                 </div>
-            
-                <input type="submit" className="btn btn-default"  value="Submit"/>
-            
+                <input type="submit" className="btn btn-default"  value="Login" />
             </form>
         )
     }

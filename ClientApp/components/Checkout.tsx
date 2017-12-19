@@ -70,56 +70,49 @@ export class Checkout extends React.Component<RouteComponentProps<{}>,CheckoutIn
     renderNotAuthForm(){
         return <div>
             <div className="row">
-                <div className="col-lg-4">
-                <Login location={"checkout"}/>
+                <div className="col-lg-6 checkout-left">
+                    <div className="col-lg-10">
+                        <h2 className="customer">
+                            I'm an existing user
+                        </h2>
+                        <br/>
+                        <Login location={"checkout"}/>
+                    </div>
                 </div>
-                <div className="col-lg-2" />
-                <form onSubmit={this.onInfoFormSumbit}>
-                    <div className="col-lg-5">
-                        <h2>Enter contact information</h2>
-                            <div className="form-group">
-                                <label>Email address</label>
-                                <input name="email" id="email" type="email" className="form-control" placeholder="Example@example.com" required 
-                                minLength={10} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"/>
-                            </div>
-                            <div className="form-group">
-                                <label>Firstname</label>
-                                <input name="firstname" id="firstname" type="text" className="form-control"  placeholder="Enter Firstname" required 
-                                onChange ={this.handleInputChange} maxLength={30}/>
-                            </div>
-                            <div className="form-group">
-                                <label>Lastname</label>
-                                <input name="lastname" id="lastname" type="text" className="form-control"  placeholder="Enter Lastname" required
-                                onChange ={this.handleInputChange} maxLength={30}/>
-                            </div>
-                            <div className="form-group">
-                                <label>Address</label>
-                                <input name="address" id="address" type="text" className="form-control"  placeholder="Harborstreet 23 London" required
-                                onChange ={this.handleInputChange} minLength={10} maxLength={50}/>
-                            </div>
-                            <div className="form-group">
-                                <label>Zipcode</label>
-                                <input name="zipcode" id="Zipcode" type="text" className="form-control"  placeholder="0000AA" required
-                                onChange ={this.handleInputChange} pattern= "[0-9]{4}[A-Z]{2}"/>
-                            </div>
-                            <div className="form-group">
-                                <label>Country</label>
-                                <br/>
-                                <select name="country" id="country" className="form-control" value={this.state.ShippingInfo.country} onChange ={this.handleInputChange}>
-                                    <option value="Netherlands">Netherlands</option>
-                                    <option value="France">France</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="Belgium">Belgium</option>
-                                </select>
-                            </div>
+                <div className="col-lg-6">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <h2 className="customer">
+                                I'm a new customer
+                            </h2>
+                        </div>
                     </div>
-                    <br></br>
-                    <br></br>
-                    <div className="col-md-4 col-md-offset-4 button-margin-top">
-                        <input type="submit" className="btn checkout-btn btn-warning btn-md btn-block"  value="Checkout"/>
+
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <br/>
+                            <span>I'd like to register and continue the order</span><br />
+                            <span className="checkout-info">
+                                Registered users can save their delivery details and view their order history.
+                            </span><br/><br/>
+                            <input type="submit" className="btn checkout-btn btn-warning btn-md pull-right" value="Continue"/>
+                        </div>
                     </div>
-                </form>
+                    
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <hr />
+                            <span>I'd like to order without registering</span><br /><br/>
+                            <input type="submit" className="btn checkout-btn btn-warning btn-md pull-right" value="Continue"/>
+                        </div>
+                    </div>
+
+                    {/* <form onSubmit={this.onInfoFormSumbit}>
+                        <div className="col-md-4 col-md-offset-4 button-margin-top">
+                            <input type="submit" className="btn checkout-btn btn-warning btn-md"  value="Continue"/>
+                        </div>
+                    </form> */}
+                </div>
             </div>
         </div>
     }

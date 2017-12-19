@@ -76,6 +76,22 @@ ul.nav.nav-pills.nav-stacked {
     text-decoration: none!important;
 }
 
+.customer {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.checkout-info {
+    font-size: 12px;
+    color: #808080;
+}
+
+.checkout-left {
+    border-right: 1px solid #f7f7f7;
+}
+
 /* .checkout-btn {
     height: 34px;
     padding: 0 20px 0 50px;
