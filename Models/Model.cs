@@ -11,8 +11,8 @@ public class GameContext : DbContext {
         public DbSet<Category> Categories {get; set;}
         public DbSet<Platform> Platforms {get; set;}
         public DbSet<Order> Orders {get; set;}
-        public DbSet<OrderItem> OrderItem {get; set;}
-        public DbSet<Wishlist> Wishlist {get; set;}
+        public DbSet<OrderItem> OrderItems {get; set;}
+        public DbSet<Wishlist> Wishlists {get; set;}
         public DbSet<User> Users {get; set;}
 
         public GameContext(DbContextOptions<GameContext> options)
