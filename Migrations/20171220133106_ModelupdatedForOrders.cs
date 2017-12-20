@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace WeeGames.Migrations
 {
-    public partial class WeegameDbUpdatedWishlist : Migration
+    public partial class ModelupdatedForOrders : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,8 +14,7 @@ namespace WeeGames.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int4", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Name = table.Column<string>(type: "text", nullable: true)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 },
                 constraints: table =>
                 {
@@ -62,10 +61,10 @@ namespace WeeGames.Migrations
                 {
                     Id = table.Column<int>(type: "int4", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    CategoryId = table.Column<int>(type: "int4", nullable: false),
+                    CategoryId = table.Column<int>(type: "int4", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Image = table.Column<string>(type: "text", nullable: true),
-                    PlatformId = table.Column<int>(type: "int4", nullable: false),
+                    PlatformId = table.Column<int>(type: "int4", nullable: true),
                     Price = table.Column<double>(type: "float8", nullable: false),
                     Publisher = table.Column<string>(type: "text", nullable: true),
                     Releasedate = table.Column<int>(type: "int4", nullable: false),
@@ -79,13 +78,13 @@ namespace WeeGames.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Games_Platforms_PlatformId",
                         column: x => x.PlatformId,
                         principalTable: "Platforms",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,8 +93,11 @@ namespace WeeGames.Migrations
                 {
                     Id = table.Column<int>(type: "int4", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Methodinfo = table.Column<string>(type: "text", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "timestamp", nullable: false),
-                    UserId = table.Column<int>(type: "int4", nullable: false)
+                    Paymentmethod = table.Column<string>(type: "text", nullable: true),
+                    Status = table.Column<string>(type: "text", nullable: true),
+                    UserId = table.Column<int>(type: "int4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,7 +107,7 @@ namespace WeeGames.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,30 +137,30 @@ namespace WeeGames.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItem",
+                name: "OrderItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int4", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    GameId = table.Column<int>(type: "int4", nullable: false),
-                    OrderId = table.Column<int>(type: "int4", nullable: false),
+                    GameId = table.Column<int>(type: "int4", nullable: true),
+                    OrderId = table.Column<int>(type: "int4", nullable: true),
                     Quantity = table.Column<int>(type: "int4", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItem", x => x.Id);
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderItem_Games_GameId",
+                        name: "FK_OrderItems_Games_GameId",
                         column: x => x.GameId,
                         principalTable: "Games",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrderItem_Orders_OrderId",
+                        name: "FK_OrderItems_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -172,13 +174,13 @@ namespace WeeGames.Migrations
                 column: "PlatformId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_GameId",
-                table: "OrderItem",
+                name: "IX_OrderItems_GameId",
+                table: "OrderItems",
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_OrderId",
-                table: "OrderItem",
+                name: "IX_OrderItems_OrderId",
+                table: "OrderItems",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
@@ -200,7 +202,7 @@ namespace WeeGames.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "OrderItem");
+                name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "Wishlist");

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace WeeGames.Migrations
 {
-    public partial class StatusAddedToOrderTable : Migration
+    public partial class ModelupdatedForOrders2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Status",
-                table: "Orders",
+                name: "Name",
+                table: "Categories",
                 type: "text",
                 nullable: true);
         }
@@ -18,8 +18,8 @@ namespace WeeGames.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Status",
-                table: "Orders");
+                name: "Name",
+                table: "Categories");
         }
     }
 }

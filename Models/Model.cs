@@ -11,7 +11,7 @@ public class GameContext : DbContext {
         public DbSet<Category> Categories {get; set;}
         public DbSet<Platform> Platforms {get; set;}
         public DbSet<Order> Orders {get; set;}
-        public DbSet<OrderItem> OrderItem {get; set;}
+        public DbSet<OrderItem> OrderItems {get; set;}
         public DbSet<Wishlist> Wishlist {get; set;}
         public DbSet<User> Users {get; set;}
 
@@ -24,10 +24,8 @@ public class GameContext : DbContext {
         public int Id {get;set;}
         public string Title {get;set;}
         public double Price {get;set;}
-        public string Description {get;set;}
-        public int CategoryId {get;set;}   
+        public string Description {get;set;}  
         public Category Category {get;set;}
-        public int PlatformId {get;set;}
         public Platform Platform {get;set;}
         public string Image{get;set;}
         public int Releasedate {get;set;}
@@ -48,7 +46,6 @@ public class GameContext : DbContext {
 
     public class Order{
         public int Id {get;set;}
-        public int UserId {get;set;}
         public User User {get;set;}
         public DateTime OrderDate {get;set;}
         public string Paymentmethod {get; set;}
@@ -59,10 +56,7 @@ public class GameContext : DbContext {
 
     public class OrderItem{
         public int Id {get;set;}
-        public int GameId {get;set;}
         public Game Game {get;set;}
-        public int OrderId {get;set;}
-        public Order Order {get;set;}
         public int Quantity {get;set;}
     }
 

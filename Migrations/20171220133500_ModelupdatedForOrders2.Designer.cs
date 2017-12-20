@@ -11,8 +11,8 @@ using WeeGames.Models;
 namespace WeeGames.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20171218131419_StatusAddedToOrderTable")]
-    partial class StatusAddedToOrderTable
+    [Migration("20171220133500_ModelupdatedForOrders2")]
+    partial class ModelupdatedForOrders2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,13 +38,13 @@ namespace WeeGames.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<string>("Description");
 
                     b.Property<string>("Image");
 
-                    b.Property<int>("PlatformId");
+                    b.Property<int?>("PlatformId");
 
                     b.Property<double>("Price");
 
@@ -76,7 +76,7 @@ namespace WeeGames.Migrations
 
                     b.Property<string>("Status");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -90,9 +90,9 @@ namespace WeeGames.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("GameId");
+                    b.Property<int?>("GameId");
 
-                    b.Property<int>("OrderId");
+                    b.Property<int?>("OrderId");
 
                     b.Property<int>("Quantity");
 
@@ -102,7 +102,7 @@ namespace WeeGames.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("WeeGames.Models.Platform", b =>
@@ -174,34 +174,29 @@ namespace WeeGames.Migrations
                 {
                     b.HasOne("WeeGames.Models.Category", "Category")
                         .WithMany("Games")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("WeeGames.Models.Platform", "Platform")
                         .WithMany("Games")
-                        .HasForeignKey("PlatformId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PlatformId");
                 });
 
             modelBuilder.Entity("WeeGames.Models.Order", b =>
                 {
                     b.HasOne("WeeGames.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("WeeGames.Models.OrderItem", b =>
                 {
                     b.HasOne("WeeGames.Models.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GameId");
 
-                    b.HasOne("WeeGames.Models.Order", "Order")
+                    b.HasOne("WeeGames.Models.Order")
                         .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("WeeGames.Models.Wishlist", b =>

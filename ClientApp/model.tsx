@@ -34,14 +34,12 @@ export type ShippingInfo ={
 
 export type Category ={
     id:number,
-    name:string,
-    games:Game[]
+    name:string
 }
 
 export type Platform ={
     id:number,
-    name:string,
-    games:Game[]
+    name:string
 }
 
 export type User ={
