@@ -24,7 +24,7 @@ namespace WeeGames.Controllers
         public Game[] GetAll(){
             var games = from g in _context.Games
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id)
-                let platform = _context.Platforms.Where(p => p.Id == g.PlatformId)
+                let platform = _context.Platforms.Where(p => p.Id == g.Platform.Id)
                 orderby g.Id ascending
                 select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description, Publisher = g.Publisher, Releasedate = g.Releasedate, Image = g.Image};
                 return games.ToArray();
@@ -35,7 +35,7 @@ namespace WeeGames.Controllers
             var game = (from g in _context.Games
                 where g.Id == id
                 let category = _context.Categories.Where(c => c.Id == g.Category.Id).FirstOrDefault()
-                let platform = _context.Platforms.Where(p => p.Id == g.PlatformId).FirstOrDefault()
+                let platform = _context.Platforms.Where(p => p.Id == g.Platform.Id).FirstOrDefault()
 
                 select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description, Releasedate = g.Releasedate, Publisher = g.Publisher, Image = g.Image}).FirstOrDefault();
             if(game == null) return NotFound();
@@ -86,8 +86,8 @@ namespace WeeGames.Controllers
                 g.Title = posted.Title;
                 g.Price = posted.Price;
                 g.Description = posted.Description;
-                g.CategoryId = posted.CategoryId;
-                g.PlatformId = posted.PlatformId;
+                g.Category.Id = posted.Category.Id;
+                g.Category.Id = posted.Category.Id;
                 g.Image = posted.Image;
                 g.Publisher = posted.Publisher;
                 g.Releasedate = posted.Releasedate;
