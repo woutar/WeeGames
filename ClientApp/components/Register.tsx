@@ -19,7 +19,7 @@ interface PostUserState {
     userCreated : boolean
 }
 
-export class Register extends React.Component<RouteComponentProps<{}>,PostUserState>{
+export class Register extends React.Component<{location : string},PostUserState>{
     constructor(props :any){
         super(props);
 
@@ -81,8 +81,8 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
     
     userCreated(){
         if(this.state.userCreated && this.state.createdUser != ''){
-            alert("User created");
-            window.location.href = "/login";
+            sessionStorage.user = JSON.stringify(this.state.createdUser)
+            window.location.href = "/" + this.props.location;
         }
     }
 
@@ -92,8 +92,7 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
             window.location.href = "/";
         }
         return (
-        <div className="row">
-        <h2>Register</h2>
+        
         <form method="post" onSubmit={this.handleSubmit}>
             <div className="col-lg-4">
                 <div className="form-group">
@@ -151,7 +150,6 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
                 <input type="submit" className="btn btn-default" value="Register"/>
             </div>
             </form>
-        </div>
         )
     }
 }
