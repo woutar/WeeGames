@@ -12,6 +12,7 @@ interface PostUserState {
     Lastname : string,
     Birthdate : Date,
     Address : string,
+    City : string,
     Zipcode : string,
     Country : string,
     Role : number,
@@ -30,6 +31,7 @@ export class Register extends React.Component<{location : string},PostUserState>
             Lastname : '',
             Birthdate : new Date(),
             Address : '',
+            City : '',
             Zipcode : '',
             Country : 'Netherlands',
             Role : 0,
@@ -66,6 +68,7 @@ export class Register extends React.Component<{location : string},PostUserState>
                 Lastname : this.state.Lastname,
                 Birthdate : this.state.Birthdate,
                 Address : this.state.Address,
+                City : this.state.City,
                 Zipcode : this.state.Zipcode,
                 Country : this.state.Country,
                 Role : this.state.Role
@@ -98,13 +101,13 @@ export class Register extends React.Component<{location : string},PostUserState>
                 <div className="form-group">
                     <label>Email address</label>
                     <input name="Email" id="Email" type="email" className="form-control" placeholder="Example@example.com" required 
-                    minLength={10} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"/>
+                    minLength={5} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"/>
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
                     <input name="Password" id="Password" type="password" className="form-control" placeholder="******" required 
-                        minLength={4} maxLength={30} onChange ={this.handleInputChange}
+                        minLength={6} maxLength={30} onChange ={this.handleInputChange}
                     />
                 </div>
             </div>
@@ -129,7 +132,12 @@ export class Register extends React.Component<{location : string},PostUserState>
                 <div className="form-group">
                     <label>Address</label>
                     <input name="Address" id="Address" type="text" className="form-control"  placeholder="Enter Address" required
-                    onChange ={this.handleInputChange} minLength={10} maxLength={50}/>
+                    onChange ={this.handleInputChange} minLength={5} maxLength={50}/>
+                </div>
+                <div className="form-group">
+                    <label>City</label>
+                    <input name="City" id="Address" type="text" className="form-control"  placeholder="Enter City" required
+                    onChange ={this.handleInputChange} minLength={2} maxLength={50}/>
                 </div>
                 <div className="form-group">
                     <label>Zipcode</label>

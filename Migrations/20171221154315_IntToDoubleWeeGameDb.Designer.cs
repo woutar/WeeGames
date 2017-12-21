@@ -11,8 +11,8 @@ using WeeGames.Models;
 namespace WeeGames.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20171218102850_NewFieldsToOrders")]
-    partial class NewFieldsToOrders
+    [Migration("20171221154315_IntToDoubleWeeGameDb")]
+    partial class IntToDoubleWeeGameDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,17 +68,19 @@ namespace WeeGames.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Methodinfo");
+                    b.Property<string>("MethodInfo");
 
                     b.Property<DateTime>("OrderDate");
 
-                    b.Property<string>("Paymentmethod");
+                    b.Property<string>("PaymentMethod");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("Status");
+
+                    b.Property<double>("Total");
+
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -100,7 +102,7 @@ namespace WeeGames.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("WeeGames.Models.Platform", b =>
@@ -124,6 +126,9 @@ namespace WeeGames.Migrations
                         .IsRequired();
 
                     b.Property<DateTime>("Birthdate");
+
+                    b.Property<string>("City")
+                        .IsRequired();
 
                     b.Property<string>("Country")
                         .IsRequired();
@@ -165,27 +170,19 @@ namespace WeeGames.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Wishlist");
+                    b.ToTable("Wishlists");
                 });
 
             modelBuilder.Entity("WeeGames.Models.Game", b =>
                 {
                     b.HasOne("WeeGames.Models.Category", "Category")
-                        .WithMany("Games")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WeeGames.Models.Platform", "Platform")
-                        .WithMany("Games")
-                        .HasForeignKey("PlatformId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WeeGames.Models.Order", b =>
-                {
-                    b.HasOne("WeeGames.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("PlatformId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -197,7 +194,7 @@ namespace WeeGames.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WeeGames.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

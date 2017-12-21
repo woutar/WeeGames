@@ -32,6 +32,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>,CheckoutIn
                 firstname : '',
                 lastname : '',
                 address : '',
+                city : '',
                 zipcode : '',
                 country : 'Netherlands'
             },
@@ -164,8 +165,13 @@ export class Checkout extends React.Component<RouteComponentProps<{}>,CheckoutIn
                             </div>
                             <div className="form-group">
                                 <label>Address</label>
-                                <input name="address" id="address" type="text" className="form-control"  placeholder="Harborstreet 23 London" required
-                                onChange ={this.handleInputChange} minLength={10} maxLength={50}/>
+                                <input name="address" id="address" type="text" className="form-control"  placeholder="Harborstreet 23" required
+                                onChange ={this.handleInputChange} minLength={5} maxLength={50}/>
+                            </div>
+                            <div className="form-group">
+                                <label>City</label>
+                                <input name="city" id="city" type="text" className="form-control"  placeholder="London" required
+                                onChange ={this.handleInputChange} minLength={2} maxLength={50}/>
                             </div>
                             <div className="form-group">
                                 <label>Zipcode</label>

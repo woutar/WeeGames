@@ -32,12 +32,12 @@ namespace WeeGames.Controllers
         {
             Order posted = value.ToObject<Order>(); 
 
-            var newOrder = new Order(){UserId=posted.UserId, OrderDate=posted.OrderDate,Paymentmethod=posted.Paymentmethod,Methodinfo=posted.Methodinfo,Status=posted.Status};
+            var newOrder = new Order(){UserId=posted.UserId, OrderDate=posted.OrderDate,PaymentMethod=posted.PaymentMethod,MethodInfo=posted.MethodInfo,Status=posted.Status,Total=posted.Total};
             _context.Orders.Add(newOrder);
             _context.SaveChanges();
 
             foreach (OrderItem item in posted.OrderItems){
-                var newOrderItem = new OrderItem(){GameId=item.Game.Id,OrderId=newOrder.Id,Quantity=item.Quantity};
+                var newOrderItem = new OrderItem(){GameId=item.GameId,OrderId=newOrder.Id,Quantity=item.Quantity};
                 _context.OrderItems.Add(newOrderItem);
                 _context.SaveChanges();
             }

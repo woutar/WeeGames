@@ -66,9 +66,9 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                     My account
                     <span className="caret"></span></a>
                     <ul className="dropdown-menu" role="menu">
-                        <li className="dropdown-header">Ingelogd als: <br />{user.email}</li>
-                        <li className=""><a href="#">Wishlist</a></li>
+                        <li className="dropdown-header">Logged in as: <br />{user.email}</li>          
                         <li className=""><a href="#">Account settings</a></li>
+                        <li className=""><a href="#">Wishlist</a></li>
                         <li className=""><a href="#">Order history</a></li>
                         <li className=""><a href="admin">Adminpanel</a></li>
                         <li className="divider"></li>
@@ -91,7 +91,7 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                 My account
                 <span className="caret"></span></a>
                 <ul className="dropdown-menu" role="menu">
-                    <li className="dropdown-header">Niet Ingelogd</li>
+                    <li className="dropdown-header">Not logged in</li>
                     <li className=""><a href="admin">Adminpanel</a></li>
                     <li className="divider"></li>
                     <li><a href="Register" >Register</a></li>

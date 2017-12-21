@@ -61,7 +61,7 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
         // making a json array for OrderItems
         var orderitems : any = [];
         this.state.games.map(game =>
-            orderitems.push({Game : {Id:game.id},Quantity : game.amount})
+            orderitems.push({GameId : game.id,Quantity : game.amount})
         )
 
         fetch('api/Order/AddOrder',{
@@ -71,14 +71,13 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                User : {
-                    Id : this.props.ShippingInfo.id
-                },
+                UserId : this.props.ShippingInfo.id,
                 OrderDate : new Date(),
-                Paymentmethod : this.state.paymentmethod,
-                Methodinfo : methodinfo,
-                Status : "Complete",
-                OrderItems : orderitems
+                PaymentMethod : this.state.paymentmethod,
+                MethodInfo : methodinfo,
+                Status : "In Progress",
+                OrderItems : orderitems,
+                Total : this.state.total
             })
         });
         this.setState({ordercreated : true});
@@ -151,6 +150,9 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
                     </div>
                     <div className="col-sm-12">
                         <span><b>Address:</b> {this.props.ShippingInfo.address}</span>
+                    </div>
+                    <div className="col-sm-12">
+                        <span><b>City:</b> {this.props.ShippingInfo.city}</span>
                     </div>
                     <div className="col-sm-12">
                         <span><b>Zipcode:</b> {this.props.ShippingInfo.zipcode}</span>

@@ -29,20 +29,19 @@ export type ShippingInfo ={
     firstname : string,
     lastname : string,
     address : string,
+    city:string,
     zipcode : string,
     country : string
 }
 
 export type Category ={
     id:number,
-    name:string,
-    games:Game[]
+    name:string
 }
 
 export type Platform ={
     id:number,
-    name:string,
-    games:Game[]
+    name:string
 }
 
 export type User ={
@@ -53,17 +52,8 @@ export type User ={
     lastname:string,
     birthdate:Date,
     address:string,
+    city:string,
     zipcode:string,
     country:string,
     role:number
 }
-
-// export type Order ={
-//     id:number,
-//     games:Game[]
-// }
-
-// export type Wishlist ={
-//     id:number,
-//     user:User[],
-// }
