@@ -32,7 +32,7 @@ namespace WeeGames.Controllers
         {
             Order posted = value.ToObject<Order>(); 
 
-            var newOrder = new Order(){UserId=posted.User.Id, OrderDate=posted.OrderDate,Paymentmethod=posted.Paymentmethod,Methodinfo=posted.Methodinfo,Status=posted.Status};
+            var newOrder = new Order(){UserId=posted.UserId, OrderDate=posted.OrderDate,Paymentmethod=posted.Paymentmethod,Methodinfo=posted.Methodinfo,Status=posted.Status};
             _context.Orders.Add(newOrder);
             _context.SaveChanges();
 

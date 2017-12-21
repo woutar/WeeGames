@@ -27,6 +27,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>,CheckoutIn
             }
         }else{
             this.state = {ShippingInfo : {
+                id : null,
                 email : '',
                 firstname : '',
                 lastname : '',

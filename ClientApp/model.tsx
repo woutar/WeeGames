@@ -24,6 +24,7 @@ export type ShoppingcartGame ={
 }
 
 export type ShippingInfo ={
+    id : null,
     email : string,
     firstname : string,
     lastname : string,
