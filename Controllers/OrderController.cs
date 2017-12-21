@@ -22,9 +22,26 @@ namespace WeeGames.Controllers
 
         }
 
-        [HttpGet("GetAll")]
-        public Order[] GetAll(){
-            return _context.Orders.ToArray();
+        [HttpGet("GetOrders/{user_id}")]
+        public Order[] GetOrders(int user_id){
+            var orders = from o in _context.Orders
+                let order_items = (from i in _context.OrderItems 
+                    let game = (from g in _context.Games
+                        where g.Id == i.GameId
+                        let category = _context.Categories.Where(c => c.Id == g.Category.Id).FirstOrDefault()
+                        let platform = _context.Platforms.Where(p => p.Id == g.Platform.Id).FirstOrDefault()
+                        select new Game(){Id=g.Id, Title = g.Title, Category = category, Price = g.Price, Platform = platform, Description = g.Description, Releasedate = g.Releasedate, Publisher = g.Publisher, Image = g.Image}
+                        ).FirstOrDefault()
+                    
+                    where i.OrderId == o.Id
+                    orderby i.Id ascending
+                    select new OrderItem(){Id = i.Id,GameId = i.GameId,Game = game,OrderId = i.OrderId,Quantity = i.Quantity}
+                    )
+
+                where o.UserId == user_id
+                orderby o.Id ascending
+                select new Order(){Id = o.Id,UserId = o.UserId,OrderDate = o.OrderDate,PaymentMethod = o.PaymentMethod,MethodInfo = o.MethodInfo,Status = o.Status,OrderItems = order_items.ToList(),Total = o.Total};
+            return orders.ToArray();
         }
         
         [HttpPost("AddOrder")]

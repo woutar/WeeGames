@@ -67,7 +67,7 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                     <span className="caret"></span></a>
                     <ul className="dropdown-menu" role="menu">
                         <li className="dropdown-header">Logged in as: <br />{user.email}</li>          
-                        <li className=""><a href="#">Account settings</a></li>
+                        <li className=""><a href="user">Account details</a></li>
                         <li className=""><a href="#">Wishlist</a></li>
                         <li className=""><a href="#">Order history</a></li>
                         <li className=""><a href="admin">Adminpanel</a></li>

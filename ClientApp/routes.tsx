@@ -11,6 +11,7 @@ import { FetchPlatformGames } from './components/FetchPlatformGames';
 import { RegisterPage } from './components/RegisterPage'; 
 import { LoginPage } from './components/LoginPage';
 import { Checkout } from './components/Checkout';
+import { UserPage } from './components/UserPage';
 import { AdminMenu } from './components/Admin/AdminMenu'
 import { AdminFetchGames } from './components/Admin/AdminFetchGames'
 import { Statistics } from './components/Admin/Statistics';
@@ -33,6 +34,7 @@ export const routes = <Layout>
     <Route path='/games/:platform' component={ FetchPlatformGames} />
     <Route path='/register/' component= { RegisterPage } />
     <Route path='/login' component = { LoginPage } />
+    <Route path='/user' component = { UserPage } />
     <Route path='/statistics' component = { Statistics } />
     <Route path='/admin/' component={ AdminMenu } />
     <Route path='/admin/statistics' component={ Statistics } />
