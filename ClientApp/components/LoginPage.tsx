@@ -11,7 +11,11 @@ export class LoginPage extends React.Component<RouteComponentProps<{}>> {
 
     }
     public render() {
-
+        if(sessionStorage.getItem("user")){
+            return<div>Already logged in, redirecting
+                {window.location.href = "/"}
+            </div>
+        }
 
         return <div className="row">
                 <div className="col-lg-4 col-lg-offset-4">

@@ -217,7 +217,7 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
     renderOrderPlaced(){
         let userlink;
         if(this.props.ShippingInfo.id != 0){
-            userlink = <h4>You can also view your order in your <a href="/">order history</a></h4>;
+            userlink = <h4>You can also view your order in your <a href="orderhistory">order history</a></h4>;
         }
         return <div className="row">
                 <div className="col-lg-8 col-lg-offset-2">

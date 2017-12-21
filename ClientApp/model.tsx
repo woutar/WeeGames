@@ -29,7 +29,7 @@ export type ShippingInfo ={
     firstname : string,
     lastname : string,
     address : string,
-    city:string,
+    city : string,
     zipcode : string,
     country : string
 }
@@ -56,4 +56,20 @@ export type User ={
     zipcode:string,
     country:string,
     role:number
+}
+
+export type Order ={
+    id : number,
+    orderdate : Date,
+    paymentmethod : string,
+    methodinfo : string,
+    status : string,
+    orderitems : OrderItem[],
+    total : number
+}
+
+export type OrderItem={
+    id: number,
+    game : Game,
+    quantity : number
 }

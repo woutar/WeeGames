@@ -16,7 +16,7 @@ export class UserPage extends React.Component<RouteComponentProps<{}>,{auth_user
 
     }
     public render() {
-        if(this.state.auth_user == null){
+        if(sessionStorage.getItem("user") == null){
             window.location.href = "/";
         }
         return <div className="row">

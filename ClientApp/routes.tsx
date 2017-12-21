@@ -12,6 +12,9 @@ import { RegisterPage } from './components/RegisterPage';
 import { LoginPage } from './components/LoginPage';
 import { Checkout } from './components/Checkout';
 import { UserPage } from './components/UserPage';
+import { OrderHistory } from './components/OrderHistory';
+
+//Admin
 import { AdminMenu } from './components/Admin/AdminMenu'
 import { AdminFetchGames } from './components/Admin/AdminFetchGames'
 import { Statistics } from './components/Admin/Statistics';
@@ -35,7 +38,9 @@ export const routes = <Layout>
     <Route path='/register/' component= { RegisterPage } />
     <Route path='/login' component = { LoginPage } />
     <Route path='/user' component = { UserPage } />
-    <Route path='/statistics' component = { Statistics } />
+    <Route path='/orderhistory' component = { OrderHistory } />
+
+
     <Route path='/admin/' component={ AdminMenu } />
     <Route path='/admin/statistics' component={ Statistics } />
     <Route path='/admin/games' component={ AdminFetchGames } />
