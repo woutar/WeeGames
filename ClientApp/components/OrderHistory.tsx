@@ -73,10 +73,13 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
         {this.state.orders.map(order =>
             <div className="row product history-item" key={ order.id } onClick={() => this.onDetails(event,order)}>
                 <div className="row">
-                    <div className="col-sm-6">
+                    <div className="col-sm-3">
                         <span className="title">Ordernumber : { order.id }</span>
                     </div>
-                    <div className="col-sm-3 col-sm-offset-3">
+                    <div className="col-sm-3">
+                        <span className="price">Price : &euro;{ order.total }</span>
+                    </div>
+                    <div className="col-sm-3 col-sm-offset-3 ">
                         <span className="status">Status : {order.status}</span>
                     </div>
                 </div>
@@ -106,7 +109,31 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
             
             return <div className="row">
             <div className="col-md-5 content">
-                <h2>Order items</h2>
+                <h2>Order details</h2>
+                <div className="row">
+                    <div className="col-sm-12">
+                        <span><b>Ordernumber:</b> {this.state.activeOrder.id}</span>
+                    </div>
+                    <div className="col-sm-12">
+                        <span><b>Orderdate:</b> {pretty_date}</span>
+                    </div>
+                    <div className="col-sm-12">
+                        <span><b>Payment method:</b> {this.state.activeOrder.paymentMethod}</span>
+                    </div>
+                    <div className="col-sm-12">
+                        <span><b>Payment details:</b> {this.state.activeOrder.methodInfo}</span>
+                    </div>
+                    <div className="col-sm-12">
+                        <span><b>Order status:</b> {this.state.activeOrder.status}</span>
+                    </div>
+                </div> 
+                <div className="col-md-12 button-margin-top">
+                    <button type="button" className="btn checkout-btn btn-warning btn-md btn-block" onClick={this.onHistory}>Back to order history</button>
+                </div>  
+            </div>
+            <div className="col-lg-1" />
+            <div className="col-md-5 content">
+                <h2>Ordered items</h2>
                     {this.state.activeOrder.orderItems.map(orderitem =>
                         <div className="row product" key={ orderitem.id }>
                             <div className="row">
@@ -141,30 +168,6 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
                         </div>
                     )}
                 <h3>Total &euro; {this.state.activeOrder.total.toFixed(2)}</h3>
-                <div className="col-md-12 button-margin-top">
-                    <button type="button" className="btn checkout-btn btn-warning btn-md btn-block" onClick={this.onHistory}>Back to order history</button>
-                </div>
-            </div>
-            <div className="col-lg-2" />
-            <div className="col-md-5 content">
-                <h2>Order details</h2>
-                <div className="row">
-                    <div className="col-sm-12">
-                        <span><b>Ordernumber:</b> {this.state.activeOrder.id}</span>
-                    </div>
-                    <div className="col-sm-12">
-                        <span><b>Orderdate:</b> {pretty_date}</span>
-                    </div>
-                    <div className="col-sm-12">
-                        <span><b>Payment method:</b> {this.state.activeOrder.paymentMethod}</span>
-                    </div>
-                    <div className="col-sm-12">
-                        <span><b>Payment details:</b> {this.state.activeOrder.methodInfo}</span>
-                    </div>
-                    <div className="col-sm-12">
-                        <span><b>Order status:</b> {this.state.activeOrder.status}</span>
-                    </div>
-                </div>   
             </div>
         </div>
         }else{
