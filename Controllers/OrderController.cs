@@ -40,7 +40,7 @@ namespace WeeGames.Controllers
 
                 where o.UserId == user_id
                 orderby o.Id ascending
-                select new Order(){Id = o.Id,UserId = o.UserId,OrderDate = o.OrderDate,PaymentMethod = o.PaymentMethod,MethodInfo = o.MethodInfo,Status = o.Status,OrderItems = order_items.ToList(),Total = o.Total};
+                select new Order(){Id = o.Id,UserId = o.UserId,OrderDate = o.OrderDate,PaymentMethod = o.PaymentMethod,MethodInfo = o.MethodInfo,Status =( o.OrderDate >= DateTime.Now.Date ? o.Status:"Complete"),OrderItems = order_items.ToList(),Total = o.Total};
             return orders.ToArray();
         }
         
