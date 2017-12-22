@@ -13,7 +13,7 @@ interface CheckoutInfoState{
     AsGuest : boolean
 }
 
-export class Checkout extends React.Component<RouteComponentProps<{}>,CheckoutInfoState> {
+export class Checkout extends React.Component<RouteComponentProps<{}>, CheckoutInfoState> {
     constructor() {
         super();
 

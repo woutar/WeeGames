@@ -56,9 +56,18 @@ ul.nav.nav-pills.nav-stacked {
 .wishlist-btn:hover {
     background: transparent url("../css/images/wishlist-hover.png") no-repeat center;
 }
-.search-btn{
+.search-btn {
     height: 34px;
     margin-top: 1px;
+}
+
+/* Userpage */
+.user-info-block span {
+    color: #6a6a6a;
+    font-weight: bold;
+}
+.user-info-block h4 {
+    padding: 5px 5px;
 }
 
 /* Shopping cart */
@@ -91,25 +100,6 @@ ul.nav.nav-pills.nav-stacked {
 .checkout-left {
     border-right: 1px solid #f7f7f7;
 }
-
-/* .checkout-btn {
-    height: 34px;
-    padding: 0 20px 0 50px;
-    line-height: 34px;
-    display: block;
-    font-weight: bold;
-    text-align: center;
-    background: #ff9200 url("../css/images/cart.png") 10px center no-repeat;
-    color: #000;
-    border-radius: 4px;
-    border-bottom: 1px solid #6a6a6a; 
-    border-right: 1px solid #6a6a6a;
-}
-.checkout-btn:hover {
-    text-decoration: none;
-    color: #000;
-    background: #E58300 url("../css/images/cart-hover.png") 10px center no-repeat;
-} */
 
 /* products */
 .product.img {
