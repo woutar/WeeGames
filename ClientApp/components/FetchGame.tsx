@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
+import { WishlistButton } from './WishlistButton';
 import * as Models from "../Model"
 
 interface FetchGameState {
@@ -109,6 +110,7 @@ export class Game extends React.Component<GameProps, {amount : number, cartgame 
                         <h4>Category: {this.props.game.category.name}</h4>
                         <h4>Publisher: {this.props.game.publisher}</h4>
                         <h4>Release year: {this.props.game.releasedate}</h4>
+                        <WishlistButton game_id={this.props.game.id}/>
                     </div>
                     <div className="col-lg-12">
                 

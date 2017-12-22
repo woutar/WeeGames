@@ -73,3 +73,8 @@ export type OrderItem={
     game : Game,
     quantity : number
 }
+
+export type Wishlist={
+    id : number,
+    game : Game
+}

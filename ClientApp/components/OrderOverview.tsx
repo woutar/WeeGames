@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as Models from "../Model";
-import { SortOrder } from 'react-bootstrap-table';
 
 interface OrderState{
     games : Models.ShoppingcartGame[],
