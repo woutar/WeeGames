@@ -60,11 +60,11 @@ export type User ={
 
 export type Order ={
     id : number,
-    orderdate : Date,
-    paymentmethod : string,
-    methodinfo : string,
+    orderDate : Date,
+    paymentMethod : string,
+    methodInfo : string,
     status : string,
-    orderitems : OrderItem[],
+    orderItems : OrderItem[],
     total : number
 }
 
