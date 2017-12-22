@@ -119,6 +119,11 @@ ul.nav.nav-pills.nav-stacked {
     background: transparent url("../css/images/shoppingcart-big.png") center no-repeat;
 }
 
+.history-item:hover{
+    cursor: pointer;
+    color: #23527c;
+}
+
 /* Prevent spinners on input type number */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
