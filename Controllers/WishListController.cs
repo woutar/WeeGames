@@ -14,6 +14,10 @@ namespace WeeGames.Controllers
     {
         private GameContext _context;
 
+        public class Checker{
+            public bool status {get;set;}
+        }
+
         public WishListController(GameContext context)
         {
             _context = context;
@@ -31,15 +35,17 @@ namespace WeeGames.Controllers
         }
 
         [HttpPost("CheckWishlist")]
-        public bool CheckWishlist([FromBody]JObject value){
+        public Checker CheckWishlist([FromBody]JObject value){
             Wishlist posted = value.ToObject<Wishlist>(); 
                 var itemToCheck = (from wl in _context.Wishlists
                 where wl.UserId == posted.UserId && wl.GameId ==posted.GameId
                 select wl).FirstOrDefault();
             if(itemToCheck != null){
-                return true;
+                var checker = new Checker(){status = true};
+                return checker;
             }else{
-                return false;
+                var checker = new Checker(){status = false};
+                return checker;
             }
         }
 
