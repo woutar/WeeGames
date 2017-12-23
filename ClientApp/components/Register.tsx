@@ -131,13 +131,13 @@ export class Register extends React.Component<{location : string},PostUserState>
                 </div>
                 <div className="form-group">
                     <label>Address</label>
-                    <input name="Address" id="Address" type="text" className="form-control"  placeholder="Enter Address" required
-                    onChange ={this.handleInputChange} minLength={5} maxLength={50}/>
+                    <input name="Address" id="Address" type="text" className="form-control"  placeholder="Harborstreet 17" required
+                    onChange ={this.handleInputChange} minLength={5} maxLength={50} pattern= ".{5,}[0-9]{1,}"/>
                 </div>
                 <div className="form-group">
                     <label>City</label>
-                    <input name="City" id="Address" type="text" className="form-control"  placeholder="Enter City" required
-                    onChange ={this.handleInputChange} minLength={2} maxLength={50}/>
+                    <input name="City" id="Address" type="text" className="form-control"  placeholder="London" required
+                    onChange ={this.handleInputChange} minLength={5} maxLength={50}/>
                 </div>
                 <div className="form-group">
                     <label>Zipcode</label>

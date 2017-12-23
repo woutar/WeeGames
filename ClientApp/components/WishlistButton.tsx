@@ -23,7 +23,7 @@ export class WishlistButton extends React.Component<{game_id : number}, Wishlist
 
 
             
-            // fetch the game from wishlists
+            // check if the user has the game in its wishlist
             let user_id = this.state.auth_user.id;
             fetch('api/Wishlist/CheckWishlist',{
                 method : 'POST',
@@ -39,19 +39,67 @@ export class WishlistButton extends React.Component<{game_id : number}, Wishlist
             .then(response => response.json() as Promise<isInWishlist>)
             .then(response => {
                 this.setState({ isInWishlist : response});
-                console.log(response)
             });
             
         }
+        this.AddToWishlist = this.AddToWishlist.bind(this);
+        this.RemoveFromWishlist = this.RemoveFromWishlist.bind(this);
     }
 
+    AddToWishlist(event : any){
+        event.preventDefault();
+
+        // add the game to wishlists
+        let user_id = this.state.auth_user.id;
+
+        fetch('api/Wishlist/AddtoWishlist',{
+            method : 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                UserId : user_id,
+                GameId : this.props.game_id
+            })
+        })
+        .then(response => response.json() as Promise<isInWishlist>)
+        .then(response => {
+            this.setState({ isInWishlist : response});
+        });
+    }
+
+    RemoveFromWishlist(event : any){
+        event.preventDefault();
+
+        // add the game to wishlists
+        let user_id = this.state.auth_user.id;
+
+        fetch('api/Wishlist/DeleteFromWishlist',{
+            method : 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                UserId : user_id,
+                GameId : this.props.game_id
+            })
+        })
+        .then(response => response.json() as Promise<isInWishlist>)
+        .then(response => {
+            this.setState({ isInWishlist : response});
+        });
+    }
+
+
+
     public render(){
-        console.log(this.state.isInWishlist.status)
         if(sessionStorage.getItem("user") != null){
             if(this.state.isInWishlist.status){
-                return <button type="submit" className="btn btn-warning">Remove from wistlist <i className="glyphicon glyphicon-heart"></i></button>
+                return <button type="submit" className="btn btn-warning" onClick={this.RemoveFromWishlist}>Remove from wistlist <i className="glyphicon glyphicon-heart"></i></button>
             }else{
-                return <button type="submit" className="btn btn-warning">Add to wistlist <i className="glyphicon glyphicon-heart-empty"></i></button>
+                return <button type="submit" className="btn btn-warning" onClick={this.AddToWishlist}>Add to wistlist <i className="glyphicon glyphicon-heart-empty"></i></button>
             }
         }else{
             return <a href="login"><button type="submit" className="btn btn-warning">Add to wistlist <i className="glyphicon glyphicon-heart-empty"></i></button></a>

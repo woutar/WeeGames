@@ -172,6 +172,12 @@ span.tag {
     max-height: 75px !important;
     max-width:75px !important;
 }
+.product .medium-img{
+    height: 100%;
+    width: 100%;
+    max-height: 125px !important;
+    max-width:125px !important;
+}
 .pay-method-wrapper{
     float: left;
     margin-right: 20px;

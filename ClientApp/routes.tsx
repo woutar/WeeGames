@@ -13,6 +13,7 @@ import { LoginPage } from './components/LoginPage';
 import { Checkout } from './components/Checkout';
 import { UserPage } from './components/UserPage';
 import { OrderHistory } from './components/OrderHistory';
+import { Wishlist } from './components/Wishlist';
 
 //Admin
 import { AdminMenu } from './components/Admin/AdminMenu'
@@ -39,6 +40,7 @@ export const routes = <Layout>
     <Route path='/login' component = { LoginPage } />
     <Route path='/user' component = { UserPage } />
     <Route path='/orderhistory' component = { OrderHistory } />
+    <Route path='/wishlist' component = { Wishlist } />
 
 
     <Route path='/admin/' component={ AdminMenu } />

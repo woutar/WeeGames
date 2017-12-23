@@ -35,19 +35,27 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
     }
     public render() {
         if(sessionStorage.getItem("user") == null){
-            window.location.href = "/";
+            window.location.href = "login";
         }
 
         let contents = this.state.loading
         ? <p><em>Loading...</em></p>
         : this.renderOrders();
 
+        let message;
+        if(this.state.orders.length == 0){
+            message = <h2>You haven't ordered yet.</h2>
+        }else{
+            message = <h2>Order history</h2>
+        }
+
+
         if(this.state.activeOrder != null){
             return this.renderOrderDetail();
         }else{
             return <div className="row">
                 <div className="col-md-10 col-md-offset-1 content">
-                    <h2>Order history</h2>
+                    {message}
                     {contents}
                 </div>
             </div>

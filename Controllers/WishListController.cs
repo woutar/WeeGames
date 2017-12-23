@@ -50,7 +50,7 @@ namespace WeeGames.Controllers
         }
 
         [HttpPost("AddToWishlist")]
-        public void AddToWishlist([FromBody]JObject value)
+        public Checker AddToWishlist([FromBody]JObject value)
         {
             Wishlist posted = value.ToObject<Wishlist>(); 
 
@@ -63,10 +63,12 @@ namespace WeeGames.Controllers
                 _context.Wishlists.Add(newWishlist);
                 _context.SaveChanges();
             }
+            var checker = new Checker(){status = true};
+            return checker;
         } 
 
         [HttpPost("DeleteFromWishlist")]
-        public void DeleteFromWishlist([FromBody]JObject value)
+        public Checker DeleteFromWishlist([FromBody]JObject value)
         {
             Wishlist posted = value.ToObject<Wishlist>();
             
@@ -78,7 +80,8 @@ namespace WeeGames.Controllers
                 _context.Wishlists.Remove(itemToDelete);
                 _context.SaveChanges();    
             }
-            
+            var checker = new Checker(){status = false};
+            return checker;
         }      
     }
 }
