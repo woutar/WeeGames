@@ -1,11 +1,42 @@
 body {
     font-family: verdana;
     font-size: 11pt;
+    background: transparent no-repeat top center;
+}
+
+@media (min-width: 600px) {
+    body {
+        background-image: url("../css/images/bg-1.png");
+    }
+    .main-container {
+        padding-top: 1px;
+        margin-top: 0;
+        background: rgba(255, 255, 255, 0.85);
+    }
+    .sidebar ul {
+        background: #fff;
+    }
+    .pageTitle {
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    .pageTitle h2 {
+        padding: 0 10px;
+        line-height: 50px;
+        font-size: 17pt;
+        font-family: Impact;
+        text-transform: uppercase;
+        vertical-align: middle;
+        margin: 0;
+        border-bottom:1px solid #ddd;
+    }
 }
 
 /* Nav edit */
 .navbar {
     height: 80px;
+    margin-bottom: 0px;
+    background-color: #fff;
 }
 .navbar-brand {
     padding: 9px 10px 10px;
@@ -23,8 +54,8 @@ ul.nav.navbar-nav.navbar-right {
 }
 
 ul.nav.nav-pills.nav-stacked {
-    border-radius: 6px;
-    border: 1px solid #337AB7;
+    border-radius: 4px;
+    border: 1px solid #DDD;
     overflow: hidden;
 }
 
@@ -102,10 +133,42 @@ ul.nav.nav-pills.nav-stacked {
 }
 
 /* products */
+.product {
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.product:first-of-type {
+    margin-top: 0;
+}
+.product .title {
+    font-weight: bold;
+}
 .product.img {
     height: 200px;
     width: 200px;
 }
+.product img {
+    height: 100%;
+    width: 100%;
+    max-height: 200px;
+    max-width: 200px;
+}
+.product .small-img{
+    height: 100%;
+    width: 100%;
+    max-height: 75px !important;
+    max-width: 75px !important;
+}
+.product .medium-img{
+    height: 100%;
+    width: 100%;
+    max-height: 125px !important;
+    max-width: 125px !important;
+}
+
 .amount{
     width: 35px;
     height: 30px;
@@ -141,18 +204,6 @@ input[type=number]::-webkit-outer-spin-button {
 .button-margin-top{
     margin-top: 45px;
 }
-.product {
-    padding: 15px 10px;
-    background-color: #F8F8F8;
-    margin-top: 10px;
-    border-radius: 7px;
-}
-.product:first-of-type {
-    margin-top: 0;
-}
-.product .title {
-    font-weight: bold;
-}
 span.tag {
     width: 10em;
 }
@@ -160,24 +211,6 @@ span.tag {
     padding-left: 1.8em
 }
 
-.product img {
-    height: 100%;
-    width: 100%;
-    max-height: 200px;
-    max-width:200px;
-}
-.product .small-img{
-    height: 100%;
-    width: 100%;
-    max-height: 75px !important;
-    max-width:75px !important;
-}
-.product .medium-img{
-    height: 100%;
-    width: 100%;
-    max-height: 125px !important;
-    max-width:125px !important;
-}
 .pay-method-wrapper{
     float: left;
     margin-right: 20px;
