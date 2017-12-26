@@ -82,6 +82,11 @@ export class Checkout extends React.Component<RouteComponentProps<{}>, CheckoutI
     }
 
     public render() {
+        if(localStorage.getItem("ShoppingCart") == null){
+            return<div>No items in cart, redirecting
+                {window.location.href = "login"}
+            </div>
+        }
         if(sessionStorage.getItem("user")){
             return <OrderOverview ShippingInfo={this.state.ShippingInfo} IsLoggedIn={true}/>
         }else if(this.state.FilledForm){
@@ -151,7 +156,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>, CheckoutI
                              <div className="form-group">
                                  <label>Email address</label>
                                  <input name="email" id="email" type="email" className="form-control" placeholder="Example@example.com" required 
-                                 minLength={10} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"/>
+                                 minLength={5} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"/>
                              </div>
                              <div className="form-group">
                                 <label>Firstname</label>
@@ -165,8 +170,8 @@ export class Checkout extends React.Component<RouteComponentProps<{}>, CheckoutI
                             </div>
                             <div className="form-group">
                                 <label>Address</label>
-                                <input name="address" id="address" type="text" className="form-control"  placeholder="Harborstreet 23" required
-                                onChange ={this.handleInputChange} minLength={5} maxLength={50}/>
+                                <input name="address" id="address" type="text" className="form-control"  placeholder="Harborstreet 17" required
+                                onChange ={this.handleInputChange} minLength={5} maxLength={50} pattern= ".{5,}[0-9]{1,}"/>
                             </div>
                             <div className="form-group">
                                 <label>City</label>

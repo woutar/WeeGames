@@ -79,7 +79,25 @@ export class Register extends React.Component<{location : string},PostUserState>
             this.setState({ createdUser: data, userCreated : true});
             this.userCreated();
         });
-        
+
+        //Send the mail
+        fetch('api/Mail/Register',{
+            method : 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Email : this.state.Email,
+                Firstname : this.state.Firstname,
+                Lastname : this.state.Lastname,
+                Birthdate : this.state.Birthdate,
+                Address : this.state.Address,
+                City : this.state.City,
+                Zipcode : this.state.Zipcode,
+                Country : this.state.Country
+            })
+        });  
     }
     
     userCreated(){
@@ -137,7 +155,7 @@ export class Register extends React.Component<{location : string},PostUserState>
                 <div className="form-group">
                     <label>City</label>
                     <input name="City" id="Address" type="text" className="form-control"  placeholder="London" required
-                    onChange ={this.handleInputChange} minLength={5} maxLength={50}/>
+                    onChange ={this.handleInputChange} minLength={2} maxLength={50}/>
                 </div>
                 <div className="form-group">
                     <label>Zipcode</label>

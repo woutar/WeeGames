@@ -85,7 +85,7 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
                         <span className="title">Ordernumber : { order.id }</span>
                     </div>
                     <div className="col-sm-3">
-                        <span className="price">Price : &euro;{ order.total }</span>
+                        <span className="price">Price : &euro;{ order.total.toFixed(2) }</span>
                     </div>
                     <div className="col-sm-3 col-sm-offset-3 ">
                         <span className="status">Status : {order.status}</span>

@@ -81,6 +81,37 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
         });
         this.setState({ordercreated : true});
         localStorage.removeItem("ShoppingCart");
+
+
+        var mail_items : any = [];
+        this.state.games.map(game =>
+            mail_items.push({Name : game.title, Price : game.price, Quantity : game.amount})
+        )
+
+        //Send the mail
+        fetch('api/Mail/AddOrder',{
+            method : 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Email : this.props.ShippingInfo.email,
+                Firstname : this.props.ShippingInfo.firstname,
+                Lastname : this.props.ShippingInfo.lastname,
+                Address : this.props.ShippingInfo.address,
+                City : this.props.ShippingInfo.city,
+                Zipcode : this.props.ShippingInfo.zipcode,
+                Country : this.props.ShippingInfo.country,
+                OrderDate : new Date(),
+                PaymentMethod : this.state.paymentmethod,
+                MethodInfo : methodinfo,
+                Status : "In Progress",
+                MailItems : mail_items,
+                Total : this.state.total
+            })
+            
+        });
     }
     
 
@@ -215,7 +246,7 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
 
     renderOrderPlaced(){
         let userlink;
-        if(this.props.ShippingInfo.id != 0){
+        if(this.props.ShippingInfo.id != null){
             userlink = <h4>You can also view your order in your <a href="orderhistory">order history</a></h4>;
         }
         return <div className="row">
