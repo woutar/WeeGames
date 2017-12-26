@@ -115,7 +115,7 @@ export class Register extends React.Component<{location : string},PostUserState>
         return (
         
         <form method="post" onSubmit={this.handleSubmit}>
-            <div className="col-lg-4">
+            <div className="col-md-4 col-md-offset-1">
                 <div className="form-group">
                     <label>Email address</label>
                     <input name="Email" id="Email" type="email" className="form-control" placeholder="Example@example.com" required 
@@ -129,8 +129,7 @@ export class Register extends React.Component<{location : string},PostUserState>
                     />
                 </div>
             </div>
-            <div className="col-lg-2" />
-            <div className="col-lg-4">
+            <div className="col-md-4 col-md-offset-1">
                 <div className="form-group">
                     <label>Firstname</label>
                     <input name="Firstname" id="Firstname" type="text" className="form-control"  placeholder="Enter Firstname" required 

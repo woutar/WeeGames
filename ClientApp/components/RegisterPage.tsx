@@ -11,8 +11,10 @@ export class RegisterPage extends React.Component<RouteComponentProps<{}>> {
 
     }
     public render() {
-        return <div className="row">
-        <h2>Register</h2>
+        return <div className="col-md-12 content">
+                <div className="row pageTitle">
+                    <h2>Register</h2>
+                </div>
             <Register location={"user"}/>
         </div>
     }

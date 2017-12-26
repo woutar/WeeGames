@@ -32,9 +32,11 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
             : FetchPlatformGames.renderGame(this.state.games);
 
         return <div className="col-md-10 content">
-                <h2>{this.state.platformname}</h2>
+                <div className="row pageTitle">
+                    <h2>{this.state.platformname}</h2>
+                </div>
                 { contents }
-                </div>;
+            </div>
     }
 
     private static renderGame(games: Models.Game[]) {

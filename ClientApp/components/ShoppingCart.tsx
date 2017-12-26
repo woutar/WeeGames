@@ -102,7 +102,9 @@ export class ShoppingCart extends React.Component<RouteComponentProps<{}>, {game
     public render() {
         if(localStorage.getItem("ShoppingCart") == null){
             return <div className="col-md-10 content text-center">
-            <h2>Shopping cart</h2>
+                <div className="pageTitle">
+                    <h2>Shopping cart</h2>
+                </div>
                 <div className="empty-cart-big"></div>
                 <span>You don't have any items in your cart</span>
                 <hr />

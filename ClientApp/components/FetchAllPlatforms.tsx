@@ -29,9 +29,10 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
             : FetchAllPlatforms.renderPlatforms(this, this.state.platforms);
 
         return <div className="col-md-2 sidebar">
+                <div className="row pageTitle">
+                    </div>
                     { contents }
-                    
-                </div>;
+                </div>
     }
 
     private static renderPlatforms(self:any, platforms: Models.Platform[]) {
