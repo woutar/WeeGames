@@ -8,28 +8,26 @@ body {
     body {
         background-image: url("../css/images/bg-1.png");
     }
-    .main-container {
-        padding-top: 1px;
-        margin-top: 0;
-        background: rgba(255, 255, 255, 0.85);
-    }
-    .sidebar ul {
-        background: #fff;
-    }
-    .pageTitle {
-        height: 50px;
-        margin-bottom: 15px;
-    }
-    .pageTitle h2 {
-        padding: 0 10px;
-        line-height: 50px;
-        font-size: 17pt;
-        font-family: Impact;
-        text-transform: uppercase;
-        vertical-align: middle;
-        margin: 0;
-        border-bottom:1px solid #ddd;
-    }
+}
+
+.main-container {
+    padding-top: 1px;
+    margin-top: 0;
+    background: rgba(255, 255, 255, 0.85);
+}
+.pageTitle {
+    height: 50px;
+    margin-bottom: 15px;
+}
+.pageTitle h2 {
+    padding: 0 10px;
+    line-height: 50px;
+    font-size: 17pt;
+    font-family: Impact;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin: 0;
+    border-bottom:1px solid #ddd;
 }
 
 /* Nav edit */
@@ -57,6 +55,9 @@ ul.nav.nav-pills.nav-stacked {
     border-radius: 4px;
     border: 1px solid #DDD;
     overflow: hidden;
+}
+.sidebar ul {
+    background: #fff;
 }
 
 .nav-pills>li>a {
