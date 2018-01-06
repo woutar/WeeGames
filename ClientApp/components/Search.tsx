@@ -15,6 +15,7 @@ interface SearchState{searchString: string, finalString: string}
         }
 
         handleChange(event: any){
+            event.target.value = event.target.value.replace(/[.]/, '');
             this.setState({
                 searchString: event.target.value,
                 finalString: "Search/" + this.state.searchString
@@ -26,17 +27,10 @@ interface SearchState{searchString: string, finalString: string}
         return (
             <form action={this.state.finalString} onSubmit={this.handleChange} className="navbar-form navbar-left">
                 <div className="form-group">
-                    <input type="text" value={this.state.searchString} onChange={this.handleChange} className="form-control" placeholder="Search" />
+                    <input type="text" value={this.state.searchString} onChange={this.handleChange} required className="form-control" placeholder="Search" />
                 </div>
                 <button type="submit" className="btn btn-default search-btn"><i className="glyphicon glyphicon-search"></i></button>
             </form>
-/*
-            <form action={this.state.finalString} onSubmit={this.handleChange}>
-                <li className="search">
-                    <input type="text" value={this.state.searchString} onChange={this.handleChange}  />
-                    <input type="submit" value="Submit" />
-                </li>
-            </form>*/
         )
     }
 }

@@ -88,14 +88,11 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
         </li>   
         <li className="dropdown">
             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                My account
+                login/register
                 <span className="caret"></span></a>
                 <ul className="dropdown-menu" role="menu">
-                    <li className="dropdown-header">Not logged in</li>
-                    <li className=""><a href="admin">Adminpanel</a></li>
-                    <li className="divider"></li>
-                    <li><a href="Register" >Register</a></li>
                     <li><a href="Login" >Login</a></li>
+                    <li><a href="Register" >Register</a></li>
                 </ul>
         </li>
         <li>

@@ -84,7 +84,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>, CheckoutI
     public render() {
         if(localStorage.getItem("ShoppingCart") == null){
             return<div>No items in cart, redirecting
-                {window.location.href = "login"}
+                {window.location.href = "shoppingcart"}
             </div>
         }
         if(sessionStorage.getItem("user")){

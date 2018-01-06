@@ -21,6 +21,7 @@ export class LoginPage extends React.Component<RouteComponentProps<{}>> {
                 <div className="col-lg-4 col-lg-offset-4">
                 <h2>Login</h2>
                 <Login location={"user"}/>
+                <span>not a user yet? <a href="/register">click here to register</a></span>
                 </div>
         </div>
             

@@ -34,7 +34,7 @@ export const routes = <Layout>
     <Route path='/checkout' component = { Checkout  } />
     <Route path='/search/' component={ FetchAllPlatforms } />
     <Route path='/search/:searchquery' component={ FetchSearchResult } />
-    <Route path='/games' component={ FetchAllPlatforms} />
+    <Route path='/games/:platform' component={ FetchAllPlatforms} />
     <Route path='/games/:platform' component={ FetchPlatformGames} />
     <Route path='/register/' component= { RegisterPage } />
     <Route path='/login' component = { LoginPage } />

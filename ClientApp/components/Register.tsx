@@ -144,7 +144,7 @@ export class Register extends React.Component<{location : string},PostUserState>
                 <div className="form-group">
                     <label>Birthdate</label>
                     <input name="Birthdate" id="Birthdate" type="date" className="form-control"  placeholder="Enter Birthdate" required 
-                    onChange ={this.handleInputChange} min="1917-01-01" max="2010-01-01"/>
+                    onChange ={this.handleInputChange} min="1900-01-01" max="2018-01-01"/>
                 </div>
                 <div className="form-group">
                     <label>Address</label>
