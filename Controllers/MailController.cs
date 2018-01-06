@@ -15,11 +15,10 @@ namespace WeeGames.Controllers
     {
         
         [HttpPost("AddOrder")]
-        public OrderDetails AddOrder([FromBody]JObject value)
+        public void AddOrder([FromBody]JObject value)
         {
             OrderDetails details = value.ToObject<OrderDetails>();
             MailOrder.Send(details);  
-            return details;
         }
 
         [HttpPost("Register")]
