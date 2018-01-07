@@ -5,14 +5,14 @@ import * as Models from "../../Model";
 
 
 interface PostGameState {
-    Title: string,
-    CategoryId: number,
-    Price: number,
-    PlatformId: number,
-    Description: string,
-    Releasedate: number,
-    Publisher: string,
-    Image: string,
+    Title: string;
+    CategoryId: number;
+    Price: number;
+    PlatformId: number;
+    Description: string;
+    Releasedate: number;
+    Publisher: string;
+    Image: string;
 }
 
 export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGameState>{
@@ -45,11 +45,7 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
     }
 
     handleSubmit(event : any){
-        alert("Title: " + this.state.Title + "\nCategoryId: " + this.state.CategoryId + "\nPrice: " + this.state.Price + 
-        "\nPlatformId: " + this.state.PlatformId + "\nDescription: " + this.state.Description + "\nReleasedate: " + this.state.Releasedate + 
-        "\nPublisher: " + this.state.Publisher);
-
-        event.preventDefault();
+        
         fetch('Game/AddGame',{
             method : 'POST',
             headers:{
@@ -71,18 +67,23 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
             this.gameCreated();
         });
         
-    }   
+    }
+    
+    handleImage(){
+        var form = document.forms.namedItem("FileInfo");
+
+        var oReq = new XMLHttpRequest();
+        oReq.open("POST", "")
+    }
+
      gameCreated(){
         alert("Game created");
     }
-    
-    
-
 
     render() {
         return (
         <div className="row">
-        <form method="post" onSubmit={this.handleSubmit}>
+        <form method="post" name="FileInfo" action="#" encType="multipart/form-data" onSubmit={this.handleSubmit}>
             <div className="col-lg-1"/>
             <div className="col-lg-6">
                 <h2>Create game</h2>
