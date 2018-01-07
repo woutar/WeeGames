@@ -30,12 +30,22 @@ export class AdminMenu extends React.Component<RouteComponentProps<{}>, AdminMen
             </li>
             <li>
                 <a href="/admin/games">
-                    Games
+                    Games overview
                 </a>
             </li>
             <li>
                 <a href="/admin/addGame">
                     Add game
+                </a>
+            </li>
+            <li>
+                <a href="/admin/users">
+                    Users overview
+                </a>
+            </li>
+            <li>
+                <a href="/admin/adduser">
+                    Add user
                 </a>
             </li>
         </ul>;

@@ -5,16 +5,15 @@ import { Route, NavLink, Link } from 'react-router-dom';
 import * as Models from "../../Model"
 
 interface UpdateGameState{
-    loading: boolean;
     Id: number;
-    Title: string,
-    CategoryId: number,
-    Price: number,
-    PlatformId: number,
-    Description: string,
-    Releasedate: number,
-    Publisher: string,
-    Image: string,
+    Title: string;
+    CategoryId: number;
+    Price: number;
+    PlatformId: number;
+    Description: string;
+    Releasedate: number;
+    Publisher: string;
+    Image: string;
 }
 
 export class UpdateGame extends React.Component<RouteComponentProps<{id: number}>, UpdateGameState>{
@@ -22,7 +21,6 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
         super(props);
 
         this.state ={
-            loading: true,
             Id: 0,
             Title: '',
             CategoryId: 0,
@@ -39,7 +37,6 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
             .then(response => response.json() as Promise<Models.Game>)
             .then(data => {
                 this.setState({
-                     loading: false ,
                      Id: data.id,
                      Title: data.title,
                      CategoryId: data.category.id,
@@ -94,8 +91,8 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
     render() {
         return (
             <div className="row">
-
-            <form method="post" onSubmit={this.handleSubmit}>
+            {alert(this.state.Title)}
+                <form method="post" onSubmit={this.handleSubmit}>
                 <div className="col-lg-1"/>
                 <div className="col-lg-6">
                     <h2>Update game</h2>

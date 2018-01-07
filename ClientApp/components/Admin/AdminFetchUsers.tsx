@@ -6,8 +6,8 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import 'isomorphic-fetch';
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
-interface FetchAllGamesState {
-    games: Models.Game[];
+interface FetchAllUsersState {
+    users: Models.User[];
     loading: boolean;
     sortName: undefined;
     sortOrder: undefined;
@@ -15,10 +15,10 @@ interface FetchAllGamesState {
     cellEdit: any;
 }
 
-export class AdminFetchGames extends React.Component<RouteComponentProps<any>, FetchAllGamesState>{
+export class AdminFetchUsers extends React.Component<RouteComponentProps<any>, FetchAllUsersState>{
     constructor(props: undefined) {
         super(props);
-        this.state = { games: [], 
+        this.state = { users: [], 
                     loading: true, 
                     sortName: undefined,  
                     sortOrder: undefined,
@@ -27,10 +27,10 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
                 };
 
 
-        fetch('Game/GetAll')
-            .then(response => response.json() as Promise<Models.Game[]>)
+        fetch('api/user/getall')
+            .then(response => response.json() as Promise<Models.User[]>)
             .then(data => {
-                this.setState({ games: data, loading: false });
+                this.setState({ users: data, loading: false });
             });
     }
 
@@ -42,7 +42,7 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
     }
 
     onAfterDeleteRow(rowKeys: any) {
-        fetch('game/deletegame',{
+        fetch('api/user/deleteuser',{
             method : 'POST',
             headers:{
                 'Accept': 'application/json',
@@ -56,28 +56,25 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
     onAfterSaveCell(row: any, cellName: any, cellValue: any) {
         // alert(`Save cell ${cellName} with value ${cellValue}`);
 
-        var gameInfo = [];
+        var userInfo = [];
         for (const prop in row) {
-          gameInfo.push(row[prop]);
+          userInfo.push(row[prop]);
         }
-        
-        // Change , to . in Price
-        gameInfo[2] = gameInfo[2].replace(/,/g, '.');
 
-        // Send game info to updategame method in gamecontroller
-        fetch('game/updategame',{
+        // Send user info to updateuser method in usercontroller
+        fetch('api/user/updateuser',{
             method : 'POST',
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                Id: gameInfo[0],
-                Title: gameInfo[1],
-                Price: gameInfo[2],
-                Description: gameInfo[3],
-                Releasedate: gameInfo[9],
-                Publisher: gameInfo[10],
+                Id: userInfo[0],
+                Email: userInfo[1],
+                Firstname: userInfo[3],
+                Lastname: userInfo[4],
+                Address: userInfo[6],
+                Zipcode: userInfo[7]
             })
         });
     }
@@ -88,12 +85,9 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
     return true;
     }
 
-    CategoryPlatformFormatter(cell: any, row: any){
-        return `${cell.name}`
-    }
 
     ImageFormatter(cell: any, row: any){
-        return <a href={"admin/updategame/" + row.id}><img src='./images/edit.png' width='20' height='20'></img></a>;
+        return <a href={"admin/updateuser/" + row.id}><img src='./images/edit.png' width='20' height='20'></img></a>;
     }
   
 
@@ -120,20 +114,15 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
 
         return <div className="col-md-10 content">
             
-        <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } cellEdit={ cellEditProp } search={true}  options={ options} height='auto' hover pagination>
+        <BootstrapTable data={ this.state.users } selectRow={ selectRowProp } deleteRow={ true } cellEdit={ cellEditProp } search={true}  options={ options} height='auto' hover pagination>
             <TableHeaderColumn dataField='id'isKey={true} width="60">ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='title' dataSort width="160">Product Name</TableHeaderColumn>
-            <TableHeaderColumn dataField='platform' dataFormat={this.CategoryPlatformFormatter} editable={ false } dataSort>Platform</TableHeaderColumn>
-            <TableHeaderColumn dataField='category' dataFormat={this.CategoryPlatformFormatter} editable={ false } dataSort>Category</TableHeaderColumn>
-            <TableHeaderColumn dataField='price' dataSort 
-             filter={ { 
-                type: 'NumberFilter', 
-                delay: 1000, 
-                numberComparators: ['<=', '>']
-              } }
-            >Price</TableHeaderColumn>
-            <TableHeaderColumn dataField='publisher' dataSort>Publisher</TableHeaderColumn>
-            <TableHeaderColumn dataField='releasedate' dataSort width="120">Release Year</TableHeaderColumn>
+            <TableHeaderColumn dataField='firstname' dataSort>Firstname</TableHeaderColumn>
+            <TableHeaderColumn dataField='lastname'  dataSort>Lastname</TableHeaderColumn>
+            <TableHeaderColumn dataField='email'  dataSort>Email address</TableHeaderColumn>
+            <TableHeaderColumn dataField='birthdate' dataSort editable={ false }>Birthdate</TableHeaderColumn>
+            <TableHeaderColumn dataField='address' >Address</TableHeaderColumn>
+            <TableHeaderColumn dataField='zipcode' >zipcode</TableHeaderColumn>
+            <TableHeaderColumn dataField='country'  dataSort editable={ false }>Country</TableHeaderColumn>
             <TableHeaderColumn dataField='id' dataFormat={this.ImageFormatter} editable={ false } width="80">Update</TableHeaderColumn>
         </BootstrapTable>
 

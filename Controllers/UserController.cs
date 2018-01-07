@@ -24,7 +24,19 @@ namespace WeeGames.Controllers
 
         [HttpGet("GetAll")]
         public User[] GetAll(){
-            return _context.Users.ToArray();
+            var users = (from u in _context.Users
+            orderby u.Id ascending
+            select u);
+            return users.ToArray();
+        }
+
+        [HttpGet("Getuser/{id}")]
+        public IActionResult GetUser(int id){
+            var user = (from u in _context.Users
+                where u.Id == id
+                select new User(){Id=u.Id, Email=u.Email, Password=u.Password, Firstname=u.Firstname, Lastname=u.Lastname, Birthdate=u.Birthdate, Address=u.Address, Zipcode=u.Zipcode, Country=u.Country, Role=u.Role }).FirstOrDefault();
+            if(user == null) return NotFound();
+            return Ok(user);
         }
 
         [HttpPost("Login")]
@@ -42,12 +54,96 @@ namespace WeeGames.Controllers
         [HttpPost("Register")]
         public User Register([FromBody]JObject value)
         {
+            var maxValue = _context.Users.Max(x => x.Id);
             User posted = value.ToObject<User>(); 
+            posted.Id = maxValue + 1;
             _context.Users.Add(posted);
             _context.SaveChanges();
 
             return posted;
-        }      
+        }
+
+        [HttpPost("DeleteUser")]
+        public void DeleteUser([FromBody]JArray value)
+        {
+            JArray rows = value;
+            int length = rows.Count;
+
+            for(var i = 0; i < length; i++){
+                var itemToDelete = (from u in _context.Users
+                                    where u.Id == rows[i].ToObject<int>()
+                                    select u).FirstOrDefault();
+                if(itemToDelete != null){
+                    _context.Users.Remove(itemToDelete);
+                    _context.SaveChanges();    
+                }
+            }
+        } 
+
+        [HttpPost("UpdateUser")]
+        public void UpdateUser([FromBody]JObject value)
+        {
+            User posted = value.ToObject<User>(); 
+
+            var query =
+                from u in _context.Users
+                where u.Id == posted.Id
+                select u;
+
+            foreach (User u in query)
+            {
+                u.Firstname = posted.Firstname;
+                u.Lastname = posted.Lastname;
+                u.Email = posted.Email;
+                u.Address = posted.Address;
+                u.Zipcode = posted.Zipcode;
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+        }
+
+        [HttpPost("UpdateFullUser")]
+        public void UpdateFullUser([FromBody]JObject value)
+        {
+            User posted = value.ToObject<User>(); 
+
+            var query =
+                from u in _context.Users
+                where u.Id == posted.Id
+                select u;
+
+            foreach (User u in query)
+            {
+                u.Firstname = posted.Firstname;
+                u.Lastname = posted.Lastname;
+                u.Email = posted.Email;
+                u.Address = posted.Address;
+                u.Zipcode = posted.Zipcode;
+                u.Password = posted.Password;
+                u.Birthdate = posted.Birthdate;
+                u.Country = posted.Country;
+                u.Role = posted.Role;
+
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+        }
 
 
         // [ValidateAntiForgeryToken]

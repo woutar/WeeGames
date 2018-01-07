@@ -16,6 +16,9 @@ import { AdminFetchGames } from './components/Admin/AdminFetchGames'
 import { Statistics } from './components/Admin/Statistics';
 import { InsertGame } from './components/Admin/InsertGame';
 import { UpdateGame } from './components/Admin/UpdateGame';
+import { AdminFetchUsers } from './components/Admin/AdminFetchUsers'
+import { InsertUser } from './components/Admin/InsertUser';
+import { UpdateUser } from './components/Admin/UpdateUser';
 
 
 
@@ -39,5 +42,8 @@ export const routes = <Layout>
     <Route path='/admin/games' component={ AdminFetchGames } />
     <Route path='/admin/addGame' component={ InsertGame } />
     <Route path='/admin/updategame/:id' component={UpdateGame} />
+    <Route path='/admin/users' component={ AdminFetchUsers } />
+    <Route path='/admin/addUser' component={ InsertUser } />
+    <Route path='/admin/updateuser/:id' component={UpdateUser} />
 </Layout>; 
 
