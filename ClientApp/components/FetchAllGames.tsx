@@ -27,7 +27,9 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
             : FetchAllGames.renderGame(this.state.games);
 
         return <div className="col-md-10 content">
-                    <h2>Bestsellers</h2>
+                    <div className="row pageTitle">
+                        <h2>Bestsellers</h2>
+                    </div>
                     { contents }
                 </div>;
     }

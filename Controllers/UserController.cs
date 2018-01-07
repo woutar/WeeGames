@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WeeGames.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using WeeGames.Mail;
 
 
 namespace WeeGames.Controllers
@@ -59,7 +60,6 @@ namespace WeeGames.Controllers
             posted.Id = maxValue + 1;
             _context.Users.Add(posted);
             _context.SaveChanges();
-
             return posted;
         }
 
@@ -144,11 +144,6 @@ namespace WeeGames.Controllers
                 // Provide for exceptions.
             }
         }
-
-
-        // [ValidateAntiForgeryToken]
-        // [Bind("Email,Password,Firstname,Lastname,Birthdate,Address,Zipcode,Country,Role")] User user)
-        //if (ModelState.IsValid)
 
     }
 }

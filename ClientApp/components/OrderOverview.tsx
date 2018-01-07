@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as Models from "../Model";
-import { SortOrder } from 'react-bootstrap-table';
 
 interface OrderState{
     games : Models.ShoppingcartGame[],
     total : number,
     paymentmethod : string,
     bank : string,
-    creditcardnumb : number | null
+    creditcardnumb : number | null,
+    ordercreated : boolean
 }
 
 type OrderProps = {
@@ -29,7 +29,7 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
             for(i = 0; i < inventory_games.length; i++){
                 total += (inventory_games[i].amount * inventory_games[i].price);
             }
-            this.state = {games: inventory_games, total : total, paymentmethod : 'Ideal', bank: 'Rabobank', creditcardnumb : null};
+            this.state = {games: inventory_games, total : total, paymentmethod : 'Ideal', bank: 'Rabobank', creditcardnumb : null, ordercreated : false};
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -48,15 +48,78 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
 
     handleSubmit(event : any){
         event.preventDefault();
-        if(this.state.paymentmethod === 'Ideal'){
-            alert(this.state.paymentmethod + '\n' + this.state.bank)
-        }else if(this.state.paymentmethod === 'Creditcard'){
-            alert(this.state.paymentmethod + '\n' + this.state.creditcardnumb)
-        }
+
+        // define method info to insert into DB
+        var methodinfo : string;
+        if(this.state.paymentmethod === 'Creditcard' && this.state.creditcardnumb != null){
+            methodinfo = this.state.creditcardnumb.toString();
+        }else{
+            methodinfo = this.state.bank;
+        }   
+
+        // making a json array for OrderItems
+        var orderitems : any = [];
+        this.state.games.map(game =>
+            orderitems.push({GameId : game.id,Quantity : game.amount})
+        )
+
+        fetch('api/Order/AddOrder',{
+            method : 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                UserId : this.props.ShippingInfo.id,
+                OrderDate : new Date(),
+                PaymentMethod : this.state.paymentmethod,
+                MethodInfo : methodinfo,
+                Status : "In Progress",
+                OrderItems : orderitems,
+                Total : this.state.total
+            })
+        });
+        this.setState({ordercreated : true});
+        localStorage.removeItem("ShoppingCart");
+
+
+        var mail_items : any = [];
+        this.state.games.map(game =>
+            mail_items.push({Name : game.title, Price : game.price, Quantity : game.amount})
+        )
+
+        //Send the mail
+        fetch('api/Mail/AddOrder',{
+            method : 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Email : this.props.ShippingInfo.email,
+                Firstname : this.props.ShippingInfo.firstname,
+                Lastname : this.props.ShippingInfo.lastname,
+                Address : this.props.ShippingInfo.address,
+                City : this.props.ShippingInfo.city,
+                Zipcode : this.props.ShippingInfo.zipcode,
+                Country : this.props.ShippingInfo.country,
+                OrderDate : new Date(),
+                PaymentMethod : this.state.paymentmethod,
+                MethodInfo : methodinfo,
+                Status : "In Progress",
+                MailItems : mail_items,
+                Total : this.state.total
+            })
+            
+        });
     }
     
 
     render(){
+        if(this.state.ordercreated){
+            return this.renderOrderPlaced();
+        }
+        
         let payinfo;
         if(this.state.paymentmethod === 'Ideal'){
             payinfo = this.renderInputIdeal();
@@ -119,6 +182,9 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
                         <span><b>Address:</b> {this.props.ShippingInfo.address}</span>
                     </div>
                     <div className="col-sm-12">
+                        <span><b>City:</b> {this.props.ShippingInfo.city}</span>
+                    </div>
+                    <div className="col-sm-12">
                         <span><b>Zipcode:</b> {this.props.ShippingInfo.zipcode}</span>
                     </div>
                     <div className="col-sm-12">
@@ -176,5 +242,22 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
                 onChange ={this.handleChange} pattern="^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$"/>
             </div>
     </div>
+    }
+
+    renderOrderPlaced(){
+        let userlink;
+        if(this.props.ShippingInfo.id != null){
+            userlink = <h4>You can also view your order in your <a href="orderhistory">order history</a></h4>;
+        }
+        return <div className="row">
+                <div className="col-lg-8 col-lg-offset-2">
+                <h2><b>Thank you for ordering from WeeGames!</b></h2>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h4>We will process the order and you will receive a confirmation of your order on <b>{this.props.ShippingInfo.email}</b></h4>
+                {userlink}
+                </div>
+        </div>
     }
 }

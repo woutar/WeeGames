@@ -29,13 +29,21 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
             ? <p><em>Loading...</em></p>
             : FetchSearchResult.renderGame(this.state.games);
 
+        
         return <div className="col-md-10 content">
-                <h2>Search results</h2>
-                { contents }
+                    <div className="row pageTitle">
+                        <h2>Search results</h2>
+                    </div>
+                    { contents }
                 </div>;
     }
     
     private static renderGame(games: Models.Game[]) {
+        if(games.length < 1){
+            return <div>
+                    <h2>No games found</h2>
+                </div>
+        }else{
         return <div>
             {games.map(game =>
                 <div className="row product" key={ game.id }>
@@ -76,7 +84,8 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
                     </div>
                 </Link>
                 </div>
-                )}
-            </div>;
+            )}
+        </div>;
+        }
     }
 }

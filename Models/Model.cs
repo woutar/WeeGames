@@ -11,8 +11,8 @@ public class GameContext : DbContext {
         public DbSet<Category> Categories {get; set;}
         public DbSet<Platform> Platforms {get; set;}
         public DbSet<Order> Orders {get; set;}
-        public DbSet<OrderItem> OrderItem {get; set;}
-        public DbSet<Wishlist> Wishlist {get; set;}
+        public DbSet<OrderItem> OrderItems {get; set;}
+        public DbSet<Wishlist> Wishlists {get; set;}
         public DbSet<User> Users {get; set;}
 
         public GameContext(DbContextOptions<GameContext> options)
@@ -37,24 +37,22 @@ public class GameContext : DbContext {
     public class Category{
         public int Id {get;set;}
         public string Name {get;set;}
-        public List<Game> Games {get;set;}
     }
 
     public class Platform{
         public int Id {get;set;}
         public string Name {get;set;}
-        public List<Game> Games {get;set;}
     }
 
     public class Order{
         public int Id {get;set;}
-        public int UserId {get;set;}
-        public User User {get;set;}
+        public int? UserId {get;set;}
         public DateTime OrderDate {get;set;}
-        public string Paymentmethod {get; set;}
-        public string Methodinfo {get; set;}
+        public string PaymentMethod {get; set;}
+        public string MethodInfo {get; set;}
         public string Status {get; set;}
         public List<OrderItem> OrderItems {get;set;}
+        public double Total {get;set;}
     }
 
     public class OrderItem{
@@ -88,6 +86,8 @@ public class GameContext : DbContext {
         public DateTime Birthdate {get;set;}
         [Required]
         public string Address {get;set;}
+        [Required]
+        public string City {get;set;}
         [Required]
         public string Zipcode {get;set;}
         [Required]

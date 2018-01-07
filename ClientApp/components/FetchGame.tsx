@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
+import { WishlistButton } from './WishlistButton';
 import * as Models from "../Model"
 
 interface FetchGameState {
@@ -29,17 +30,23 @@ export class FetchGame extends React.Component<RouteComponentProps<{id:number}>,
 }
 
 type GameProps = {game:Models.Game}
-export class Game extends React.Component<GameProps, {amount : number, cartgame : Models.ShoppingcartGame}> {
+export class Game extends React.Component<GameProps, {amount : number, cartgame : Models.ShoppingcartGame, showPopup : boolean}> {
     constructor(props:GameProps){
       super(props)
       let shoppincartgame = JSON.parse(JSON.stringify(this.props.game));
       shoppincartgame['amount'] = 1;
-      this.state = {amount : 1, cartgame : shoppincartgame}
+      this.state = {amount : 1, cartgame : shoppincartgame, showPopup : false}
 
       this.AddToCart = this.AddToCart.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.addAmount = this.addAmount.bind(this);
       this.removeAmount = this.removeAmount.bind(this);
+    }
+
+    togglePopup() {
+        this.setState({
+          showPopup: !this.state.showPopup
+        });
     }
 
     handleChange(event : any){
@@ -96,7 +103,8 @@ export class Game extends React.Component<GameProps, {amount : number, cartgame 
             }
             localStorage.setItem("ShoppingCart", JSON.stringify(arr));
         }
-        
+        // popup after adding item
+        this.togglePopup();
     }
 
     public render(){
@@ -109,9 +117,10 @@ export class Game extends React.Component<GameProps, {amount : number, cartgame 
                         <h4>Category: {this.props.game.category.name}</h4>
                         <h4>Publisher: {this.props.game.publisher}</h4>
                         <h4>Release year: {this.props.game.releasedate}</h4>
+                        <WishlistButton game_id={this.props.game.id}/>
                     </div>
                     <div className="col-lg-12">
-                
+
                     <h3>Description</h3>
                     <p>{this.props.game.description}</p>
                 
@@ -125,6 +134,49 @@ export class Game extends React.Component<GameProps, {amount : number, cartgame 
                             <button type="button" onClick={this.AddToCart} className="btn btn-default buy-button">Add to Cart</button>
                         </div>
                     </div>
+                    {this.state.showPopup ? <Popup closePopup={this.togglePopup.bind(this)} game={this.props.game} amount={this.state.amount}/>: null}
                 </div>;
+    }
+}
+
+class Popup extends React.Component<{closePopup : any, game : Models.Game, amount : number},{}>{
+    ToShoppingcart(){
+        window.location.href = "shoppingcart";
+    }
+    render() {
+      return (
+        <div className='popup'>
+          <div className='popup_inner'>
+            <div className="row">
+                <div className="col-sm-10 col-sm-offset-1"> 
+                    <h3>Item(s) added to your shoppingcart</h3>
+                    <br></br>
+                    <div className="col-sm-5 col-sm-offset-1">
+                        <img className="img-thumbnail" src={this.props.game.image}/>
+                    </div>
+                    <div className="col-sm-6">
+                    <br></br>
+                        <h5>Title: {this.props.game.title}</h5>
+                        <h5>Platform: {this.props.game.platform.name}</h5>
+                        <h5>Category: {this.props.game.category.name}</h5>
+                        <h5>Publisher: {this.props.game.publisher}</h5>
+                        <h5>Release year: {this.props.game.releasedate}</h5>
+                        <h5>Amount: {this.props.amount}</h5>
+                    </div>
+                </div>
+            </div>
+            <div className="row top-margin-buttons">
+                <div className="col-sm-10 col-sm-offset-1"> 
+                    <div className="col-sm-6 centered">
+                        <button type="button" onClick={this.props.closePopup} className="btn btn-warning">Continue shopping</button>
+                    </div>
+                    <div className="col-sm-6 centered">
+                        <button type="button" onClick={this.ToShoppingcart} className="btn btn-warning">To shoppingcart</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      );
     }
 }

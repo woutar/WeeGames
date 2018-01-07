@@ -65,9 +65,6 @@ export class Login extends React.Component<{location : string}, userState> {
     }
 
     render() {
-        if(sessionStorage.getItem("user")){
-            window.location.href = "/";
-        }
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
