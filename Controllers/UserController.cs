@@ -41,12 +41,12 @@ namespace WeeGames.Controllers
         }
         
         [HttpPost("Register")]
-        public User Register([FromBody]JObject value)
+        public IActionResult Register([FromBody]JObject value)
         {
             User posted = value.ToObject<User>(); 
             _context.Users.Add(posted);
             _context.SaveChanges();
-            return posted;
+            return Ok(posted);
         }      
 
     }

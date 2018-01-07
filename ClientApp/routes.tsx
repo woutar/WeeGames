@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { FetchData } from './components/FetchData';
 import { FetchAllGames } from './components/FetchAllGames';
 import { FetchAllPlatforms } from './components/FetchAllPlatforms';
 import { FetchGame } from './components/FetchGame';
