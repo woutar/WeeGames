@@ -132,7 +132,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>, CheckoutI
                             <span className="checkout-info">
                                 Registered users can save their delivery details and view their order history.
                             </span><br/><br/>
-                            <button type="button" className="btn checkout-btn btn-warning btn-md pull-right" onClick={this.onNewRegister}>Continue</button>
+                            <button type="button" className="btn checkout-btn btn-warning btn-md pull-right button-right-margin" onClick={this.onNewRegister}>Continue</button>
                         </div>
                     </div>
                     
@@ -140,7 +140,7 @@ export class Checkout extends React.Component<RouteComponentProps<{}>, CheckoutI
                         <div className="col-lg-12">
                             <hr />
                             <span>I'd like to order without registering</span><br /><br/>
-                            <button type="button" className="btn checkout-btn btn-warning btn-md pull-right" onClick={this.onGuest}>Continue</button>
+                            <button type="button" className="btn checkout-btn btn-warning btn-md pull-right button-right-margin" onClick={this.onGuest}>Continue</button>
                         </div>
                     </div>
                 </div>

@@ -127,8 +127,8 @@ export class OrderOverview extends React.Component<OrderProps, OrderState> {
             payinfo = this.renderInputCreditcard();
         }
 
-        return <div className="row">
-            <div className="col-md-5 content">
+        return <div className="col-md-12">
+            <div className="col-md-5">
                 <h2>Order overview</h2>
                     {this.state.games.map(game =>
                         <div className="row product" key={ game.id }>

@@ -11,7 +11,8 @@ body {
 }
 
 .main-container {
-    padding: 1px 0 50px;
+    padding-top: 1px;
+    padding-bottom: 50px;
     min-height: 600px;
     margin-top: 0;
     background: rgba(255, 255, 255, 0.85);
@@ -211,10 +212,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .buy-button{
-    /* margin-top: 15px; */
+    margin-top: 5px;
+    width: 125px;
+}
+.buy-button-game{
     margin-left: 15px;
     width: 125px;
 }
+
 .button-margin-top{
     margin-top: 45px;
 }
@@ -223,6 +228,10 @@ span.tag {
 }
 .indent {
     padding-left: 1.8em
+}
+
+.button-right-margin{
+    margin-right: 20px;
 }
 
 .pay-method-wrapper{
