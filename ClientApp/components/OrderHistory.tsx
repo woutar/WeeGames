@@ -44,9 +44,9 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
 
         let message;
         if(this.state.orders.length == 0){
-            message = <h2>You haven't ordered yet.</h2>
+            message = <div className="pageTitle"><h2>You haven't ordered yet</h2></div>
         }else{
-            message = <h2>Order history</h2>
+            message = <div className="pageTitle"><h2>Order history</h2></div>
         }
 
 

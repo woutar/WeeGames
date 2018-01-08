@@ -109,30 +109,30 @@ export class Game extends React.Component<GameProps, {amount : number, cartgame 
 
     public render(){
         return <div className="col-lg-10">
-                    <h2>{this.props.game.title} - {this.props.game.platform.name}</h2>
-                    <div className="col-lg-6">
+                    <div className="pageTitle"><h2>{this.props.game.title} - {this.props.game.platform.name}</h2></div>
+                    <div className="col-lg-4">
                         <img height="300" width="300" src={this.props.game.image}/>
                     </div>
-                    <div className="col-lg-6">
-                        <h4>Category: {this.props.game.category.name}</h4>
-                        <h4>Publisher: {this.props.game.publisher}</h4>
-                        <h4>Release year: {this.props.game.releasedate}</h4>
-                        <WishlistButton game_id={this.props.game.id}/>
+                    <div className="col-lg-8">
+                        <div className="info-price">
+                            <h4>Category: {this.props.game.category.name}</h4>
+                            <h4>Publisher: {this.props.game.publisher}</h4>
+                            <h4>Release year: {this.props.game.releasedate}</h4>
+                            <WishlistButton game_id={this.props.game.id}/>
+
+                            <hr />
+                            <h4>€ {this.props.game.price.toFixed(2)}</h4>
+                            <br/>
+                            <button type="button" className="btn btn-danger btn-minus" onClick={this.removeAmount}>-</button>
+                            <input type="number" max="999" min="1" className="amount" value={this.state.amount} onChange={this.handleChange}/>
+                            <button type="button" className="btn btn-success btn-plus" onClick={this.addAmount}>+</button>
+                            <button type="button" onClick={this.AddToCart} className="btn btn-default buy-button">Add to Cart</button>
+                            <br></br>
+                        </div>
                     </div>
                     <div className="col-lg-12">
-
-                    <h3>Description</h3>
-                    <p>{this.props.game.description}</p>
-                
-                        <div className="info-price">
-                            <h4>€ {this.props.game.price.toFixed(2)}</h4>
-                            <br></br>
-                            <button type="button" className="btn btn-danger" onClick={this.removeAmount}>-</button>
-                            <input type="number" max="999" min="1" className="amount" value={this.state.amount} onChange={this.handleChange}/>
-                            <button type="button" className="btn btn-success" onClick={this.addAmount}>+</button>
-                            <br></br>
-                            <button type="button" onClick={this.AddToCart} className="btn btn-default buy-button">Add to Cart</button>
-                        </div>
+                        <h3>Description</h3>
+                        <p>{this.props.game.description}</p>
                     </div>
                     {this.state.showPopup ? <Popup closePopup={this.togglePopup.bind(this)} game={this.props.game} amount={this.state.amount}/>: null}
                 </div>;
