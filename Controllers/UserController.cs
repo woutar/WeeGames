@@ -55,9 +55,9 @@ namespace WeeGames.Controllers
         [HttpPost("Register")]
         public User Register([FromBody]JObject value)
         {
-            var maxValue = _context.Users.Max(x => x.Id);
+            // var maxValue = _context.Users.Max(x => x.Id);
             User posted = value.ToObject<User>(); 
-            posted.Id = maxValue + 1;
+            // posted.Id = maxValue + 1;
             _context.Users.Add(posted);
             _context.SaveChanges();
             return posted;
