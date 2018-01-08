@@ -18,6 +18,13 @@ public class GameContext : DbContext {
         public GameContext(DbContextOptions<GameContext> options)
         :base(options)
         {}
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+        }
     }
 
     public class Game{
