@@ -41,9 +41,9 @@ export class Wishlist extends React.Component<RouteComponentProps<{}>, FetchAllG
 
         let message;
         if(this.state.wishlist.length == 0){
-            message = <h2>You don't have items in your wishlist yet.</h2>
+            message = <div className="pageTitle"><h2>You don't have items in your wishlist.</h2></div>
         }else{
-            message = <h2>My Wishlist</h2>
+            message = <div className="pageTitle"><h2>My Wishlist</h2></div>
         }
 
         return <div className="row">

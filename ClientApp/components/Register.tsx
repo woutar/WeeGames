@@ -73,7 +73,7 @@ export class Register extends React.Component<{location : string},PostUserState>
                 Country : this.state.Country,
                 Role : this.state.Role
             })
-        })
+        }).then(this.errorHandler)
         .then(response => response.json() as Promise<Models.User>)
         .then(data => {
             this.setState({ createdUser: data, userCreated : true});
@@ -98,6 +98,14 @@ export class Register extends React.Component<{location : string},PostUserState>
                 Country : this.state.Country
             })
         });  
+    }
+
+    errorHandler(response:any){
+        if(response.status == 200){
+            return response;
+        }else{
+            alert("This email is already in use");
+        }
     }
     
     userCreated(){
