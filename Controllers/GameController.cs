@@ -42,6 +42,38 @@ namespace WeeGames.Controllers
             return Ok(game);
         }
 
+        [HttpGet("Filter/{PlatformName}/{CategoryName}/{Price}")]
+        public Game[] Filter(string PlatformName, string CategoryName, int Price){
+
+            var games = from g in _context.Games
+                
+                //  basic where clause
+                where g.Price >= Price
+                orderby g.Price ascending
+
+                // get data from foreign tables
+                let category = _context.Categories.Where(c => c.Id == g.Category.Id)
+                let platform = _context.Platforms.Where(p => p.Id == g.PlatformId)
+                select new Game(){Id=g.Id, Title = g.Title, Category = category.FirstOrDefault(), Price = g.Price, Platform = platform.FirstOrDefault(), Description = g.Description, Publisher = g.Publisher, Releasedate = g.Releasedate, Image = g.Image};
+
+            // filter where clauses
+            if(PlatformName != "none" && CategoryName != "Choose category")
+            {
+                games = games.Where(g => g.Platform.Name == PlatformName && g.Category.Name == CategoryName && g.Price >= Price);
+            }
+            else if(PlatformName != "none")
+            {
+                games = games.Where(g => g.Platform.Name == PlatformName && g.Price >= Price);
+            }
+            else if(CategoryName != "Choose category")
+            {
+                games = games.Where(g => g.Category.Name == CategoryName && g.Price >= Price);
+            }
+
+            var games_result = games.ToArray();
+            return games_result;
+        }
+
         [HttpPost("DeleteGame")]
         public void DeleteGame([FromBody]JArray value)
         {
