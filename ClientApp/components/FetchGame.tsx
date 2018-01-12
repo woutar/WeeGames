@@ -126,7 +126,7 @@ export class Game extends React.Component<GameProps, {amount : number, cartgame 
                             <button type="button" className="btn btn-danger btn-minus" onClick={this.removeAmount}>-</button>
                             <input type="number" max="999" min="1" className="amount" value={this.state.amount} onChange={this.handleChange}/>
                             <button type="button" className="btn btn-success btn-plus" onClick={this.addAmount}>+</button>
-                            <button type="button" onClick={this.AddToCart} className="btn btn-default buy-button">Add to Cart</button>
+                            <button type="button" onClick={this.AddToCart} className="btn btn-default buy-button-game">Add to Cart</button>
                             <br></br>
                         </div>
                     </div>

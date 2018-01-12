@@ -1,39 +1,116 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
-import * as Models from "../Model"
+import * as Models from "../Model";
 import 'isomorphic-fetch';
 
 interface FetchAllGamesState {
-    games: Models.Game[];
-    loading: boolean;
+    games: Models.Game[]
+    loading: boolean
+    amount : number
+    categories : Models.Category[]
+    activeCategory : string
 }
 
 export class FetchAllGames extends React.Component<RouteComponentProps<{}>, FetchAllGamesState> {
     constructor() {
         super();
-        this.state = { games: [], loading: true };
+        this.state = { games: [], loading: true, amount: 0, categories: [], activeCategory : 'Choose category' };
         
         fetch('Game/GetAll')
             .then(response => response.json() as Promise<Models.Game[]>)
             .then(data => {
                 this.setState({ games: data, loading: false });
             });
+
+        fetch('api/Category/GetAll')
+            .then(response => response.json() as Promise<Models.Category[]>)
+            .then(data => {
+                this.setState({ categories: data });
+            });
+
+        this.handlePriceChange = this.handlePriceChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handlePriceChange(event : any){
+        if(event.target.value >= 0 && event.target.value <= 1000){
+            this.setState({
+                amount : event.target.value
+            })
+        }
+    }
+
+    handleInputChange(event : any){
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name] : value
+        });
+    }
+
+    handleSubmit(event : any){
+        event.preventDefault();
+
+        fetch('Game/Filter/' + 'none/' + this.state.activeCategory + '/' + this.state.amount)
+        .then(response => response.json() as Promise<Models.Game[]>)
+        .then(data => {
+            this.setState({ games: data, loading: false });
+        });
+        
     }
 
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : FetchAllGames.renderGame(this.state.games);
+        let filters = this.renderFilters();
 
         return <div className="col-md-10 content">
                     <div className="row pageTitle">
                         <h2>Bestsellers</h2>
                     </div>
+                    { filters }
                     { contents }
                 </div>;
     }
+
+    public renderFilters() {
+        return <div className="row centered filter-margin">
+                <h4><b>Filters</b></h4>
+                <form method="post" onSubmit={this.handleSubmit}>
+                    <div className="col-md-6 centered">
+                        <div className="form-group">
+                            <label>Category</label>
+                            <br/>
+                            <select name="activeCategory" id="activeCategory" className="form-control" value={this.state.activeCategory} onChange ={this.handleInputChange}>
+                                <option value="Choose category">Choose category</option>
+                                {this.state.categories.map(categorie =>
+                                    <option value={categorie.name}>{categorie.name}</option>
+                                )}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-md-6 centered">
+                        <div className="form-group">
+                            <label>Minimal price &euro; &nbsp;</label>
+                            <input type="number" max="999" min="0" className="form-control" value={this.state.amount} onChange={this.handlePriceChange}/>
+                        </div>
+                    </div>
+                    <div className="col-md-12 centered">
+                        <input type="submit" className="btn btn-default" value="Filter"/>
+                    </div>
+                </form>
+        </div>
+    }
+
     private static renderGame(games: Models.Game[]) {
+        if(games.length == 0){
+            return <div><h4>No games found matching your search filters</h4></div>
+        }
         return <div>
             {games.map(game =>
                 <div className="row product" key={ game.id }>
