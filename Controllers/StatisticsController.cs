@@ -21,10 +21,25 @@ namespace WeeGames.Controllers
 
 
         [HttpGet("GetBestsellersValue")]
-        public int[] GetBestsellers(){
-            var amount = (from a in _context.OrderItems
-            select a.Quantity).Take(10);
-            return amount.ToArray();
+        public OrderItem[] GetBestsellers(){
+            // var amount = (from a in _context.OrderItems
+            // select a.Quantity).Take(10);
+
+            // var amount =    from a in _context.OrderItems
+            //                 group a.GameId by a.Quantity into g
+            //                 let sum = g.Quantity.Sum()
+            //                 orderby sum descending
+            //                 select new OrderItem{Id = a.GameId, Quantity = sum};
+
+            var amount =    from a in _context.OrderItems
+                            orderby a.Quantity descending
+                            select new OrderItem
+                            {
+                                GameId = a.GameId, 
+                                OrderId = a.OrderId,
+                                Quantity = _context.OrderItems.Where(it => it.GameId == a.GameId).Select(it => it.Quantity).Sum()
+                            };
+                        return amount.ToArray();
         }
         // SELECT "GameId", SUM("Quantity") as Amount
         // FROM "OrderItems"
