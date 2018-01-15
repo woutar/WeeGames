@@ -81,40 +81,22 @@ public class GameContext : DbContext {
 
     public class User{
         public int Id {get;set;}
-
         [Required]
-        [StringLength(50, MinimumLength=5)]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$")]
         public string Email {get;set;}
-
         [Required]
-        [StringLength(30, MinimumLength=6)]
         public string Password {get;set;}
-
         [Required]
-        [StringLength(30)]
         public string Firstname {get;set;}
-
         [Required]
-        [StringLength(30)]
         public string Lastname {get;set;}
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime Birthdate {get;set;}
-
-        [StringLength(50, MinimumLength=5)]
-        [RegularExpression(@".{5,}[0-9]{1,}")]
+        [Required]
         public string Address {get;set;}
-
         [Required]
-        [StringLength(50, MinimumLength=2)]
         public string City {get;set;}
-
         [Required]
-        [RegularExpression(@"[0-9]{4}[A-Z]{2}")]
         public string Zipcode {get;set;}
-        
         [Required]
         public string Country {get;set;}
         public int Role {get;set;}
