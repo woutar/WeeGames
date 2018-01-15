@@ -35,17 +35,17 @@ namespace WeeGames.Controllers
 
     
 
-        [HttpGet("GetBestsellersName")]
-        public string[] GetBestsellersName(){
+        // [HttpGet("GetBestsellersName")]
+        // public string[] GetBestsellersName(){
 
-             var itemNames = _context.Games
-                            .GroupBy(p => p.Id)
-                                _context.OrderItems
-                                .Select(oi => oi.FirstOrDefault())
-                                .OrderByDescending(c => c.Quantity)
-                                .Take(10)
-                            .Select(g => g.Title.FirstOrDefault())
-                            .Where(a => g.Id == oi.GameId);
+        //      var itemNames = _context.Games
+        //                     .GroupBy(p => p.Id)
+        //                         _context.OrderItems
+        //                         .Select(oi => oi.FirstOrDefault())
+        //                         .OrderByDescending(c => c.Quantity)
+        //                         .Take(10)
+        //                     .Select(g => g.Title.FirstOrDefault())
+        //                     .Where(a => g.Id == oi.GameId);
                             
 
             // var itemNames = _context.Games
@@ -53,9 +53,9 @@ namespace WeeGames.Controllers
             //                 .Select(gn => gn.Title.FirstOrDefault())
             //                 .Take(10);
 
-            return itemNames.Title.ToArray();
+            // return itemNames.Title.ToArray();
                 
-        }
+        // }
     
     }
 }
