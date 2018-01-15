@@ -21,21 +21,40 @@ namespace WeeGames.Controllers
 
 
         [HttpGet("GetBestsellersValue")]
-        public int[] GetBestsellers(){
-            var amount = (from a in _context.OrderItems
-            select a.Quantity).Take(10);
+        public OrderItem[] GetBestsellers(){
+
+
+            var amount =    _context.OrderItems
+                            .GroupBy(p => p.GameId)
+                            .Select(oi => oi.FirstOrDefault())
+                            .OrderByDescending(c => c.Quantity)
+                            .Take(10);
+
             return amount.ToArray();
         }
-        // SELECT "GameId", SUM("Quantity") as Amount
-        // FROM "OrderItems"
-        // GROUP BY "GameId"
-        // ORDER BY amount DESC
-        // limit 10
+
+    
 
         // [HttpGet("GetBestsellersName")]
         // public string[] GetBestsellersName(){
-        //     var itemNames = from t in _context.Games
-        //         let order_items = (from i in _context.OrderItems)
+
+        //      var itemNames = _context.Games
+        //                     .GroupBy(p => p.Id)
+        //                         _context.OrderItems
+        //                         .Select(oi => oi.FirstOrDefault())
+        //                         .OrderByDescending(c => c.Quantity)
+        //                         .Take(10)
+        //                     .Select(g => g.Title.FirstOrDefault())
+        //                     .Where(a => g.Id == oi.GameId);
+                            
+
+            // var itemNames = _context.Games
+            //                 .Where(g => g.Id == amount.GameId)
+            //                 .Select(gn => gn.Title.FirstOrDefault())
+            //                 .Take(10);
+
+            // return itemNames.Title.ToArray();
+                
         // }
     
     }
