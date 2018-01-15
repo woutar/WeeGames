@@ -22,36 +22,40 @@ namespace WeeGames.Controllers
 
         [HttpGet("GetBestsellersValue")]
         public OrderItem[] GetBestsellers(){
-            // var amount = (from a in _context.OrderItems
-            // select a.Quantity).Take(10);
 
-            // var amount =    from a in _context.OrderItems
-            //                 group a.GameId by a.Quantity into g
-            //                 let sum = g.Quantity.Sum()
-            //                 orderby sum descending
-            //                 select new OrderItem{Id = a.GameId, Quantity = sum};
 
-            var amount =    from a in _context.OrderItems
-                            orderby a.Quantity descending
-                            select new OrderItem
-                            {
-                                GameId = a.GameId, 
-                                OrderId = a.OrderId,
-                                Quantity = _context.OrderItems.Where(it => it.GameId == a.GameId).Select(it => it.Quantity).Sum()
-                            };
-                        return amount.ToArray();
+            var amount =    _context.OrderItems
+                            .GroupBy(p => p.GameId)
+                            .Select(oi => oi.FirstOrDefault())
+                            .OrderByDescending(c => c.Quantity)
+                            .Take(10);
+
+            return amount.ToArray();
         }
-        // SELECT "GameId", SUM("Quantity") as Amount
-        // FROM "OrderItems"
-        // GROUP BY "GameId"
-        // ORDER BY amount DESC
-        // limit 10
 
-        // [HttpGet("GetBestsellersName")]
-        // public string[] GetBestsellersName(){
-        //     var itemNames = from t in _context.Games
-        //         let order_items = (from i in _context.OrderItems)
-        // }
+    
+
+        [HttpGet("GetBestsellersName")]
+        public string[] GetBestsellersName(){
+
+             var itemNames = _context.Games
+                            .GroupBy(p => p.Id)
+                                _context.OrderItems
+                                .Select(oi => oi.FirstOrDefault())
+                                .OrderByDescending(c => c.Quantity)
+                                .Take(10)
+                            .Select(g => g.Title.FirstOrDefault())
+                            .Where(a => g.Id == oi.GameId);
+                            
+
+            // var itemNames = _context.Games
+            //                 .Where(g => g.Id == amount.GameId)
+            //                 .Select(gn => gn.Title.FirstOrDefault())
+            //                 .Take(10);
+
+            return itemNames.Title.ToArray();
+                
+        }
     
     }
 }
