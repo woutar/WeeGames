@@ -102,7 +102,7 @@ export class WishlistButton extends React.Component<{game_id : number}, Wishlist
                 return <button type="submit" className="btn btn-warning" onClick={this.AddToWishlist}>Add to wistlist <i className="glyphicon glyphicon-heart-empty"></i></button>
             }
         }else{
-            return <a href="login"><button type="submit" className="btn btn-warning">Add to wistlist <i className="glyphicon glyphicon-heart-empty"></i></button></a>
+            return null
         }
     }
 }
