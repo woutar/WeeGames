@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
 import * as Models from "../Model"
+import { Pagination } from './Pagination';
 import 'isomorphic-fetch';
 
 interface FetchPlatformGamesState{
@@ -11,13 +12,14 @@ interface FetchPlatformGamesState{
     amount : number
     categories : Models.Category[]
     activeCategory : string
+    pageOfItems : Models.Game[]
 }
 
 
 export class FetchPlatformGames extends React.Component<RouteComponentProps<{platform : string}>, FetchPlatformGamesState>{
     constructor(props:RouteComponentProps<{platform:string}>){
         super(props);
-        this.state = {games: [], loading: true, platformname: this.props.match.params.platform, amount: 0, categories: [], activeCategory : 'Choose category' }
+        this.state = {games: [], loading: true, platformname: this.props.match.params.platform, amount: 0, categories: [], activeCategory : 'Choose category', pageOfItems : [] }
 
         let searchquery = this.state.platformname;
 
@@ -36,7 +38,13 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChangePage = this.onChangePage.bind(this);
 
+    }
+
+    onChangePage(pageOfItems : any) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
     }
 
     handlePriceChange(event : any){
@@ -71,7 +79,7 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchPlatformGames.renderGame(this.state.games);
+            : FetchPlatformGames.renderGame(this.state.pageOfItems);
         let filters = this.renderFilters();
 
         return <div className="col-md-10 content">
@@ -80,6 +88,7 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                 </div>
                 { filters }
                 { contents }
+                <Pagination items={this.state.games} onChangePage={this.onChangePage} initialPage={1} />
             </div>
     }
 

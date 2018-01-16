@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route, NavLink, Link } from 'react-router-dom';
+import { Pagination } from './Pagination';
 import * as Models from "../Model";
 import 'isomorphic-fetch';
 
@@ -10,12 +11,13 @@ interface FetchAllGamesState {
     amount : number
     categories : Models.Category[]
     activeCategory : string
+    pageOfItems : Models.Game[]
 }
 
 export class FetchAllGames extends React.Component<RouteComponentProps<{}>, FetchAllGamesState> {
     constructor() {
         super();
-        this.state = { games: [], loading: true, amount: 0, categories: [], activeCategory : 'Choose category' };
+        this.state = { games: [], loading: true, amount: 0, categories: [], activeCategory : 'Choose category', pageOfItems : [] };
         
         fetch('Game/GetAll')
             .then(response => response.json() as Promise<Models.Game[]>)
@@ -32,6 +34,13 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChangePage = this.onChangePage.bind(this);
+        
+    }
+
+    onChangePage(pageOfItems : any) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
     }
 
     handlePriceChange(event : any){
@@ -59,14 +68,26 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
         .then(response => response.json() as Promise<Models.Game[]>)
         .then(data => {
             this.setState({ games: data, loading: false });
+            console.log(this.state.pageOfItems)
         });
+
+        // Local try for filtering
+
+        // var games = this.state.games;
+        // var category = this.state.activeCategory;
+        // var amount = this.state.amount;
+        // var filtered_games = games.filter(function(currentObject : any){
+        //     return currentObject.category.name == category && currentObject.price > amount
+        // });
+        // console.log(filtered_games)
+        // this.setState({ games : filtered_games});
         
     }
 
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchAllGames.renderGame(this.state.games);
+            : FetchAllGames.renderGame(this.state.pageOfItems);
         let filters = this.renderFilters();
 
         return <div className="col-md-10 content">
@@ -75,6 +96,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                     </div>
                     { filters }
                     { contents }
+                    <Pagination items={this.state.games} onChangePage={this.onChangePage} initialPage={1} />
                 </div>;
     }
 
@@ -152,6 +174,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
                 </Link>
                 </div>
             )}
+            
         </div>;
     }
 }
