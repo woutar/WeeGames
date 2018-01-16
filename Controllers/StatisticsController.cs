@@ -24,13 +24,29 @@ namespace WeeGames.Controllers
         public OrderItem[] GetBestsellers(){
 
 
-            var amount =    _context.OrderItems
+            var orderItems =    _context.OrderItems
                             .GroupBy(p => p.GameId)
                             .Select(oi => oi.FirstOrDefault())
                             .OrderByDescending(c => c.Quantity)
                             .Take(10);
 
-            return amount.ToArray();
+            return orderItems.ToArray();
+        }
+
+        [HttpPost("getGameTitles")]
+        public string[] getGameTitles([FromBody]JArray value){
+            List<string> titles = new List<string>();
+            for(int i = 0; i < 10; i++){
+                int gameId = value[i].ToObject<int>();
+                var title = _context.Games
+                            .Where(g => g.Id == gameId)
+                            .Select(g => g.Title)
+                            .SingleOrDefault();
+
+                titles.Add(title);
+            }
+            string[] gameTitles = titles.ToArray();
+            return gameTitles;
         }
 
     
