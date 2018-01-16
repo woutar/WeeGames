@@ -77,6 +77,21 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
     }
 
     renderOrders(){
+        // var date = parseDate(this.state.activeOrder.orderDate);
+        
+        // function to make the date a correct Date type
+        function parseDate(input : any) {
+            var parts = input.match(/(\d+)/g);
+            // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+            return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+        }
+
+        // convert the date to a nice string format
+        // var dd = date.getDate();
+        // var mm = date.getMonth()+1; 
+        // var yyyy = date.getFullYear();
+        // var pretty_date = yyyy + "-" + mm + "-" + dd;
+
         return <div>
         {this.state.orders.map(order =>
             <div className="row product history-item" key={ order.id } onClick={() => this.onDetails(event,order)}>
@@ -85,9 +100,12 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
                         <span className="title">Ordernumber : { order.id }</span>
                     </div>
                     <div className="col-sm-3">
+                        <span className="">Date: { parseDate(order.orderDate).getFullYear() + "-" + parseDate(order.orderDate).getMonth() + "-" + parseDate(order.orderDate).getDate() }</span>
+                    </div>
+                    <div className="col-sm-3">
                         <span className="price">Price : &euro;{ order.total.toFixed(2) }</span>
                     </div>
-                    <div className="col-sm-3 col-sm-offset-3 ">
+                    <div className="col-sm-3 ">
                         <span className="status">Status : {order.status}</span>
                     </div>
                 </div>
