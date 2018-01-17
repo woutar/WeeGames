@@ -35,7 +35,7 @@ namespace WeeGames.Controllers
         public IActionResult GetUser(int id){
             var user = (from u in _context.Users
                 where u.Id == id
-                select new User(){Id=u.Id, Email=u.Email, Password=u.Password, Firstname=u.Firstname, Lastname=u.Lastname, Birthdate=u.Birthdate, Address=u.Address, Zipcode=u.Zipcode, Country=u.Country, Role=u.Role }).FirstOrDefault();
+                select new User(){Id=u.Id, Email=u.Email, Password=u.Password, Firstname=u.Firstname, Lastname=u.Lastname, Birthdate=u.Birthdate, Address=u.Address, City=u.City, Zipcode=u.Zipcode, Country=u.Country, Role=u.Role }).FirstOrDefault();
             if(user == null) return NotFound();
             return Ok(user);
         }
@@ -123,16 +123,15 @@ namespace WeeGames.Controllers
 
             foreach (User u in query)
             {
+                u.Email = posted.Email;
                 u.Firstname = posted.Firstname;
                 u.Lastname = posted.Lastname;
-                u.Email = posted.Email;
-                u.Address = posted.Address;
-                u.Zipcode = posted.Zipcode;
-                u.Password = posted.Password;
                 u.Birthdate = posted.Birthdate;
+                u.Address = posted.Address;
+                u.City = posted.City;
+                u.Zipcode = posted.Zipcode;
                 u.Country = posted.Country;
                 u.Role = posted.Role;
-
             }
 
             try

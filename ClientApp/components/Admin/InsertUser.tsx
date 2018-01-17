@@ -13,6 +13,7 @@ interface PostUserState {
     Birthdate : Date;
     Address : string;
     Zipcode : string;
+    City: string;
     Country : string;
     Role : number;
     createdUser : Models.User | '';
@@ -31,6 +32,7 @@ export class InsertUser extends React.Component<RouteComponentProps<{}>,PostUser
             Birthdate : new Date(),
             Address : '',
             Zipcode : '',
+            City: '',
             Country : 'Netherlands',
             Role : 0,
             createdUser : '',
@@ -67,6 +69,7 @@ export class InsertUser extends React.Component<RouteComponentProps<{}>,PostUser
                 Birthdate : this.state.Birthdate,
                 Address : this.state.Address,
                 Zipcode : this.state.Zipcode,
+                City : this.state.City,
                 Country : this.state.Country,
                 Role : this.state.Role
             })
@@ -127,6 +130,11 @@ export class InsertUser extends React.Component<RouteComponentProps<{}>,PostUser
                     <label>Zipcode</label>
                     <input name="Zipcode" id="Zipcode" type="text" className="form-control"  placeholder="0000AA" required
                     onChange ={this.handleInputChange} pattern= "[0-9]{4}[A-Z]{2}"/>
+                </div>
+                <div className="form-group">
+                    <label>City</label>
+                    <input name="City" id="Address" type="text" className="form-control"  placeholder="London" required
+                    onChange ={this.handleInputChange} minLength={2} maxLength={50}/>
                 </div>
                 <div className="form-group">
                     <label>Country</label>

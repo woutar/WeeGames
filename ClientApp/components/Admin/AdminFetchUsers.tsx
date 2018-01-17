@@ -54,7 +54,6 @@ export class AdminFetchUsers extends React.Component<RouteComponentProps<any>, F
     }
 
     onAfterSaveCell(row: any, cellName: any, cellValue: any) {
-        // alert(`Save cell ${cellName} with value ${cellValue}`);
 
         var userInfo = [];
         for (const prop in row) {

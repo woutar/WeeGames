@@ -14,6 +14,7 @@ interface UpdateUserState{
     Address : string,
     Zipcode : string,
     Country : string,
+    City: string,
     Role : number,
 }
 
@@ -30,6 +31,7 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
             Address : '',
             Zipcode : '',
             Country : 'Netherlands',
+            City : '',
             Role : 0,
         };
 
@@ -46,6 +48,7 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
                      Address: data.address,
                      Zipcode: data.zipcode,
                      Country: data.country,
+                     City: data.city,
                      Role: data.role,
                     });
             });
@@ -66,9 +69,6 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
     }
 
     handleSubmit(event : any){
-        alert("id: " + this.state.Id + "\nEmail: " + this.state.Email + "\nFirstname:  " + this.state.Firstname 
-        + "\nLastname: " + this.state.Lastname + "\nBirthdate: " + this.state.Birthdate + "\nAddress: " + this.state.Address + "\nZipcode: " + this.state.Zipcode
-        + "\nCountry: " + this.state.Country + "\nRole: " + this.state.Role);
 
         event.preventDefault();
         fetch('api/User/UpdateFullUser',{
@@ -85,6 +85,7 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
                 Birthdate : this.state.Birthdate,
                 Address : this.state.Address,
                 Zipcode : this.state.Zipcode,
+                City : this.state.City,
                 Country : this.state.Country,
                 Role : this.state.Role
             })
@@ -96,9 +97,6 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
     render() {
         return (
             <div className="row">
-            {/* {alert("id: " + this.state.Id + "\nEmail: " + this.state.Email + "\nFirstname:  " + this.state.Firstname 
-            + "\nLastname: " + this.state.Lastname + "\nBirthdate: " + this.state.Birthdate + "\nAddress: " + this.state.Address + "\nZipcode: " + this.state.Zipcode
-            + "\nCountry: " + this.state.Country + "\nRole: " + this.state.Role)} */}
                 <form method="post" onSubmit={this.handleSubmit}>
                 <div className="col-lg-4">
                 <h2>Update user</h2>
@@ -133,6 +131,11 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
                         <label>Zipcode</label>
                         <input name="Zipcode" id="Zipcode" type="text" className="form-control"  placeholder="0000AA" required
                         onChange ={this.handleInputChange} value={this.state.Zipcode} pattern= "[0-9]{4}[A-Z]{2}"/>
+                    </div>
+                    <div className="form-group">
+                        <label>City</label>
+                        <input name="City" id="Address" type="text" className="form-control"  placeholder="London" required
+                        onChange ={this.handleInputChange} value={this.state.City} minLength={2} maxLength={50}/>
                     </div>
                     <div className="form-group">
                         <label>Country</label>
