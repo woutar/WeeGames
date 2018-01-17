@@ -34,7 +34,7 @@ export class BarChart extends React.Component<{},BarChartState>{
                         labels: ['Total orders','Guest orders','Registered orders'],
                         datasets:[
                             {
-                                label:['Units Sold'],
+                                label:['Total Orders'],
                                 data: data,
                                 min: 0,
                               backgroundColor:[
