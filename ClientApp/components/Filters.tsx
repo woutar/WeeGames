@@ -22,7 +22,7 @@ export class Filters extends React.Component<{}, FilterState> {
     }
 
     handlePriceChange(event : any){
-        if(event.target.value >= 0 && event.target.value <= 1000){
+        if(event.target.value >= 0 && event.target.value <= 100){
             this.setState({
                 amount : event.target.value
             })
@@ -61,7 +61,7 @@ export class Filters extends React.Component<{}, FilterState> {
                     </div>
                     <div className="col-md-6 centered">
                         <div className="form-group">
-                            <label>Minimal price &euro; &nbsp;</label>
+                            <label>Maximum price &euro; &nbsp;</label>
                             <input type="number" max="999" min="0" className="form-control" value={this.state.amount} onChange={this.handlePriceChange}/>
                         </div>
                     </div>

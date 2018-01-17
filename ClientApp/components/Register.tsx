@@ -127,7 +127,7 @@ export class Register extends React.Component<{location : string},PostUserState>
                 <div className="form-group">
                     <label>Email address</label>
                     <input name="Email" id="Email" type="email" className="form-control" placeholder="Example@example.com" required 
-                    minLength={5} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"/>
+                    minLength={5} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" title="example@mail.com"/>
                 </div>
 
                 <div className="form-group">
@@ -157,17 +157,17 @@ export class Register extends React.Component<{location : string},PostUserState>
                 <div className="form-group">
                     <label>Address</label>
                     <input name="Address" id="Address" type="text" className="form-control"  placeholder="Harborstreet 17" required
-                    onChange ={this.handleInputChange} minLength={5} maxLength={50} pattern= ".{5,}[0-9]{1,}"/>
+                    onChange ={this.handleInputChange} minLength={5} maxLength={50} pattern= ".{5,}[0-9]{1,}" title="Streetname 123"/>
                 </div>
                 <div className="form-group">
                     <label>City</label>
                     <input name="City" id="Address" type="text" className="form-control"  placeholder="London" required
-                    onChange ={this.handleInputChange} minLength={2} maxLength={50}/>
+                    onChange ={this.handleInputChange} minLength={2} maxLength={50} />
                 </div>
                 <div className="form-group">
                     <label>Zipcode</label>
                     <input name="Zipcode" id="Zipcode" type="text" className="form-control"  placeholder="0000AA" required
-                    onChange ={this.handleInputChange} pattern= "[0-9]{4}[A-Z]{2}"/>
+                    onChange ={this.handleInputChange} pattern= "[0-9]{4}[A-Z]{2}" title="1234AB"/>
                 </div>
                 <div className="form-group">
                     <label>Country</label>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { PropTypes } from 'react';
 import * as Models from "../Model";
+import * as _ from "lodash";
 
 interface propTypes  {
    items: Models.Game[],
@@ -87,9 +88,9 @@ export class Pagination extends React.Component<propTypes,{pager : any}>{
        var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
        // create an array of pages to ng-repeat in the pager control
-        var pages = Array.apply(1, Array(endPage + 1)).map(function (_ : any, i : any) {return i;});
-        pages.splice(0,1)
-        // var pages = _.range(startPage, endPage + 1);
+        // var pages = Array.apply(1, Array(endPage + 1)).map(function (_ : any, i : any) {return i;});
+        // pages.splice(0,1)
+        var pages = _.range(startPage, endPage + 1);
 
        // return object with all pager properties required by the view
        return {

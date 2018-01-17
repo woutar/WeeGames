@@ -7,9 +7,11 @@ import 'isomorphic-fetch';
 
 interface FetchPlatformGamesState{
     games: Models.Game[]
+    filtered_list: Models.Game[];
     loading: boolean
     platformname: string
-    amount : number
+    minAmount : number | string
+    maxAmount : number | string
     categories : Models.Category[]
     activeCategory : string
     pageOfItems : Models.Game[]
@@ -19,14 +21,14 @@ interface FetchPlatformGamesState{
 export class FetchPlatformGames extends React.Component<RouteComponentProps<{platform : string}>, FetchPlatformGamesState>{
     constructor(props:RouteComponentProps<{platform:string}>){
         super(props);
-        this.state = {games: [], loading: true, platformname: this.props.match.params.platform, amount: 0, categories: [], activeCategory : 'Choose category', pageOfItems : [] }
+        this.state = {games: [], filtered_list : [], loading: true, platformname: this.props.match.params.platform ,minAmount: '', maxAmount : '', categories: [], activeCategory : 'Choose category', pageOfItems : [] }
 
         let searchquery = this.state.platformname;
 
         fetch('api/platform/GetGames/' + searchquery)
             .then (response => response.json() as Promise<Models.Game[]>)
             .then(data=> {
-                this.setState({ games: data, loading: false, platformname : this.props.match.params.platform });
+                this.setState({ games: data, filtered_list : data, loading: false, platformname : this.props.match.params.platform });
             });
         
         fetch('api/Category/GetAll')
@@ -48,9 +50,10 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
     }
 
     handlePriceChange(event : any){
+        const name = event.target.name;
         if(event.target.value >= 0 && event.target.value <= 1000){
             this.setState({
-                amount : event.target.value
+                [name] : event.target.value
             })
         }
     }
@@ -67,13 +70,22 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
 
     handleSubmit(event : any){
         event.preventDefault();
+        // Local filtering
 
-        fetch('Game/Filter/' + this.state.platformname + '/' + this.state.activeCategory + '/' + this.state.amount)
-        .then(response => response.json() as Promise<Models.Game[]>)
-        .then(data => {
-            this.setState({ games: data, loading: false });
+        var games = this.state.games;
+        var category = this.state.activeCategory;
+        var minAmount = this.state.minAmount;
+        var maxAmount = this.state.maxAmount;
+       
+        var filtered_games = games.filter(function(currentObject : any){
+            if(minAmount == ''){ minAmount = 0}
+            if(maxAmount == ''){ maxAmount = 999}
+            if(category == 'Choose category'){
+                return currentObject.price >= minAmount && currentObject.price <= maxAmount
+            }
+            return currentObject.category.name == category && currentObject.price >= minAmount && currentObject.price <= maxAmount
         });
-        
+        this.setState({ filtered_list : filtered_games});
     }
 
     public render() {
@@ -88,7 +100,7 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                 </div>
                 { filters }
                 { contents }
-                <Pagination items={this.state.games} onChangePage={this.onChangePage} initialPage={1} />
+                <Pagination items={this.state.filtered_list} onChangePage={this.onChangePage} initialPage={1} />
             </div>
     }
 
@@ -108,12 +120,18 @@ export class FetchPlatformGames extends React.Component<RouteComponentProps<{pla
                             </select>
                         </div>
                     </div>
-                    <div className="col-md-6 centered">
-                        <div className="form-group">
-                            <label>Minimal price &euro; &nbsp;</label>
-                            <input type="number" max="999" min="0" className="form-control" value={this.state.amount} onChange={this.handlePriceChange}/>
-                        </div>
+                    <div className="col-md-3">
+                    <div className="form-group">
+                        <label>Minimum price &euro; &nbsp;</label>
+                        <input type="number" max="999" min="0" className="form-control" name="minAmount" value={this.state.minAmount} onChange={this.handlePriceChange} />
                     </div>
+                </div>
+                <div className="col-md-3">
+                    <div className="form-group">
+                        <label>Maximum price &euro; &nbsp;</label>
+                        <input type="number" max="999" min="0" className="form-control" name="maxAmount" value={this.state.maxAmount} onChange={this.handlePriceChange} />
+                    </div>
+                </div>
                     <div className="col-md-12 centered">
                         <input type="submit" className="btn btn-default" value="Filter"/>
                     </div>

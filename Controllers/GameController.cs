@@ -42,13 +42,14 @@ namespace WeeGames.Controllers
             return Ok(game);
         }
 
+        // Legacy, Filtering is now done on front-end
         [HttpGet("Filter/{PlatformName}/{CategoryName}/{Price}")]
         public Game[] Filter(string PlatformName, string CategoryName, int Price){
 
             var games = from g in _context.Games
                 
                 //  basic where clause
-                where g.Price >= Price
+                where g.Price <= Price
                 orderby g.Price ascending
 
                 // get data from foreign tables
@@ -59,15 +60,15 @@ namespace WeeGames.Controllers
             // filter where clauses
             if(PlatformName != "none" && CategoryName != "Choose category")
             {
-                games = games.Where(g => g.Platform.Name == PlatformName && g.Category.Name == CategoryName && g.Price >= Price);
+                games = games.Where(g => g.Platform.Name == PlatformName && g.Category.Name == CategoryName && g.Price <= Price);
             }
             else if(PlatformName != "none")
             {
-                games = games.Where(g => g.Platform.Name == PlatformName && g.Price >= Price);
+                games = games.Where(g => g.Platform.Name == PlatformName && g.Price <= Price);
             }
             else if(CategoryName != "Choose category")
             {
-                games = games.Where(g => g.Category.Name == CategoryName && g.Price >= Price);
+                games = games.Where(g => g.Category.Name == CategoryName && g.Price <= Price);
             }
 
             var games_result = games.ToArray();
