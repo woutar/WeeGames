@@ -26,17 +26,6 @@ export class BarChart extends React.Component<{},BarChartState>{
     getBarChartData(){
         //Ajax calls here
 
-        var options = {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                  min: 0
-                }    
-              }]
-            }
-          };
-
         fetch('api/statistics/getordersamount')
             .then(response => response.json() as Promise<number[]>)
             .then(data => {
