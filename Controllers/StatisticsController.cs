@@ -23,12 +23,24 @@ namespace WeeGames.Controllers
         [HttpGet("GetBestsellersValue")]
         public OrderItem[] GetBestsellers(){
 
+            
+            var orderItems =
+                from order in _context.OrderItems
+                group order by order.GameId into orderGroup
+                select new OrderItem()
+                {
+                    GameId = orderGroup.Key,
+                    Quantity = orderGroup.Sum(x => x.Quantity),
+                };
+                orderItems = orderItems.OrderByDescending(c => c.Quantity);
+            orderItems = orderItems.Take(10);
+            
 
-            var orderItems =    _context.OrderItems
-                            .GroupBy(p => p.GameId)
-                            .Select(oi => oi.FirstOrDefault())
-                            .OrderByDescending(c => c.Quantity)
-                            .Take(10);
+            // var orderItems =    _context.OrderItems
+            //                 .GroupBy(p => p.GameId)
+            //                 .Select(oi => oi.FirstOrDefault())
+            //                 .OrderByDescending(c => c.Quantity)
+            //                 .Take(10);
 
             return orderItems.ToArray();
         }
