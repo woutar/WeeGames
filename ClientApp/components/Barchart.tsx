@@ -25,6 +25,18 @@ export class BarChart extends React.Component<{},BarChartState>{
 
     getBarChartData(){
         //Ajax calls here
+
+        var options = {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  min: 0
+                }    
+              }]
+            }
+          };
+
         fetch('api/statistics/getordersamount')
             .then(response => response.json() as Promise<number[]>)
             .then(data => {
@@ -33,8 +45,9 @@ export class BarChart extends React.Component<{},BarChartState>{
                         labels: ['Total orders','Guest orders','Registered orders'],
                         datasets:[
                             {
-                                label:'Units Sold',
+                                label:['Units Sold'],
                                 data: data,
+                                min: 0,
                               backgroundColor:[
                                   'rgba(255, 0, 0, 0.6)',
                                   'rgba(125, 125, 142, 0.6)',
@@ -52,6 +65,13 @@ export class BarChart extends React.Component<{},BarChartState>{
             <div className="chart">
                 <Bar data={this.state.barchartData}
                      options={{
+                         scales:{
+                            yAxes: [{
+                                ticks: { 
+                                    min: 0
+                                }
+                            }]
+                         },
                          title:{
                              display:true,
                              text:'Order information',
