@@ -54,15 +54,13 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
     }
 
     onAfterSaveCell(row: any, cellName: any, cellValue: any) {
-        // alert(`Save cell ${cellName} with value ${cellValue}`);
 
         var gameInfo = [];
         for (const prop in row) {
           gameInfo.push(row[prop]);
         }
-        
         // Change , to . in Price
-        gameInfo[2] = gameInfo[2].replace(/,/g, '.');
+        // gameInfo[2] = gameInfo[2].replace(/,/g, '.');
 
         // Send game info to updategame method in gamecontroller
         fetch('game/updategame',{

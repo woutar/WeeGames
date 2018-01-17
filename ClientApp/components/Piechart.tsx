@@ -40,12 +40,11 @@ export class PieChart extends React.Component<{},PieChartState>{
 
     getData(){
 
-        var gameTitles = []
+        var gameTitles = [];
         for(var i = 0; i < 10; i++){
-            gameTitles.push(this.state.orderItems[i].game.id);
+            gameTitles.push(this.state.orderItems[i].gameId);
         }
         var json = JSON.stringify(gameTitles);
-        alert(json);
 
         fetch('api/statistics/getgametitles',{
             method : 'POST',
@@ -77,24 +76,8 @@ export class PieChart extends React.Component<{},PieChartState>{
                 }]
                 
             }});
-            alert(this.state.piechartData.labels[0]);
         });
     }
-
-    // getGameTitles(){
-    //     // var gameTitles = []
-    //     // for(var i = 0; i < 10; i++){
-    //     //     gameTitles.push(this.state.orderItems[i].gameId);
-    //     //     alert(gameTitles[0]);
-    //     // }
-    //     alert("the fuck is happening");
-    //     this.setState({
-    //         piechartData:{
-    //             labels: ['Game 1','Game 2','Game 3','Game 4','Game 5','Game 6','Game 7','Game 8','Game 9','Game 10'],
-    //         }
-    //       })
-    //       alert(this.state.piechartData.labels[0]);
-    // }
       
     render(){
         return (

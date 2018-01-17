@@ -49,29 +49,47 @@ namespace WeeGames.Controllers
             return gameTitles;
         }
 
-    
+        [HttpPost("getRevenue")]
+        public double[] getRevenue([FromBody]JArray dates){
+            List<double> values = new List<double>();
 
-        // [HttpGet("GetBestsellersName")]
-        // public string[] GetBestsellersName(){
 
-        //      var itemNames = _context.Games
-        //                     .GroupBy(p => p.Id)
-        //                         _context.OrderItems
-        //                         .Select(oi => oi.FirstOrDefault())
-        //                         .OrderByDescending(c => c.Quantity)
-        //                         .Take(10)
-        //                     .Select(g => g.Title.FirstOrDefault())
-        //                     .Where(a => g.Id == oi.GameId);
+            for(int i = 0; i < 9; i++){
+                 var totalprice = (from o in _context.Orders
+                            where (o.OrderDate >= dates[i].ToObject<DateTime>() && o.OrderDate <= dates[i + 1].ToObject<DateTime>())
+                            select o.Total).Sum();
                             
+                values.Add(Math.Round(totalprice, 2));
+            }
 
-            // var itemNames = _context.Games
-            //                 .Where(g => g.Id == amount.GameId)
-            //                 .Select(gn => gn.Title.FirstOrDefault())
-            //                 .Take(10);
+            double[] revenue = values.ToArray();
 
-            // return itemNames.Title.ToArray();
-                
-        // }
-    
+            return revenue;
+        }
+
+
+        [HttpGet("getOrdersAmount")]
+        public int[] getOrdersAmount(){
+            List<int> resultArray = new List<int>();
+
+            var ordersAmount = _context.Orders
+                                .Count();
+
+            var guestOrders = _context.Orders
+                                .Where(u => u.UserId == null)
+                                .Count();
+
+            var registeredOrders = _context.Orders
+                                .Where(u => u.UserId != null)
+                                .Count();
+
+            resultArray.Add(ordersAmount);
+            resultArray.Add(guestOrders);
+            resultArray.Add(registeredOrders);
+
+            return resultArray.ToArray();
+
+
+        }
     }
 }

@@ -119,8 +119,8 @@ namespace WeeGames.Controllers
                 g.Title = posted.Title;
                 g.Price = posted.Price;
                 g.Description = posted.Description;
-                g.Category.Id = posted.Category.Id;
-                g.Category.Id = posted.Category.Id;
+                g.CategoryId = posted.CategoryId;
+                g.PlatformId = posted.PlatformId;
                 g.Image = posted.Image;
                 g.Publisher = posted.Publisher;
                 g.Releasedate = posted.Releasedate;

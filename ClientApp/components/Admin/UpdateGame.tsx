@@ -66,6 +66,11 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
 
     handleSubmit(event : any){
         event.preventDefault();
+
+        if(this.state.Image == null){
+            this.setState({Image: ''});
+        }
+
         fetch('Game/UpdateFullGame',{
             method : 'POST',
             headers:{
@@ -83,7 +88,9 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
                 Publisher: this.state.Publisher,
                 Image: this.state.Image,
             })
-        }); 
+            
+        })
+        .then(response => response.json() as Promise<Models.Game>); 
         window.location.href = "/admin/games";     
     }
 
@@ -91,7 +98,6 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
     render() {
         return (
             <div className="row">
-            {alert(this.state.Title)}
                 <form method="post" onSubmit={this.handleSubmit}>
                 <div className="col-lg-1"/>
                 <div className="col-lg-6">

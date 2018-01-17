@@ -70,6 +70,7 @@ export type Order ={
 
 export type OrderItem={
     id: number,
+    gameId: number,
     game : Game,
     quantity : number
 }

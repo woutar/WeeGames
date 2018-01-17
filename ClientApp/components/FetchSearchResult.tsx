@@ -160,7 +160,7 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <span className="tag">Categorie: </span><span className="category">{ game.category.name }</span>
+                                    <span className="tag">Category: </span><span className="category">{ game.category.name }</span>
                                 </div>
                             </div>
                             <div className="row">
