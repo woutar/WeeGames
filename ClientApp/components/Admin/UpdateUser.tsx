@@ -55,6 +55,9 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+      
+
     }
 
 
@@ -62,11 +65,12 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
+        
         this.setState({
             [name] : value
         });
     }
+
 
     handleSubmit(event : any){
 
@@ -90,7 +94,8 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
                 Role : this.state.Role
             })
         }); 
-        window.location.href = "/admin/users";     
+        window.location.href = "/admin/users";   
+        
     }
 
     public render() {
@@ -123,7 +128,7 @@ export class UpdateUser extends React.Component<RouteComponentProps<{id: number}
                             <div className="form-group">
                                 <label>Birthdate</label>
                                 <input name="Birthdate" id="Birthdate" type="date" className="form-control"  placeholder="Enter Birthdate" required 
-                                onChange ={this.handleInputChange} min="1917-01-01" max="2010-01-01"/>
+                                onChange ={this.handleInputChange} value="1987-05-13" min="1917-01-01" max="2010-01-01"/>
                             </div>
                             <div className="form-group">
                                 <label>Address</label>

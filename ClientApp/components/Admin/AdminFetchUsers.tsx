@@ -113,21 +113,22 @@ export class AdminFetchUsers extends React.Component<RouteComponentProps<any>, F
                 };
 
 
-                return <div className="col-md-10 content">
-                    
-                <BootstrapTable data={ this.state.users } selectRow={ selectRowProp } deleteRow={ true } cellEdit={ cellEditProp } search={true}  options={ options} height='auto' hover pagination>
-                    <TableHeaderColumn dataField='id'isKey={true} width="60">ID</TableHeaderColumn>
-                    <TableHeaderColumn dataField='firstname' dataSort>Firstname</TableHeaderColumn>
-                    <TableHeaderColumn dataField='lastname'  dataSort>Lastname</TableHeaderColumn>
-                    <TableHeaderColumn dataField='email'  dataSort>Email address</TableHeaderColumn>
-                    <TableHeaderColumn dataField='birthdate' dataSort editable={ false }>Birthdate</TableHeaderColumn>
-                    <TableHeaderColumn dataField='address' >Address</TableHeaderColumn>
-                    <TableHeaderColumn dataField='zipcode' >zipcode</TableHeaderColumn>
-                    <TableHeaderColumn dataField='country'  dataSort editable={ false }>Country</TableHeaderColumn>
-                    <TableHeaderColumn dataField='id' dataFormat={this.ImageFormatter} editable={ false } width="80">Update</TableHeaderColumn>
-                </BootstrapTable>
+        return <div className="col-md-10 content">
+            
+        <BootstrapTable data={ this.state.users } selectRow={ selectRowProp } deleteRow={ true } cellEdit={ cellEditProp } search={true}  options={ options} height='auto' hover pagination>
+            <TableHeaderColumn dataField='id'isKey={true} width="60">ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='firstname' dataSort>Firstname</TableHeaderColumn>
+            <TableHeaderColumn dataField='lastname'  dataSort>Lastname</TableHeaderColumn>
+            <TableHeaderColumn dataField='email'  dataSort>Email address</TableHeaderColumn>
+            {/* <TableHeaderColumn dataField='birthdate' dataSort editable={ false }>Birthdate</TableHeaderColumn> */}
+            {/* <TableHeaderColumn dataField='address' >Address</TableHeaderColumn> */}
+            {/* <TableHeaderColumn dataField='zipcode' >zipcode</TableHeaderColumn> */}
+            {/* <TableHeaderColumn dataField='country'  dataSort editable={ false }>Country</TableHeaderColumn> */}
+            <TableHeaderColumn dataField='id' dataAlign="center" dataFormat={this.ImageFormatter} editable={ false } width="120">Update</TableHeaderColumn>
+        </BootstrapTable>
 
-                </div>;
+        </div>;
+                
             }
             return null
         }

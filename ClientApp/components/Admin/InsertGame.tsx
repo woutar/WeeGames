@@ -27,11 +27,12 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
             Description: 'This game has no description.',
             Releasedate: 0,
             Publisher: '',
-            Image: '',
+            Image: './images/game_images/300x300.png',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
     handleInputChange(event : any){
@@ -60,6 +61,7 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
                 Description: this.state.Description,
                 Releasedate: this.state.Releasedate,
                 Publisher: this.state.Publisher,
+                Image: this.state.Image,
             })
         })
         .then(response => response.json() as Promise<Models.Game>)
@@ -69,12 +71,6 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
         
     }
     
-    handleImage(){
-        var form = document.forms.namedItem("FileInfo");
-
-        var oReq = new XMLHttpRequest();
-        oReq.open("POST", "")
-    }
 
      gameCreated(){
         alert("Game created");
@@ -163,7 +159,7 @@ export class InsertGame extends React.Component<RouteComponentProps<{}>,PostGame
                                 <textarea className="form-control" rows={5} name="Description" placeholder="Game description" onChange ={this.handleInputChange}>This game has no description.</textarea>
                             </div>
             
-                            <input type="file" name="pic" accept="image/*"/>
+                            {/* <input type="file" name="pic" accept="image/*"/> */}
                             <br/>
                             <input type="submit" className="btn btn-default" value="Add Game"/>
                         </div>
