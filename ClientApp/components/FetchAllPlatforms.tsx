@@ -8,12 +8,13 @@ import {FetchPlatformGames} from "./FetchPlatformGames"
 interface FetchAllPlatformsState {
     platforms: Models.Platform[];
     loading: boolean;
+    activeItem : string;
 }
 
-export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, FetchAllPlatformsState> {
-    constructor() {
-        super();
-        this.state = { platforms: [], loading: true };
+export class FetchAllPlatforms extends React.Component<RouteComponentProps<{platform : string}>, FetchAllPlatformsState> {
+    constructor(props:RouteComponentProps<{platform:string}>){
+        super(props);
+        this.state = { platforms: [], loading: true, activeItem : this.props.match.params.platform };
 
         fetch('api/Platform/GetAll')
             .then(response => response.json() as Promise<Models.Platform[]>)
@@ -26,19 +27,28 @@ export class FetchAllPlatforms extends React.Component<RouteComponentProps<{}>, 
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchAllPlatforms.renderPlatforms(this, this.state.platforms);
+            : this.renderPlatforms(this.state.platforms);
 
         return <div className="col-md-2 sidebar">
+                <div className="row pageTitle">
+                    </div>
                     { contents }
-                    
-                </div>;
+                </div>
     }
 
-    private static renderPlatforms(self:any, platforms: Models.Platform[]) {
+    renderActive(platform : string){
+        if(this.state.activeItem == platform){
+            return "nav-active";
+        }else{
+            return undefined;
+        }
+    }
+
+    renderPlatforms(platforms: Models.Platform[]) {
         return <ul className="nav nav-pills nav-stacked">
             {platforms.map(platform =>
                 <li  key={ platform.name }>
-                    <a href={"/games/" + platform.name}>
+                    <a href={"/games/" + platform.name} className={this.renderActive(platform.name)}>
                         { platform.name }
                     </a>
                 </li>

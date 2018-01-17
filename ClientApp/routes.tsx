@@ -1,20 +1,28 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { FetchData } from './components/FetchData';
 import { FetchAllGames } from './components/FetchAllGames';
 import { FetchAllPlatforms } from './components/FetchAllPlatforms';
 import { FetchGame } from './components/FetchGame';
 import { ShoppingCart } from './components/Shoppingcart';
 import { FetchSearchResult } from './components/FetchSearchResult';
 import { FetchPlatformGames } from './components/FetchPlatformGames';
-import { Register } from './components/Register'; 
+import { RegisterPage } from './components/RegisterPage'; 
 import { LoginPage } from './components/LoginPage';
 import { Checkout } from './components/Checkout';
+import { UserPage } from './components/UserPage';
+import { OrderHistory } from './components/OrderHistory';
+import { Wishlist } from './components/Wishlist';
+
+//Admin
 import { AdminMenu } from './components/Admin/AdminMenu'
 import { AdminFetchGames } from './components/Admin/AdminFetchGames'
 import { Statistics } from './components/Admin/Statistics';
 import { InsertGame } from './components/Admin/InsertGame';
+import { UpdateGame } from './components/Admin/UpdateGame';
+import { AdminFetchUsers } from './components/Admin/AdminFetchUsers'
+import { InsertUser } from './components/Admin/InsertUser';
+import { UpdateUser } from './components/Admin/UpdateUser';
 
 
 
@@ -28,14 +36,22 @@ export const routes = <Layout>
     <Route path='/checkout' component = { Checkout  } />
     <Route path='/search/' component={ FetchAllPlatforms } />
     <Route path='/search/:searchquery' component={ FetchSearchResult } />
-    <Route path='/games' component={ FetchAllPlatforms} />
+    <Route path='/games/:platform' component={ FetchAllPlatforms} />
     <Route path='/games/:platform' component={ FetchPlatformGames} />
-    <Route path='/register/' component= { Register } />
+    <Route path='/register/' component= { RegisterPage } />
     <Route path='/login' component = { LoginPage } />
-    <Route path='/statistics' component = { Statistics } />
+    <Route path='/user' component = { UserPage } />
+    <Route path='/orderhistory' component = { OrderHistory } />
+    <Route path='/wishlist' component = { Wishlist } />
+
+
     <Route path='/admin/' component={ AdminMenu } />
     <Route path='/admin/statistics' component={ Statistics } />
     <Route path='/admin/games' component={ AdminFetchGames } />
     <Route path='/admin/addGame' component={ InsertGame } />
+    <Route path='/admin/updategame/:id' component={UpdateGame} />
+    <Route path='/admin/users' component={ AdminFetchUsers } />
+    <Route path='/admin/addUser' component={ InsertUser } />
+    <Route path='/admin/updateuser/:id' component={UpdateUser} />
 </Layout>; 
 

@@ -65,21 +65,18 @@ export class Login extends React.Component<{location : string}, userState> {
     }
 
     render() {
-        if(sessionStorage.getItem("user")){
-            window.location.href = "/";
-        }
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label>Email address</label>
-                    <input name="userEmail" type="email" className="form-control" value={this.state.userEmail } minLength={10} maxLength={64}
+                    <input name="userEmail" type="email" className="form-control" value={this.state.userEmail } minLength={5} maxLength={64}
                         onChange={this.handleEmailChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"  placeholder="Example@example.com" required />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
                     <input name="userPassword" type="password" className="form-control" value={this.state.userPassword} 
-                    onChange={this.handlePasswordChange} minLength={4} maxLength={30}  placeholder="******" required/>
+                    onChange={this.handlePasswordChange} minLength={6} maxLength={30}  placeholder="******" required/>
                 </div>
                 <input type="submit" className="btn btn-default"  value="Login" />
             </form>

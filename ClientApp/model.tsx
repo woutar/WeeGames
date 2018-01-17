@@ -24,10 +24,12 @@ export type ShoppingcartGame ={
 }
 
 export type ShippingInfo ={
+    id : null,
     email : string,
     firstname : string,
     lastname : string,
     address : string,
+    city : string,
     zipcode : string,
     country : string
 }
@@ -50,17 +52,30 @@ export type User ={
     lastname:string,
     birthdate:Date,
     address:string,
+    city:string,
     zipcode:string,
     country:string,
     role:number
 }
 
-// export type Order ={
-//     id:number,
-//     games:Game[]
-// }
+export type Order ={
+    id : number,
+    orderDate : Date,
+    paymentMethod : string,
+    methodInfo : string,
+    status : string,
+    orderItems : OrderItem[],
+    total : number
+}
 
-// export type Wishlist ={
-//     id:number,
-//     user:User[],
-// }
+export type OrderItem={
+    id: number,
+    gameId: number,
+    game : Game,
+    quantity : number
+}
+
+export type Wishlist={
+    id : number,
+    game : Game
+}

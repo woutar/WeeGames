@@ -12,6 +12,7 @@ interface PostUserState {
     Lastname : string,
     Birthdate : Date,
     Address : string,
+    City : string,
     Zipcode : string,
     Country : string,
     Role : number,
@@ -19,7 +20,7 @@ interface PostUserState {
     userCreated : boolean
 }
 
-export class Register extends React.Component<RouteComponentProps<{}>,PostUserState>{
+export class Register extends React.Component<{location : string},PostUserState>{
     constructor(props :any){
         super(props);
 
@@ -30,6 +31,7 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
             Lastname : '',
             Birthdate : new Date(),
             Address : '',
+            City : '',
             Zipcode : '',
             Country : 'Netherlands',
             Role : 0,
@@ -66,23 +68,50 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
                 Lastname : this.state.Lastname,
                 Birthdate : this.state.Birthdate,
                 Address : this.state.Address,
+                City : this.state.City,
                 Zipcode : this.state.Zipcode,
                 Country : this.state.Country,
                 Role : this.state.Role
             })
-        })
+        }).then(this.errorHandler)
         .then(response => response.json() as Promise<Models.User>)
         .then(data => {
             this.setState({ createdUser: data, userCreated : true});
             this.userCreated();
         });
-        
+
+        //Send the mail
+        fetch('api/Mail/Register',{
+            method : 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Email : this.state.Email,
+                Firstname : this.state.Firstname,
+                Lastname : this.state.Lastname,
+                Birthdate : this.state.Birthdate,
+                Address : this.state.Address,
+                City : this.state.City,
+                Zipcode : this.state.Zipcode,
+                Country : this.state.Country
+            })
+        });  
+    }
+
+    errorHandler(response:any){
+        if(response.status == 200){
+            return response;
+        }else{
+            alert("This email is already in use");
+        }
     }
     
     userCreated(){
         if(this.state.userCreated && this.state.createdUser != ''){
-            alert("User created");
-            window.location.href = "/login";
+            sessionStorage.user = JSON.stringify(this.state.createdUser)
+            window.location.href = "/" + this.props.location;
         }
     }
 
@@ -92,25 +121,23 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
             window.location.href = "/";
         }
         return (
-        <div className="row">
-        <h2>Register</h2>
+        
         <form method="post" onSubmit={this.handleSubmit}>
-            <div className="col-lg-4">
+            <div className="col-md-4 col-md-offset-1">
                 <div className="form-group">
                     <label>Email address</label>
                     <input name="Email" id="Email" type="email" className="form-control" placeholder="Example@example.com" required 
-                    minLength={10} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"/>
+                    minLength={5} maxLength={64} onChange ={this.handleInputChange} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" title="example@mail.com"/>
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
                     <input name="Password" id="Password" type="password" className="form-control" placeholder="******" required 
-                        minLength={4} maxLength={30} onChange ={this.handleInputChange}
+                        minLength={6} maxLength={30} onChange ={this.handleInputChange}
                     />
                 </div>
             </div>
-            <div className="col-lg-2" />
-            <div className="col-lg-4">
+            <div className="col-md-4 col-md-offset-1">
                 <div className="form-group">
                     <label>Firstname</label>
                     <input name="Firstname" id="Firstname" type="text" className="form-control"  placeholder="Enter Firstname" required 
@@ -125,17 +152,22 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
                 <div className="form-group">
                     <label>Birthdate</label>
                     <input name="Birthdate" id="Birthdate" type="date" className="form-control"  placeholder="Enter Birthdate" required 
-                    onChange ={this.handleInputChange} min="1917-01-01" max="2010-01-01"/>
+                    onChange ={this.handleInputChange} min="1900-01-01" max="2018-01-01"/>
                 </div>
                 <div className="form-group">
                     <label>Address</label>
-                    <input name="Address" id="Address" type="text" className="form-control"  placeholder="Enter Address" required
-                    onChange ={this.handleInputChange} minLength={10} maxLength={50}/>
+                    <input name="Address" id="Address" type="text" className="form-control"  placeholder="Harborstreet 17" required
+                    onChange ={this.handleInputChange} minLength={5} maxLength={50} pattern= ".{5,}[0-9]{1,}" title="Streetname 123"/>
+                </div>
+                <div className="form-group">
+                    <label>City</label>
+                    <input name="City" id="Address" type="text" className="form-control"  placeholder="London" required
+                    onChange ={this.handleInputChange} minLength={2} maxLength={50} />
                 </div>
                 <div className="form-group">
                     <label>Zipcode</label>
                     <input name="Zipcode" id="Zipcode" type="text" className="form-control"  placeholder="0000AA" required
-                    onChange ={this.handleInputChange} pattern= "[0-9]{4}[A-Z]{2}"/>
+                    onChange ={this.handleInputChange} pattern= "[0-9]{4}[A-Z]{2}" title="1234AB"/>
                 </div>
                 <div className="form-group">
                     <label>Country</label>
@@ -151,7 +183,6 @@ export class Register extends React.Component<RouteComponentProps<{}>,PostUserSt
                 <input type="submit" className="btn btn-default" value="Register"/>
             </div>
             </form>
-        </div>
         )
     }
 }

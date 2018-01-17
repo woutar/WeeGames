@@ -57,6 +57,8 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
     }
 
     private static renderLoggedIn(self : any, user : Models.User){
+        var admin;
+        if(user.role == 1){ admin = <li className=""><a href="admin">Adminpanel</a></li>};
         return <ul className="nav navbar-nav navbar-right">
             <li>
                 <Search/>
@@ -66,11 +68,11 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                     My account
                     <span className="caret"></span></a>
                     <ul className="dropdown-menu" role="menu">
-                        <li className="dropdown-header">Ingelogd als: <br />{user.email}</li>
-                        <li className=""><a href="#">Wishlist</a></li>
-                        <li className=""><a href="#">Account settings</a></li>
-                        <li className=""><a href="#">Order history</a></li>
-                        <li className=""><a href="admin">Adminpanel</a></li>
+                        <li className="dropdown-header">Logged in as: <br />{user.email}</li>          
+                        <li className=""><a href="user">Account details</a></li>
+                        <li className=""><a href="wishlist">Wishlist</a></li>
+                        <li className=""><a href="orderhistory">Order history</a></li>
+                        { admin }
                         <li className="divider"></li>
                         <li><a href="" onClick={() => self.logOut()}>Logout</a></li>
                     </ul>
@@ -88,14 +90,11 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
         </li>   
         <li className="dropdown">
             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                My account
+                login/register
                 <span className="caret"></span></a>
                 <ul className="dropdown-menu" role="menu">
-                    <li className="dropdown-header">Niet Ingelogd</li>
-                    <li className=""><a href="admin">Adminpanel</a></li>
-                    <li className="divider"></li>
-                    <li><a href="Register" >Register</a></li>
                     <li><a href="Login" >Login</a></li>
+                    <li><a href="Register" >Register</a></li>
                 </ul>
         </li>
         <li>
