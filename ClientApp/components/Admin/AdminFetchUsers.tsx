@@ -118,11 +118,11 @@ export class AdminFetchUsers extends React.Component<RouteComponentProps<any>, F
             <TableHeaderColumn dataField='firstname' dataSort>Firstname</TableHeaderColumn>
             <TableHeaderColumn dataField='lastname'  dataSort>Lastname</TableHeaderColumn>
             <TableHeaderColumn dataField='email'  dataSort>Email address</TableHeaderColumn>
-            <TableHeaderColumn dataField='birthdate' dataSort editable={ false }>Birthdate</TableHeaderColumn>
-            <TableHeaderColumn dataField='address' >Address</TableHeaderColumn>
-            <TableHeaderColumn dataField='zipcode' >zipcode</TableHeaderColumn>
-            <TableHeaderColumn dataField='country'  dataSort editable={ false }>Country</TableHeaderColumn>
-            <TableHeaderColumn dataField='id' dataFormat={this.ImageFormatter} editable={ false } width="80">Update</TableHeaderColumn>
+            {/* <TableHeaderColumn dataField='birthdate' dataSort editable={ false }>Birthdate</TableHeaderColumn> */}
+            {/* <TableHeaderColumn dataField='address' >Address</TableHeaderColumn> */}
+            {/* <TableHeaderColumn dataField='zipcode' >zipcode</TableHeaderColumn> */}
+            {/* <TableHeaderColumn dataField='country'  dataSort editable={ false }>Country</TableHeaderColumn> */}
+            <TableHeaderColumn dataField='id' dataAlign="center" dataFormat={this.ImageFormatter} editable={ false } width="120">Update</TableHeaderColumn>
         </BootstrapTable>
 
         </div>;

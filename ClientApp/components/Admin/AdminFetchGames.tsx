@@ -120,9 +120,9 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
             
         <BootstrapTable data={ this.state.games } selectRow={ selectRowProp } deleteRow={ true } cellEdit={ cellEditProp } search={true}  options={ options} height='auto' hover pagination>
             <TableHeaderColumn dataField='id'isKey={true} width="60">ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='title' dataSort width="160">Product Name</TableHeaderColumn>
-            <TableHeaderColumn dataField='platform' dataFormat={this.CategoryPlatformFormatter} editable={ false } dataSort>Platform</TableHeaderColumn>
-            <TableHeaderColumn dataField='category' dataFormat={this.CategoryPlatformFormatter} editable={ false } dataSort>Category</TableHeaderColumn>
+            <TableHeaderColumn dataField='title' dataSort width="200">Product Name</TableHeaderColumn>
+            <TableHeaderColumn dataField='platform' width="120" dataFormat={this.CategoryPlatformFormatter}  editable={ false } dataSort>Platform</TableHeaderColumn>
+            {/* <TableHeaderColumn dataField='category' dataFormat={this.CategoryPlatformFormatter} editable={ false } dataSort>Category</TableHeaderColumn> */}
             <TableHeaderColumn dataField='price' dataSort 
              filter={ { 
                 type: 'NumberFilter', 
@@ -131,8 +131,8 @@ export class AdminFetchGames extends React.Component<RouteComponentProps<any>, F
               } }
             >Price</TableHeaderColumn>
             <TableHeaderColumn dataField='publisher' dataSort>Publisher</TableHeaderColumn>
-            <TableHeaderColumn dataField='releasedate' dataSort width="120">Release Year</TableHeaderColumn>
-            <TableHeaderColumn dataField='id' dataFormat={this.ImageFormatter} editable={ false } width="80">Update</TableHeaderColumn>
+            {/* <TableHeaderColumn dataField='releasedate' dataSort width="120">Release Year</TableHeaderColumn> */}
+            <TableHeaderColumn dataField='id' dataAlign="center" dataFormat={this.ImageFormatter} editable={ false } width="120">Update</TableHeaderColumn>
         </BootstrapTable>
 
         </div>;

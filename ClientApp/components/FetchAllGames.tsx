@@ -99,7 +99,7 @@ export class FetchAllGames extends React.Component<RouteComponentProps<{}>, Fetc
 
         return <div className="col-md-10 content">
                     <div className="row pageTitle">
-                        <h2>Bestsellers</h2>
+                        <h2>All games</h2>
                     </div>
                     { filters }
                     { contents }

@@ -166,7 +166,7 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
                     <div className="form-group">
                         <label>Release year</label>
                         <input name="Releasedate" type="number" className="form-control" value={this.state.Releasedate} placeholder="Release year" 
-                         maxLength={4} min="1950" max="2017" onChange ={this.handleInputChange} />
+                         maxLength={4} min="1950" max="2018" onChange ={this.handleInputChange} />
                     </div>
     
                     <div className="form-group">
@@ -174,7 +174,7 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
                         <textarea className="form-control" rows={5} name="Description" placeholder="Game description" value={this.state.Description} onChange ={this.handleInputChange}></textarea>
                     </div>
     
-                    <input type="file" name="pic" accept="image/*"/>
+                    {/* <input type="file" name="pic" accept="image/*"/> */}
                     <br/>
                     <input type="submit" className="btn btn-default" value="Update Game"/>
                 </div>
