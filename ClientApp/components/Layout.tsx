@@ -57,6 +57,8 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
     }
 
     private static renderLoggedIn(self : any, user : Models.User){
+        var admin;
+        if(user.role == 1){ admin = <li className=""><a href="admin">Adminpanel</a></li>};
         return <ul className="nav navbar-nav navbar-right">
             <li>
                 <Search/>
@@ -70,7 +72,7 @@ export class Layout extends React.Component<LayoutProps,{auth_user : Models.User
                         <li className=""><a href="user">Account details</a></li>
                         <li className=""><a href="wishlist">Wishlist</a></li>
                         <li className=""><a href="orderhistory">Order history</a></li>
-                        <li className=""><a href="admin">Adminpanel</a></li>
+                        { admin }
                         <li className="divider"></li>
                         <li><a href="" onClick={() => self.logOut()}>Logout</a></li>
                     </ul>

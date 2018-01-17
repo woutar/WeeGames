@@ -14,6 +14,9 @@ export class AdminMenu extends React.Component<RouteComponentProps<{}>, AdminMen
 
     
     public render() {
+        if(sessionStorage.getItem("user") == null){
+            window.location.href = "/";
+        }
         let contents = AdminMenu.renderMenuItems();
 
         return <div className="col-md-2 sidebar">
