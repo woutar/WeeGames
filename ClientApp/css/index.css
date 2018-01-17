@@ -238,6 +238,10 @@ span.tag {
     margin-bottom: 20px;
 }
 
+.pagination a{
+    cursor: pointer; 
+}
+
 .pay-method-wrapper{
     float: left;
     margin-right: 20px;

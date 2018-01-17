@@ -42,7 +42,7 @@ export class PieChart extends React.Component<{},PieChartState>{
 
         var gameTitles = [];
         for(var i = 0; i < 10; i++){
-            gameTitles.push(this.state.orderItems[i].gameId);
+            gameTitles.push(this.state.orderItems[i].game.id);
         }
         var json = JSON.stringify(gameTitles);
 
