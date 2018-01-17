@@ -15,9 +15,9 @@ import {PieChart} from "../Piechart";
       render() {
         return <div className="col-md-10 content">
                 <ul className="nav nav-tabs">
-                    <li className="active"><a data-toggle="tab" href="#home">Top 10 Genres</a></li>
-                    <li><a data-toggle="tab" href="#menu1">Top 10 Visited</a></li>
-                    <li><a data-toggle="tab" href="#menu2">Sales this month</a></li>
+                    <li className="active"><a data-toggle="tab" href="#home">Order information</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Most sold games</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Revenue last 30 days</a></li>
                 </ul>
 
                 <div className="tab-content">
