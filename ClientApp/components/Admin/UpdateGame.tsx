@@ -94,9 +94,12 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
         window.location.href = "/admin/games";     
     }
 
-    
-    render() {
-        return (
+    public render() {
+        var user = sessionStorage.getItem("user")
+        if( user != null){
+            var user_json = JSON.parse(user);
+            if(user_json.role == 1){
+                return (
             <div className="row">
                 <form method="post" onSubmit={this.handleSubmit}>
                 <div className="col-lg-1"/>
@@ -181,5 +184,10 @@ export class UpdateGame extends React.Component<RouteComponentProps<{id: number}
                 </form>
             </div>
             );
+            }
+            return null
+        }
+        return null
     }
+
 }

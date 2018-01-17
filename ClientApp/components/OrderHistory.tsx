@@ -91,16 +91,20 @@ export class OrderHistory extends React.Component<RouteComponentProps<{}>,OrderH
         // var mm = date.getMonth()+1; 
         // var yyyy = date.getFullYear();
         // var pretty_date = yyyy + "-" + mm + "-" + dd;
+        function month(input : any){
+            return parseDate(input).getMonth()+1
+        }
 
         return <div>
         {this.state.orders.map(order =>
             <div className="row product history-item" key={ order.id } onClick={() => this.onDetails(event,order)}>
+            
                 <div className="row">
                     <div className="col-sm-3">
                         <span className="title">Ordernumber : { order.id }</span>
                     </div>
                     <div className="col-sm-3">
-                        <span className="">Date: { parseDate(order.orderDate).getFullYear() + "-" + parseDate(order.orderDate).getMonth() + "-" + parseDate(order.orderDate).getDate() }</span>
+                        <span className="">Date: { parseDate(order.orderDate).getFullYear() + "-" + month(order.orderDate) + "-" + parseDate(order.orderDate).getDate() }</span>
                     </div>
                     <div className="col-sm-3">
                         <span className="price">Price : &euro;{ order.total.toFixed(2) }</span>

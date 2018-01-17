@@ -82,7 +82,6 @@ export class FetchSearchResult extends React.Component<RouteComponentProps<{sear
             }
             return currentObject.category.name == category && currentObject.price >= minAmount && currentObject.price <= maxAmount
         });
-        console.log(filtered_games)
         this.setState({ filtered_list : filtered_games});
     }
 

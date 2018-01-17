@@ -90,25 +90,27 @@ export class AdminFetchUsers extends React.Component<RouteComponentProps<any>, F
     }
   
 
-
     public render() {
+        var user = sessionStorage.getItem("user")
+        if( user != null){
+            var user_json = JSON.parse(user);
+            if(user_json.role == 1){
+                const options = {
+                    sortName: this.state.sortName,
+                    sortOrder: this.state.sortOrder,
+                    afterDeleteRow: this.onAfterDeleteRow,  // A hook for after dropping rows.
+                };
 
-        const options = {
-            sortName: this.state.sortName,
-            sortOrder: this.state.sortOrder,
-            afterDeleteRow: this.onAfterDeleteRow,  // A hook for after dropping rows.
-          };
+                const selectRowProp = {
+                    mode: this.state.mode
+                };
 
-          const selectRowProp = {
-            mode: this.state.mode
-          };
-
-          const cellEditProp = {
-            mode: this.state.cellEdit,
-            blurToSave: true,
-            beforeSaveCell: this.onBeforeSaveCell, // a hook for before saving cell
-            afterSaveCell: this.onAfterSaveCell  // a hook for after saving cell
-          };
+                const cellEditProp = {
+                    mode: this.state.cellEdit,
+                    blurToSave: true,
+                    beforeSaveCell: this.onBeforeSaveCell, // a hook for before saving cell
+                    afterSaveCell: this.onAfterSaveCell  // a hook for after saving cell
+                };
 
 
         return <div className="col-md-10 content">
@@ -126,6 +128,13 @@ export class AdminFetchUsers extends React.Component<RouteComponentProps<any>, F
         </BootstrapTable>
 
         </div>;
+                
+            }
+            return null
+        }
+        return null
     }
+
+ 
 
 }
