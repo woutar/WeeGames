@@ -85,8 +85,12 @@ export class InsertUser extends React.Component<RouteComponentProps<{}>,PostUser
         window.location.href = "/admin/users";     
     }
 
-    render() {
-        return (
+    public render() {
+        var user = sessionStorage.getItem("user")
+        if( user != null){
+            var user_json = JSON.parse(user);
+            if(user_json.role == 1){
+                return (
         <div className="row">
         <form method="post" onSubmit={this.handleSubmit}>
             <div className="col-lg-4">
@@ -158,5 +162,10 @@ export class InsertUser extends React.Component<RouteComponentProps<{}>,PostUser
             </form>
         </div>
         );
+            }
+            return null
+        }
+        return null
     }
+
 }

@@ -26,13 +26,14 @@ export class PieChart extends React.Component<{},PieChartState>{
 
     getPieChartData(){
         //Ajax calls here
-        fetch('api/Statistics/getbestsellersvalue')
+        fetch('api/Statistics/GetBestsellersValue')
         .then(response => response.json() as Promise<Models.OrderItem[]>)
         .then(data => {
 
         this.setState({
             orderItems: data,
         });
+        console.log(this.state.orderItems)
 
         this.getData();
         });
