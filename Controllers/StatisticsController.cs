@@ -32,16 +32,9 @@ namespace WeeGames.Controllers
                     GameId = orderGroup.Key,
                     Quantity = orderGroup.Sum(x => x.Quantity),
                 };
-                orderItems = orderItems.OrderByDescending(c => c.Quantity);
+            orderItems = orderItems.OrderByDescending(c => c.Quantity);
             orderItems = orderItems.Take(10);
             
-
-            // var orderItems =    _context.OrderItems
-            //                 .GroupBy(p => p.GameId)
-            //                 .Select(oi => oi.FirstOrDefault())
-            //                 .OrderByDescending(c => c.Quantity)
-            //                 .Take(10);
-
             return orderItems.ToArray();
         }
 
